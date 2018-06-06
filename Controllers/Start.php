@@ -1,8 +1,11 @@
 <?php
 
 namespace Common\Controllers;
-class Start{
+class Start extends \Core\StandardController{
     function index(){
-        dump('1');
+        $this->addView('Common','start');
+    }
+    function demo($a, int $b=5, \Exception $c=null){
+        dump($a,$b);
     }
 }
