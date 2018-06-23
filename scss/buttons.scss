@@ -1,0 +1,26 @@
+.button{
+    display: inline-block;
+    padding:5px 8px;
+    background: var(--second);
+    color:var(--main);
+    border:2px solid var(--main);
+    transition:all 200ms;
+    position:relative;
+    
+    &::before{
+        content:'';
+        display:block;
+        width:100%;
+        height:100%;
+        background:var(--main);
+        position: absolute;
+        left:attr(data-hover-left);
+        top:attr(data-hover-top);
+    }
+    &:hover{
+    color:var(--second);
+    }
+    &:active{
+        transform:scale(.7);
+    }
+}

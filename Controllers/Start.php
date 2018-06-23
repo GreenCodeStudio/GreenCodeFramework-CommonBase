@@ -2,7 +2,7 @@
 
 namespace Common\Controllers;
 
-class Start extends \Core\StandardController {
+class Start extends \Common\PageStandardController {
 
     function index() {
         $this->addView('Common', 'start');
