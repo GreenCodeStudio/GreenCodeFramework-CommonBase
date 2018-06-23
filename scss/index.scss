@@ -1,0 +1,10 @@
+*{
+    background:red;
+    *{
+        background:green;
+        *{
+            background:blue;
+            *{
+                background:gray;
+            }}}
+}
