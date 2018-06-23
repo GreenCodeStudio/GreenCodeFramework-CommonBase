@@ -29,8 +29,7 @@ class Start extends \Common\PageStandardController {
     }
     function migration(){
         $migr=new \Core\Migration();
-        $migr->readNewStructure();
-        $migr->readOldStructure();
+        $migr->upgrade();
     }
 
 }

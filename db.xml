@@ -2,9 +2,15 @@
 <root>
     <table>
         <name>test</name>
-            <column>
-                <name>aaa</name>
-                <type>int</type>
-            </column>
+        <column>
+            <name>aaa</name>
+            <type>int</type>
+            <null>YES</null>
+        </column>
+        <column>
+            <name>bbb</name>
+            <type>text</type>
+            <null>NO</null>
+        </column>
     </table>
 </root>
