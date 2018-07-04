@@ -5,7 +5,7 @@
         <title>Strona główna</title>
     </element>
     <element>
-        <link>/start/demo</link>
+        <link>/start/demo/2/3</link>
         <title>Demo</title>
     </element>
 
@@ -17,7 +17,7 @@
                 <title>Strona główna</title>
             </element>
             <element>
-                <link>/start/demo</link>
+                <link>/start/demo/rtre/44</link>
                 <title>Demo</title>
             </element>
         </menu>

@@ -10,6 +10,9 @@
         <header></header>
         <aside data-views="aside"><?php $this->showViews('aside'); ?></aside>
         <div class="mainContent" data-views="main"><?php $this->showViews('main'); ?></div>
+        <script>
+            window.controllerInitInfo = <?=json_encode($this->getInitInfo())?>;
+        </script>
         <script src="/js/main.bundle.js" type="text/javascript"></script>
     </body>
 </html>
