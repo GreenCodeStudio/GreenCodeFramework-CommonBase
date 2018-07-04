@@ -2,28 +2,31 @@
 @import "./cards";
 @import "./buttons";
 
-body{
-    background:#ddd;
+body {
+    background: #ddd;
 
-    >header{
+    > header {
         background: var(--main);
         position: fixed;
-        top:0;
-        left:0;
-        width:100%;
-        height:60px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
     }
-    >aside{
+    > aside {
         position: fixed;
-        left:0;
-        top:60px;
-        bottom:0;
-        width:200px;
-        background:#eee;
+        left: 0;
+        top: 60px;
+        bottom: 0;
+        width: 200px;
+        background: #eee;
     }
-    >.mainContent{
-        display: flex;
-        flex-wrap: wrap;
-        margin:60px 0 0 200px;
+    > .mainContent {
+        margin: 60px 0 0 200px;
+        
+        > .page {
+            display: flex;
+            flex-wrap: wrap;
+        }
     }
 }

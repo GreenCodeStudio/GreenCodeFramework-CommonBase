@@ -31,5 +31,11 @@ class Start extends \Common\PageStandardController {
         $migr=new \Core\Migration();
         $migr->upgrade();
     }
+    function formDemo(){
+        $this->addView('Common', 'formDemo');
+    }
+    function formDemo_data(){
+        return ['demo'=>['test1'=>rand(10,20)]];
+    }
 
 }
