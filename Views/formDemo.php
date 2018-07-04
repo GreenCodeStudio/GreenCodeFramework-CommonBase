@@ -1,4 +1,4 @@
-<form class="dataForm" data-name="data">
+<form class="dataForm" data-name="demo">
     <section class="card" data-width="6">
         <header>
             <h1>Karta tytułowa</h1>

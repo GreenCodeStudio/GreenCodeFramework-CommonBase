@@ -20,6 +20,10 @@
                 <link>/start/demo/rtre/44</link>
                 <title>Demo</title>
             </element>
+            <element>
+                <link>/start/formDemo</link>
+                <title>Demo</title>
+            </element>
         </menu>
     </element>
 </menu>
