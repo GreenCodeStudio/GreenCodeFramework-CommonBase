@@ -9,6 +9,7 @@
     overflow: hidden;
     z-index: 0;
     cursor: pointer;
+    user-select: none;
 
     &::before {
         content: '';

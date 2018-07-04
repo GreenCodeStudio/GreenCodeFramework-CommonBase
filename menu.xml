@@ -24,6 +24,10 @@
                 <link>/start/formDemo</link>
                 <title>Demo</title>
             </element>
+            <element>
+                <link>/start/tableDemo</link>
+                <title>tableDemo</title>
+            </element>
         </menu>
     </element>
 </menu>

@@ -37,5 +37,8 @@ class Start extends \Common\PageStandardController {
     function formDemo_data(){
         return ['demo'=>['test1'=>rand(10,20)]];
     }
+    function tableDemo(){
+        $this->addView('Common', 'tableDemo');
+    }
 
 }
