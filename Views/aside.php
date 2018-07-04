@@ -1,32 +1,19 @@
+<?php
+function generateMenu($tree)
+{
+    echo '<ul>';
+    foreach ($tree->element as $element) {
+        echo '<li>';
+        if (isset($element->link))
+            echo '<a href="'.htmlspecialchars($element->link).'">'.htmlspecialchars($element->title).'</a>';
+        else
+            echo '<span>'.htmlspecialchars($element->title).'</span>';
+        if (isset($element->menu))
+            generateMenu($element->menu);
+        echo '</li>';
+    }
+    echo '</ul>';
+} ?>
 <nav>
-    <ul>
-        <li>
-            <span>Pierwsza zakładka</span>
-            <ul>
-                <li>
-                    <a href="">Wszystkie</a>
-                </li>
-                <li>
-                    <a href="">Dodaj</a>
-                </li>
-                <li>
-                    <a href="">Lista</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <span>Kolejna</span>
-            <ul>
-                <li>
-                    <a href="">Wszystkie</a>
-                </li>
-                <li>
-                    <a href="">Dodaj</a>
-                </li>
-                <li>
-                    <a href="">Lista</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
+    <?=generateMenu($data['menu']);?>
 </nav>

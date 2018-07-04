@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <element>
+        <link>/</link>
+        <title>Strona główna</title>
+    </element>
+    <element>
+        <link>/start/demo</link>
+        <title>Demo</title>
+    </element>
+
+    <element>
+        <title>Submenu</title>
+        <menu>
+            <element>
+                <link>/</link>
+                <title>Strona główna</title>
+            </element>
+            <element>
+                <link>/start/demo</link>
+                <title>Demo</title>
+            </element>
+        </menu>
+    </element>
+</menu>
