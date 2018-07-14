@@ -2,7 +2,7 @@
 function generateMenu($tree)
 {
     echo '<ul>';
-    foreach ($tree->element as $element) {
+    foreach ($tree as $element) {
         echo '<li>';
         if (isset($element->link))
             echo '<a href="'.htmlspecialchars($element->link).'">'.htmlspecialchars($element->title).'</a>';
