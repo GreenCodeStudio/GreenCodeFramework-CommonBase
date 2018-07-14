@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+        th {
+            position: sticky;
+            top: 60px;
+            background: #000;
+            color:#fff;
+        }
+    }
+    tr {
+        &:nth-child(2n) {
+            background: rgba(#000000, .2);
+
+            &:hover {
+                background: rgba(#000000, .3);
+            }
+        }
+        &:nth-child(2n+1) {
+            background: rgba(#000000, .05);
+
+            &:hover {
+                background: rgba(#000000, .25);
+            }
+        }
+        td {
+            padding: 5px 10px;
+            margin: 0;
+        }
+    }
+}
