@@ -10,6 +10,7 @@
     z-index: 0;
     cursor: pointer;
     user-select: none;
+    text-decoration: none;
 
     &::before {
         content: '';
