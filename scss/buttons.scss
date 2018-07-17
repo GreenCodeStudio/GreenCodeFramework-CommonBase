@@ -11,6 +11,7 @@
     cursor: pointer;
     user-select: none;
     text-decoration: none;
+    vertical-align: middle;
 
     &::before {
         content: '';
@@ -25,15 +26,12 @@
         border-radius: 100%;
         z-index: -1;
     }
-    &:hover {
-        color: var(--second);
-    }
     &:active {
         transform: scale(.7);
     }
-    &:hover {
+    &:hover, &:focus {
+        color: var(--second);
         &::before {
-
             left: 0;
             top: 0;
             border-radius: 0;

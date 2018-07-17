@@ -2,6 +2,7 @@
 @import "./cards";
 @import "./buttons";
 @import "./table";
+@import "./form";
 
 body {
     background: #ddd;
@@ -29,7 +30,6 @@ body {
         > .page {
             display: flex;
             flex-wrap: wrap;
-            sds:dd;
 
             > form {
                 display: contents;
