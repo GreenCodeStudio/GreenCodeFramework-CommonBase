@@ -6,7 +6,7 @@ table {
         th {
             position: sticky;
             top: 60px;
-            background: #000;
+            background: var(--second);
             color: #fff;
 
             .tableCopy {
@@ -38,5 +38,5 @@ table {
 }
 
 .dataTableContainer {
-    border: 1px solid #000;
+    border: 1px solid var(--second);
 }

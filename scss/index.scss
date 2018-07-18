@@ -25,14 +25,58 @@ body {
         background: #eee;
     }
     > .mainContent {
-        margin: 60px 0 0 200px;
+        margin: calc(60px + 2.5em) 0 0 200px;
 
-        > .page {
+        .page {
             display: flex;
             flex-wrap: wrap;
 
             > form {
                 display: contents;
+            }
+            .topBarButtons {
+                position: fixed;
+                top: 60px;
+                right: 0;
+                padding: calc(0.75em - 7px);
+            }
+        }
+        > .topBar {
+            position: fixed;
+            top: 60px;
+            left: 200px;
+            right: 0;
+            background: #fff;
+            border-bottom: 1px solid #aaa;
+
+            .breadcrumb {
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    line-height: 2.5;
+                    overflow: hidden;
+
+                    li {
+                        margin: 0;
+                        padding: 0;
+                        display: inline-block;
+                        &::after {
+                            //  content:''
+                        }
+                        a {
+                            display: block;
+                            padding: 0 15px;
+                            margin-left: -10px;
+                            clip-path: polygon(0 100%, 10px 50%, 0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%);
+                            transition: 300ms all;
+                            text-decoration: none;
+
+                            &:hover {
+                                background: var(--main)
+                            }
+                        }
+                    }
+                }
             }
         }
     }

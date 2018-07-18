@@ -1,9 +1,9 @@
 .button {
     display: inline-block;
     padding: 5px 8px;
-    background: var(--second);
-    color: var(--main);
-    border: 2px solid var(--main);
+    background: var(--mainLight);
+    color: var(--second);
+    border: 2px solid var(--second);
     transition: all 200ms;
     position: relative;
     overflow: hidden;
@@ -12,13 +12,14 @@
     user-select: none;
     text-decoration: none;
     vertical-align: middle;
+    line-height: 1;
 
     &::before {
         content: '';
         display: block;
         width: 200%;
         height: 200%;
-        background: var(--main);
+        background: var(--second);
         position: absolute;
         left: 72%;
         top: 72%;
@@ -30,7 +31,8 @@
         transform: scale(.7);
     }
     &:hover, &:focus {
-        color: var(--second);
+        color: var(--mainLight);
+
         &::before {
             left: 0;
             top: 0;

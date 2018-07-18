@@ -1,4 +1,16 @@
 html, .color-grey{
-    --main:#ccc;
+    --mainLight:#ccc;
+    --main:#888;
     --second:#333;
+}
+.color-red{
+    --main:#e11;
+    --mainLight:#faa;
+    --second:#144;
+}
+
+.color-green{
+    --main:#1e1;
+    --mainLight:#afa;
+    --second:#414;
 }
