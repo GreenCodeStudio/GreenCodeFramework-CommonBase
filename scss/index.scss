@@ -64,7 +64,7 @@ body {
                     visibility: visible;
                 }
             }
-        
+
             > form {
                 display: contents;
             }
@@ -94,6 +94,7 @@ body {
                         margin: 0;
                         padding: 0;
                         display: inline-block;
+
                         &::after {
                             //  content:''
                         }
@@ -104,6 +105,27 @@ body {
                             clip-path: polygon(0 100%, 10px 50%, 0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%);
                             transition: 300ms all;
                             text-decoration: none;
+                            animation: breadcrumb-in 600ms ease-out;
+                            transform-origin: 0% 50%;
+
+                            @keyframes breadcrumb-in {
+                                0% {
+                                    opacity: 0;
+                                    transform: scale(1.2);
+                                    background: transparent;
+                                }
+                                50% {
+                                    opacity: 1;
+                                    transform: scale(1);
+                                    background: transparent;
+                                }
+                                60% {
+                                    background: var(--main);
+                                }
+                                100% {
+                                    background: transparent;
+                                }
+                            }
 
                             &:hover {
                                 background: var(--main)
