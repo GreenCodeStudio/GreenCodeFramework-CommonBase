@@ -26,11 +26,45 @@ body {
     }
     > .mainContent {
         margin: calc(60px + 2.5em) 0 0 200px;
+        position: relative;
 
         .page {
             display: flex;
             flex-wrap: wrap;
+            position: absolute;
+            animation: page-in 200ms ease-out;
+            left: 0;
+            right: 0;
+            transform-origin: 50% 100px;
 
+            &.removing {
+                animation: page-out 200ms ease-out;
+                visibility: collapse;
+            }
+
+            @keyframes page-in {
+                0% {
+                    opacity: 0;
+                    transform: scale(1.2);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+            @keyframes page-out {
+                0% {
+                    opacity: 1;
+                    transform: scale(1);
+                    visibility: visible;
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(.8);
+                    visibility: visible;
+                }
+            }
+        
             > form {
                 display: contents;
             }
