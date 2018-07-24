@@ -15,5 +15,5 @@ function generateMenu($tree)
     echo '</ul>';
 } ?>
 <nav>
-    <?=generateMenu($data['menu']);?>
+    <?= generateMenu($data['menu']); ?>
 </nav>

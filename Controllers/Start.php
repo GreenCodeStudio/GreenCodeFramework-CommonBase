@@ -2,9 +2,11 @@
 
 namespace Common\Controllers;
 
-class Start extends \Common\PageStandardController {
+class Start extends \Common\PageStandardController
+{
 
-    function index() {
+    function index()
+    {
         $this->addView('Common', 'start');
         dumpTime();
         dumpTime();
@@ -24,20 +26,29 @@ class Start extends \Common\PageStandardController {
 //        }
     }
 
-    function demo($a, int $b = 5, \Exception $c = null) {
+    function demo($a, int $b = 5, \Exception $c = null)
+    {
         dump($a, $b);
     }
-    function migration(){
-        $migr=new \Core\Migration();
+
+    function migration()
+    {
+        $migr = new \Core\Migration();
         $migr->upgrade();
     }
-    function formDemo(){
+
+    function formDemo()
+    {
         $this->addView('Common', 'formDemo');
     }
-    function formDemo_data(){
-        return ['demo'=>['test1'=>rand(10,20)]];
+
+    function formDemo_data()
+    {
+        return ['demo' => ['test1' => rand(10, 20)]];
     }
-    function tableDemo(){
+
+    function tableDemo()
+    {
         $this->addView('Common', 'tableDemo');
     }
 

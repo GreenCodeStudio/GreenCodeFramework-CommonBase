@@ -11,10 +11,11 @@ namespace Common\Ajax;
 
 class Cache extends \Core\AjaxController
 {
-public function list(){
-    $frontCache=new \Common\FrontCache();
-    $normal=$frontCache->getNormalList();
+    public function list()
+    {
+        $frontCache = new \Common\FrontCache();
+        $normal = $frontCache->getNormalList();
 
-    return ['normal'=>$normal];
-}
+        return ['normal' => $normal];
+    }
 }

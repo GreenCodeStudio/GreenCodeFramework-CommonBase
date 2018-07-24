@@ -11,6 +11,7 @@
 </section>
 <section class="card" data-width="3">
     Inne
-</section><section class="card" data-width="3">
+</section>
+<section class="card" data-width="3">
     Inne
 </section>
