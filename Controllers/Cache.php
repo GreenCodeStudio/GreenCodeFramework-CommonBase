@@ -15,4 +15,9 @@ class Cache extends \Common\PageStandardController
     {
 
     }
+
+    function regenerateCode()
+    {
+        \Core\CodeCache::regenerate();
+    }
 }
