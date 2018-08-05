@@ -15,7 +15,8 @@ class Cache extends \Core\AjaxController
     {
         $frontCache = new \Common\FrontCache();
         $normal = $frontCache->getNormalList();
+        $json = $frontCache->getJsonList();
 
-        return ['normal' => $normal];
+        return ['normal' => $normal, 'json' => $json];
     }
 }
