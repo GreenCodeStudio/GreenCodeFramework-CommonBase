@@ -9,7 +9,10 @@
 </head>
 <body>
 <header>
-    <div class="tasks"></div>
+    <div class="tasks">
+        <div class="headerButton">Procesy</div>
+        <div class="tasksList"></div>
+    </div>
 </header>
 <aside data-views="aside"><?php $this->showViews('aside'); ?></aside>
 <div class="mainContent">

@@ -1,0 +1,25 @@
+.tasks {
+    display: inline-block;
+
+    .tasksList {
+        display: none;
+        position: absolute;
+        width: 200px;
+        height: 300px;
+        overflow: scroll;
+        border: 1px solid;
+        background: rgba(#ffffff, .6);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        right: 0;
+
+        > .task {
+            border: 1px solid;
+        }
+    }
+    &:hover, &:focus-within{
+        .tasksList{
+            display: block;
+        }
+    }
+}
