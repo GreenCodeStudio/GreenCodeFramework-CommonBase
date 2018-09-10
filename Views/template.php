@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="color-green">
 <head>
-    <title>TODO supply a title</title>
+    <title><?= htmlspecialchars($this->getTitle()) ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/build.css" rel="stylesheet" type="text/css">
@@ -23,7 +23,7 @@
 </div>
 <script>
     window.controllerInitInfo = <?=json_encode($this->getInitInfo())?>;
-    window.DEBUG=<?=json_encode($this->isDebug())?>;
+    window.DEBUG =<?=json_encode($this->isDebug())?>;
 </script>
 <script src="/js/main.bundle.js" type="text/javascript"></script>
 </body>
