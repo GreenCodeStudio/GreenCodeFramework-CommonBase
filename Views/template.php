@@ -13,6 +13,10 @@
         <div class="headerButton">Procesy</div>
         <div class="tasksList"></div>
     </div>
+    <div class="loginInfo">
+        <?=htmlspecialchars($userData->name.' '.$userData->surname)?>
+        <div class="btn logoutMyselfBtn">Wyloguj</div>
+    </div>
 </header>
 <aside data-views="aside"><?php $this->showViews('aside'); ?></aside>
 <div class="mainContent">
