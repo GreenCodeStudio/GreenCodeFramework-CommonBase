@@ -57,20 +57,22 @@ body {
             @keyframes page-in {
                 0% {
                     opacity: 0;
+                    transform: translateY(20px);
                 }
                 100% {
                     opacity: 1;
+                    transform: translateY(0);
                 }
             }
             @keyframes page-out {
                 0% {
                     opacity: 1;
-                    //transform: scale(1);
+                    transform: translateY(0);
                     visibility: visible;
                 }
                 100% {
                     opacity: 0;
-                    //transform: scale(.8);
+                    transform: translateY(-20px);
                     visibility: visible;
                 }
             }
