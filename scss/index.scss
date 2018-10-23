@@ -49,26 +49,28 @@ body {
                 animation: page-out 200ms ease-out;
                 visibility: collapse;
             }
+            &.stillLoading{
+                animation:none;
+                visibility: collapse;
+            }
 
             @keyframes page-in {
                 0% {
                     opacity: 0;
-                    transform: scale(1.2);
                 }
                 100% {
                     opacity: 1;
-                    transform: scale(1);
                 }
             }
             @keyframes page-out {
                 0% {
                     opacity: 1;
-                    transform: scale(1);
+                    //transform: scale(1);
                     visibility: visible;
                 }
                 100% {
                     opacity: 0;
-                    transform: scale(.8);
+                    //transform: scale(.8);
                     visibility: visible;
                 }
             }
@@ -113,7 +115,7 @@ body {
                             clip-path: polygon(0 100%, 10px 50%, 0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%);
                             transition: 300ms all;
                             text-decoration: none;
-                            animation: breadcrumb-in 600ms ease-out;
+                            //animation: breadcrumb-in 600ms ease-out;
                             transform-origin: 0% 50%;
 
                             @keyframes breadcrumb-in {
