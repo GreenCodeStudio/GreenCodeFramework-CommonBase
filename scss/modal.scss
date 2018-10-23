@@ -1,0 +1,56 @@
+.modalContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(#000000, .8);
+    transition: background 200ms ease-out;
+
+    .modal {
+        animation: page-in 200ms ease-out;
+        background: #ffffff;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50, -50%);
+        padding: 10px 10px;
+        text-align: center;
+        min-width: 300px;
+        @media (max-width: 400px) {
+            min-width: 50vw;
+        }
+
+        .modal-text {
+            margin: 10px;
+            text-align: left;
+        }
+        .modal-button {
+            margin: 10px;
+            @extend .button;
+        }
+
+        &[data-type="warning"] {
+            background: lighten(#ff8800, 25);
+            --mainLight: #ff8800;
+        }
+        &[data-type="error"] {
+            background: lighten(#ff0000, 25);
+            --mainLight: #ff0000;
+        }
+        &[data-type="success"] {
+            background: lighten(#00dd00, 25);
+            --mainLight: #00dd00;
+        }
+    }
+
+    &.closing {
+        background: transparent;
+        .modal {
+            animation: page-out 200ms ease-out;
+            display: none;
+        }
+    }
+}
