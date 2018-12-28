@@ -28,6 +28,10 @@
                 <link>/start/tableDemo</link>
                 <title>tableDemo</title>
             </element>
+            <element>
+                <link>/start/errorDemo</link>
+                <title>errorDemo</title>
+            </element>
         </menu>
     </element>
 </menu>

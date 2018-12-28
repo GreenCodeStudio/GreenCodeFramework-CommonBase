@@ -36,4 +36,10 @@ class Start extends \Common\PageStandardController
         $this->addView('Common', 'tableDemo');
     }
 
+    function errorDemo()
+    {
+        dump(123);
+        throw new \Exception('abcd');
+    }
+
 }
