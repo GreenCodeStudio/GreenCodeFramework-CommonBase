@@ -133,13 +133,16 @@ class CodeGenerator
 
 namespace '.$namespace.'\Controllers;
 
+use Authorization\Permissions;
+use Core\Exceptions\NotFoundException;
+
 class '.$name.' extends \Common\PageStandardController
 {
 
     function index()
     {
         $this->will(\''.$name.'\', \'show\');
-        $this->addView(\''.$name.'\', \'list\');
+        $this->addView(\''.$namespace.'\', \''.$name.'List\');
         $this->pushBreadcrumb([\'title\' => \''.$name.'\', \'url\' => \'/'.$name.'\']);
 
     }
@@ -151,7 +154,7 @@ class '.$name.' extends \Common\PageStandardController
     function edit(int $id)
     {
         $this->will(\''.$name.'\', \'edit\');
-        $this->addView(\''.$namespace.'\', \'edit\', [\'type\' => \'edit\']);
+        $this->addView(\''.$namespace.'\', \''.$name.'Edit\', [\'type\' => \'edit\']);
         $this->pushBreadcrumb([\'title\' => \''.$name.'\', \'url\' => \'/'.$name.'\']);
         $this->pushBreadcrumb([\'title\' => \'Edycja\', \'url\' => \'/'.$name.'/edit/\'.$id]);
     }
@@ -159,10 +162,10 @@ class '.$name.' extends \Common\PageStandardController
     function edit_data(int $id)
     {
         $this->will(\''.$name.'\', \'edit\');
-        '.$name.' = new \\'.$namespace.'\\'.$name.'();
-        $data = '.$name.'->getById($id);
+        $'.$name.' = new \\'.$namespace.'\\'.$name.'();
+        $data = $'.$name.'->getById($id);
         if ($data == null)
-            throw new \Core\Exceptions\NotFoundException();
+            throw new NotFoundException();
         return [\''.$name.'\' => $data];
     }
 
@@ -173,7 +176,7 @@ class '.$name.' extends \Common\PageStandardController
     {
         $this->will(\''.$name.'\', \'add\');
         $permissionsStructure = Permissions::readStructure();
-        $this->addView(\''.$namespace.'\', \'edit\', [\'type\' => \'add\']);
+        $this->addView(\''.$namespace.'\', \''.$name.'Edit\', [\'type\' => \'add\']);
         $this->pushBreadcrumb([\'title\' => \''.$name.'\', \'url\' => \'/'.$name.'\']);
         $this->pushBreadcrumb([\'title\' => \'Dodaj\', \'url\' => \'/'.$name.'/add\']);
     }
