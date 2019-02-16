@@ -186,17 +186,105 @@ class '.$name.' extends \Common\PageStandardController
 
     function makeAjax(string $namespace, string $name, $table)
     {
-        return 'a';
+        return '<?php
+namespace '.$namespace.'\Ajax;
+
+class '.$name.' extends \Core\AjaxController
+{
+    public function getTable($options)
+    {
+        $this->will(\''.$name.'\', \'show\');
+        $'.$name.' = new \\'.$namespace.'\\'.$name.'();
+        return $'.$name.'->getDataTable($options);
+    }
+
+    public function update($data)
+    {
+        $this->will(\''.$name.'\', \'edit\');
+        $'.$name.' = new \\'.$namespace.'\\'.$name.'();
+        $'.$name.'->update($data->id, $data);
+    }
+
+    public function insert($data)
+    {
+        $this->will(\''.$name.'\', \'add\');
+        $'.$name.' = new \\'.$namespace.'\\'.$name.'();
+        $id = $'.$name.'->insert($data);
+    }
+}';
     }
 
     function makeLogicModel(string $namespace, string $name, $table)
     {
-        return 'a';
+        $prep = '';
+        foreach ($table->column as $column) {
+            if ($column->autoincrement == 'YES') continue;
+            $prep .= '$ret[\''.$column->name.'\'] = $data->'.$column->name.';'."\r\n";
+        }
+
+        return '<?php
+namespace '.$namespace.';
+
+use '.$namespace.'\DB\\'.$name.'DB;
+
+class '.$name.' extends \Core\LogicModel
+{
+    public function __construct()
+    {
+        $this->defaultDB = new '.$name.'DB();
+    }
+
+    public function getDataTable($options)
+    {
+        return $this->defaultDB->getDataTable($options);
+    }
+
+    public function update(int $id, $data)
+    {
+        $filtered = $this->filterData($data);
+        $this->defaultDB->update($id, $filtered);
+    }
+
+    protected function filterData($data)
+    {
+        $ret = [];
+        '.$prep.'
+        return $ret;
+    }
+
+    public function insert($data)
+    {
+        $filtered = $this->filterData($data);
+        $id = $this->defaultDB->insert($filtered);
+    }
+}';
     }
 
     function makeDBModel(string $namespace, string $name, $table)
     {
-        return 'a';
+        return '<?php
+
+namespace '.$namespace.'\DB;
+
+use Core\DB;
+
+
+class '.$name.'DB extends \Core\DBModel
+{
+
+    public function __construct()
+    {
+        parent::__construct(\''.$name.'\');
+        $this->archiveMode = static::ArchiveMode_OnlyExisting;
+    }
+       public function getDataTable($options)
+    {
+        $start = (int)$options->start;
+        $limit = (int)$options->limit;
+        $rows = DB::get("SELECT * FROM '.$name.' LIMIT $start,$limit");
+        return [\'rows\' => $rows];
+    }
+}';
     }
 
     function updatePermissions($path, $name)
