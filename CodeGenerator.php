@@ -50,6 +50,10 @@ class CodeGenerator
         if (!file_exists($path.'/DB/'.$name.'Edit.php')) {
             file_put_contents($path.'/DB/'.$name.'DB.php', $this->makeDBModel($namespace, $name, $table));
         }
+        if (!file_exists($path.'/permissions.xml')) {
+            file_put_contents($path.'/permissions.xml', '<?xml version="1.0" encoding="UTF-8"?><permissions/>');
+        }
+        $this->updatePermissions($path, $name);
     }
 
     function getTable($name)
@@ -60,7 +64,7 @@ class CodeGenerator
 
     function makeViewList(string $namespace, string $name, $table)
     {
-        $cols='';
+        $cols = '';
         foreach ($table->column as $column) {
             if ($column->autoincrement == 'YES') continue;
             $cols .= '<th data-value="'.$column->name.'">'.$column->name.'</th>';
@@ -125,7 +129,56 @@ class CodeGenerator
 
     function makeController(string $namespace, string $name, $table)
     {
-        return 'a';
+        return '<?php
+
+namespace '.$namespace.'\Controllers;
+
+class '.$name.' extends \Common\PageStandardController
+{
+
+    function index()
+    {
+        $this->will(\''.$name.'\', \'show\');
+        $this->addView(\''.$name.'\', \'list\');
+        $this->pushBreadcrumb([\'title\' => \''.$name.'\', \'url\' => \'/'.$name.'\']);
+
+    }
+
+    /**
+     * @param int $id
+     * @OfflineDataOnly
+     */
+    function edit(int $id)
+    {
+        $this->will(\''.$name.'\', \'edit\');
+        $this->addView(\''.$namespace.'\', \'edit\', [\'type\' => \'edit\']);
+        $this->pushBreadcrumb([\'title\' => \''.$name.'\', \'url\' => \'/'.$name.'\']);
+        $this->pushBreadcrumb([\'title\' => \'Edycja\', \'url\' => \'/'.$name.'/edit/\'.$id]);
+    }
+
+    function edit_data(int $id)
+    {
+        $this->will(\''.$name.'\', \'edit\');
+        '.$name.' = new \\'.$namespace.'\\'.$name.'();
+        $data = '.$name.'->getById($id);
+        if ($data == null)
+            throw new \Core\Exceptions\NotFoundException();
+        return [\''.$name.'\' => $data];
+    }
+
+    /**
+     * @OfflineConstant
+     */
+    function add()
+    {
+        $this->will(\''.$name.'\', \'add\');
+        $permissionsStructure = Permissions::readStructure();
+        $this->addView(\''.$namespace.'\', \'edit\', [\'type\' => \'add\']);
+        $this->pushBreadcrumb([\'title\' => \''.$name.'\', \'url\' => \'/'.$name.'\']);
+        $this->pushBreadcrumb([\'title\' => \'Dodaj\', \'url\' => \'/'.$name.'/add\']);
+    }
+}
+';
     }
 
     function makeAjax(string $namespace, string $name, $table)
@@ -141,5 +194,23 @@ class CodeGenerator
     function makeDBModel(string $namespace, string $name, $table)
     {
         return 'a';
+    }
+
+    function updatePermissions($path, $name)
+    {
+        $filename=$path.'/permissions.xml';
+        $xml = simplexml_load_string(file_get_contents($filename));
+        $group=$xml->addChild('group');
+        $group->name=$name;
+        $group->title=$name;
+        $group->permission[0]->name='show';
+        $group->permission[0]->title='Odczyt';
+        $group->permission[1]->name='edit';
+        $group->permission[1]->title='edycja';
+        $group->permission[2]->name='add';
+        $group->permission[2]->title='Dodawanie';
+        $group->permission[3]->name='remove';
+        $group->permission[3]->title='Usuwanie';
+        file_put_contents($filename, $xml->asXML());
     }
 }
