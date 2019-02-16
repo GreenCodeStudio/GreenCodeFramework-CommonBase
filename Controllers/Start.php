@@ -15,12 +15,6 @@ class Start extends \Common\PageStandardController
         dump($a, $b);
     }
 
-    function migration()
-    {
-        $migr = new \Core\Migration();
-        $migr->upgrade();
-    }
-
     function formDemo()
     {
         $this->addView('Common', 'formDemo');
