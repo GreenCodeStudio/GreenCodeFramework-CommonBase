@@ -9,7 +9,7 @@
 namespace Common\Ajax;
 
 
-class Cache extends \Core\AjaxController
+class Cache extends \Common\PageAjaxController
 {
     public function list()
     {

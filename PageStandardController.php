@@ -12,4 +12,8 @@ class PageStandardController extends \Core\StandardController
         $this->addView('Common', 'aside', ['menu' => $menuData], 'aside');
         require __DIR__.'/../Common/Views/template.php';
     }
+    public function hasPermission()
+    {
+        return \Authorization\Authorization::isLogged();
+    }
 }
