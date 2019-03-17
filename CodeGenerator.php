@@ -74,7 +74,7 @@ class CodeGenerator
 </div>
 <section class="card" data-width="6">
     <header>
-        <h1>Wszyscy użytkownicy</h1>
+        <h1>Lista elementów typu '.$name.'</h1>
     </header>
     <div class="dataTableContainer">
         <table class="dataTable" data-controller="'.$name.'" data-method="getTable">
