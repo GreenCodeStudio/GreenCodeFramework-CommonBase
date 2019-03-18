@@ -139,13 +139,31 @@ class CodeGenerator
 
     function makeController(string $namespace, string $name, $table)
     {
+
+        $add_data = '';
+        $hasForeignKeys = false;
+        foreach ($table->index as $index) {
+            dump($index->type);
+            if ($index->type == 'FOREIGN') {
+                $hasForeignKeys = true;
+                break;
+            }
+        }
+        if ($hasForeignKeys) {
+            $add_data = 'function add_data()
+    {
+        $this->will(\''.$name.'\', \'add\');
+        $'.$name.' = new \\'.$namespace.'\\'.$name.'();
+        return [\'selects\' => $'.$name.'->getSelects()];
+    }';
+        }
+
         return '<?php
 
 namespace '.$namespace.'\Controllers;
 
 use Authorization\Permissions;
 use Core\Exceptions\NotFoundException;
-
 class '.$name.' extends \Common\PageStandardController
 {
 
@@ -176,7 +194,7 @@ class '.$name.' extends \Common\PageStandardController
         $data = $'.$name.'->getById($id);
         if ($data == null)
             throw new NotFoundException();
-        return [\''.$name.'\' => $data];
+        return [\''.$name.'\' => $data'.($hasForeignKeys?',\'selects\'=>$'.$name.'->getSelects()':'').'];
     }
 
     /**
@@ -190,6 +208,7 @@ class '.$name.' extends \Common\PageStandardController
         $this->pushBreadcrumb([\'title\' => \''.$name.'\', \'url\' => \'/'.$name.'\']);
         $this->pushBreadcrumb([\'title\' => \'Dodaj\', \'url\' => \'/'.$name.'/add\']);
     }
+    '.$add_data.'
 }
 ';
     }
@@ -239,7 +258,7 @@ class '.$name.' extends \Core\AjaxController
         $referencesCode = [];
         foreach ($table->index as $index) {
             if ($index->type == 'FOREIGN') {
-                $referencesCode[] = '        $'.$index->reference->attributes()->name.' = new DB'.$index->reference->attributes()->name.'DB();
+                $referencesCode[] = '        $'.$index->reference->attributes()->name.' = new DB\\'.$index->reference->attributes()->name.'DB();
         $ret["'.$index->reference->attributes()->name.'"] = $'.$index->reference->attributes()->name.'->getSelect();';
             }
         }
@@ -285,6 +304,7 @@ class '.$name.' extends \Core\LogicModel
         $filtered = $this->filterData($data);
         $id = $this->defaultDB->insert($filtered);
     }
+    '.$referencesMethod.'
 }';
     }
 
