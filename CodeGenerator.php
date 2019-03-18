@@ -16,7 +16,6 @@ class CodeGenerator
     function generate($namespace, $name)
     {
         $table = $this->getTable($name);
-        dump($table);
         $path = __DIR__.'/../'.$namespace;
 
         if (!file_exists($path.'/Views')) {
@@ -44,10 +43,10 @@ class CodeGenerator
         if (!file_exists($path.'/Ajax/'.$name.'.php')) {
             file_put_contents($path.'/Ajax/'.$name.'.php', $this->makeAjax($namespace, $name, $table));
         }
-        if (!file_exists($path.'/'.$name.'Edit.php')) {
+        if (!file_exists($path.'/'.$name.'.php')) {
             file_put_contents($path.'/'.$name.'.php', $this->makeLogicModel($namespace, $name, $table));
         }
-        if (!file_exists($path.'/DB/'.$name.'Edit.php')) {
+        if (!file_exists($path.'/DB/'.$name.'DB.php')) {
             file_put_contents($path.'/DB/'.$name.'DB.php', $this->makeDBModel($namespace, $name, $table));
         }
         if (!file_exists($path.'/permissions.xml')) {
@@ -58,7 +57,7 @@ class CodeGenerator
 
     function getTable($name)
     {
-        $migration = new Migration();
+        $migration = Migration::factory();
         return $migration->readNewStructure()[$name];
     }
 
@@ -98,9 +97,16 @@ class CodeGenerator
         $form = '';
         foreach ($table->column as $column) {
             if ($column->autoincrement == 'YES') continue;
+            $reference = null;
+            foreach ($table->index as $index) {
+                dump($index->element, $column->name, $index->element->__toString() == $column->name->__toString());
+                if ($index->type == 'FOREIGN' && $index->element->__toString() == $column->name->__toString()) {
+                    $reference = $index->reference;
+                }
+            }
             $form .= '<label>
             <span>'.$column->name.'</span>
-            '.$this->generateInput($column).'
+            '.$this->generateInput($column, $reference).'
         </label>';
         }
         return '<form class="dataForm" data-name="'.$name.'" data-controller="'.$name.'"
@@ -119,11 +125,15 @@ class CodeGenerator
 </form>';
     }
 
-    function generateInput($col)
+    function generateInput($col, $reference = null)
     {
-        switch ($col->type->__toString()) {
-            default:
-                return '<input type="text" name="'.$col->name.'">';
+        if (!empty($reference)) {
+            return '<select data-foreign-key="'.$reference->attributes()->name.'" name="'.$col->name.'"></select>';
+        } else {
+            switch ($col->type->__toString()) {
+                default:
+                    return '<input type="text" name="'.$col->name.'">';
+            }
         }
     }
 
@@ -219,9 +229,27 @@ class '.$name.' extends \Core\AjaxController
         $prep = '';
         foreach ($table->column as $column) {
             if ($column->autoincrement == 'YES') continue;
-            $prep .= '$ret[\''.$column->name.'\'] = $data->'.$column->name.';'."\r\n";
+            if ($column->null == 'yes')
+                $prep .= '$ret[\''.$column->name.'\'] = empty($data->'.$column->name.')?null:$data->'.$column->name;
+            else
+                $prep .= '$ret[\''.$column->name.'\'] = $data->'.$column->name;
+            $prep .= ';'."\r\n";
         }
-
+        $referencesMethod = '';
+        $referencesCode = [];
+        foreach ($table->index as $index) {
+            if ($index->type == 'FOREIGN') {
+                $referencesCode[] = '        $'.$index->reference->attributes()->name.' = new DB'.$index->reference->attributes()->name.'DB();
+        $ret["'.$index->reference->attributes()->name.'"] = $'.$index->reference->attributes()->name.'->getSelect();';
+            }
+        }
+        if (!empty($referencesCode)) {
+            $referencesMethod = 'public function getSelects(){
+        $ret=[];
+        '.implode("\r\n", $referencesCode).'
+        return $ret;
+    }';
+        }
         return '<?php
 namespace '.$namespace.';
 
@@ -289,19 +317,19 @@ class '.$name.'DB extends \Core\DBModel
 
     function updatePermissions($path, $name)
     {
-        $filename=$path.'/permissions.xml';
+        $filename = $path.'/permissions.xml';
         $xml = simplexml_load_string(file_get_contents($filename));
-        $group=$xml->addChild('group');
-        $group->name=$name;
-        $group->title=$name;
-        $group->permission[0]->name='show';
-        $group->permission[0]->title='Odczyt';
-        $group->permission[1]->name='edit';
-        $group->permission[1]->title='edycja';
-        $group->permission[2]->name='add';
-        $group->permission[2]->title='Dodawanie';
-        $group->permission[3]->name='remove';
-        $group->permission[3]->title='Usuwanie';
+        $group = $xml->addChild('group');
+        $group->name = $name;
+        $group->title = $name;
+        $group->permission[0]->name = 'show';
+        $group->permission[0]->title = 'Odczyt';
+        $group->permission[1]->name = 'edit';
+        $group->permission[1]->title = 'edycja';
+        $group->permission[2]->name = 'add';
+        $group->permission[2]->title = 'Dodawanie';
+        $group->permission[3]->name = 'remove';
+        $group->permission[3]->title = 'Usuwanie';
         file_put_contents($filename, $xml->asXML());
     }
 }
