@@ -16,6 +16,10 @@ class CodeGenerator
     function generate($namespace, $name)
     {
         $table = $this->getTable($name);
+        if ($table->title)
+            $title = htmlspecialchars($table->title);
+        else
+            $title = $name;
         $path = __DIR__.'/../'.$namespace;
 
         if (!file_exists($path.'/Views')) {
@@ -52,11 +56,11 @@ class CodeGenerator
         if (!file_exists($path.'/permissions.xml')) {
             file_put_contents($path.'/permissions.xml', '<?xml version="1.0" encoding="UTF-8"?><permissions/>');
         }
-        $this->updatePermissions($path, $name);
+        $this->updatePermissions($path, $name, $title);
         if (!file_exists($path.'/menu.xml')) {
             file_put_contents($path.'/menu.xml', '<?xml version="1.0" encoding="UTF-8"?><menu/>');
         }
-        $this->updateMenu($path, $name);
+        $this->updateMenu($path, $name, $title);
     }
 
     function getTable($name)
@@ -156,6 +160,10 @@ class CodeGenerator
                     return '<input type="checkbox" name="'.$col->name.'">';
                 case "int":
                     return '<input type="number" step="1" name="'.$col->name.'" '.($required?'required':'').'>';
+                case "date":
+                    return '<input type="date" name="'.$col->name.'" '.($required?'required':'').'>';
+                case "datetime":
+                    return '<input type="datetime-local" step="any" name="'.$col->name.'" '.($required?'required':'').'>';
                 default:
                     return '<input type="text" name="'.$col->name.'" '.($required?'required':'').'>';
             }
@@ -362,13 +370,13 @@ class '.$name.'DB extends \Core\DBModel
 }';
     }
 
-    function updatePermissions($path, $name)
+    function updatePermissions($path, $name, $title)
     {
         $filename = $path.'/permissions.xml';
         $xml = simplexml_load_string(file_get_contents($filename));
         $group = $xml->addChild('group');
         $group->name = $name;
-        $group->title = $name;
+        $group->title = $title;
         $group->permission[0]->name = 'show';
         $group->permission[0]->title = 'Odczyt';
         $group->permission[1]->name = 'edit';
@@ -380,13 +388,13 @@ class '.$name.'DB extends \Core\DBModel
         file_put_contents($filename, $xml->asXML());
     }
 
-    function updateMenu($path, $name)
+    function updateMenu($path, $name, $title)
     {
         $filename = $path.'/menu.xml';
         $xml = simplexml_load_string(file_get_contents($filename));
         $group = $xml->addChild('element');
         $group->link = '/'.$name;
-        $group->title = $name;
+        $group->title = $title;
         file_put_contents($filename, $xml->asXML());
     }
 }

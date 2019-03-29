@@ -15,14 +15,35 @@
 
         > .task {
             border: 1px solid;
+            text-align: center;
+            padding: 5px;
+
+            &[data-status="error"] {
+                background: rgba(#ff0000, .5);
+            }
+
+            .status {
+                font-size: 1.2em;
+                //font-weight: 700;
+            }
+            .buttons{
+                display: flex;
+
+                .button{
+                    flex:1 1 auto;
+                    margin:0 5px;
+                }
+            }
         }
     }
-    &:hover, &:focus-within{
-        .tasksList{
+
+    &:hover, &:focus-within, &.open {
+        .tasksList {
             display: block;
         }
     }
 }
-.loginInfo{
+
+.loginInfo {
     display: inline-block;
 }

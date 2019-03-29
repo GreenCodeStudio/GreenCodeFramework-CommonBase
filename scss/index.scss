@@ -20,10 +20,11 @@ body {
         z-index: 10;
         text-align: right;
 
-        .headerButton{
-        @extend .button;
+        .headerButton {
+            @extend .button;
         }
     }
+
     > aside {
         position: fixed;
         left: 0;
@@ -33,7 +34,37 @@ body {
         background: #eee;
         overflow: auto;
         z-index: 10;
+
+        nav {
+            user-select: none;
+            ul {
+                margin: 0;
+                padding: 0;
+
+                li {
+                    display: block;
+
+                    a, span {
+                        display: block;
+                        text-decoration: none;
+                        padding: 5px 10px;
+                        color: #333;
+                    }
+
+                    a {
+                        &:hover {
+                            color: #000;
+                            background: var(--main);
+                        }
+                    }
+                    li{
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
     }
+
     > .mainContent {
         margin: calc(60px + 2.5em) 0 0 200px;
         position: relative;
@@ -51,8 +82,9 @@ body {
                 animation: page-out 200ms ease-out;
                 visibility: collapse;
             }
-            &.stillLoading{
-                animation:none;
+
+            &.stillLoading {
+                animation: none;
                 visibility: collapse;
             }
 
@@ -82,6 +114,7 @@ body {
             > form {
                 display: contents;
             }
+
             .topBarButtons {
                 position: fixed;
                 top: 60px;
@@ -89,6 +122,7 @@ body {
                 padding: calc(0.75em - 7px);
             }
         }
+
         > .topBar {
             position: fixed;
             top: 60px;
@@ -112,6 +146,7 @@ body {
                         &::after {
                             //  content:''
                         }
+
                         a {
                             display: block;
                             padding: 0 15px;
