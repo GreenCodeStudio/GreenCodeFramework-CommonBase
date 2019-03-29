@@ -53,6 +53,10 @@ class CodeGenerator
             file_put_contents($path.'/permissions.xml', '<?xml version="1.0" encoding="UTF-8"?><permissions/>');
         }
         $this->updatePermissions($path, $name);
+        if (!file_exists($path.'/menu.xml')) {
+            file_put_contents($path.'/menu.xml', '<?xml version="1.0" encoding="UTF-8"?><menu/>');
+        }
+        $this->updateMenu($path, $name);
     }
 
     function getTable($name)
@@ -64,16 +68,24 @@ class CodeGenerator
     function makeViewList(string $namespace, string $name, $table)
     {
         $cols = '';
+        if ($table->title)
+            $title = htmlspecialchars($table->title);
+        else
+            $title = $name;
         foreach ($table->column as $column) {
             if ($column->autoincrement == 'YES') continue;
-            $cols .= '<th data-value="'.$column->name.'">'.$column->name.'</th>';
+            if ($column->title)
+                $columnTitle = htmlspecialchars($column->title);
+            else
+                $columnTitle = $column->name;
+            $cols .= '<th data-value="'.$column->name.'">'.$columnTitle.'</th>';
         }
         return '<div class="topBarButtons">
     <a href="/'.$name.'/add" class="button">Dodaj</a>
 </div>
 <section class="card" data-width="6">
     <header>
-        <h1>Lista elementów typu '.$name.'</h1>
+        <h1>Lista elementów typu '.$title.'</h1>
     </header>
     <div class="dataTableContainer">
         <table class="dataTable" data-controller="'.$name.'" data-method="getTable">
@@ -95,17 +107,25 @@ class CodeGenerator
     function makeViewEdit(string $namespace, string $name, $table)
     {
         $form = '';
+
+        if ($table->title)
+            $title = htmlspecialchars($table->title);
+        else
+            $title = $name;
         foreach ($table->column as $column) {
             if ($column->autoincrement == 'YES') continue;
             $reference = null;
             foreach ($table->index as $index) {
-                dump($index->element, $column->name, $index->element->__toString() == $column->name->__toString());
                 if ($index->type == 'FOREIGN' && $index->element->__toString() == $column->name->__toString()) {
                     $reference = $index->reference;
                 }
             }
+            if ($column->title)
+                $columnTitle = htmlspecialchars($column->title);
+            else
+                $columnTitle = $column->name;
             $form .= '<label>
-            <span>'.$column->name.'</span>
+            <span>'.$columnTitle.'</span>
             '.$this->generateInput($column, $reference).'
         </label>';
         }
@@ -118,7 +138,7 @@ class CodeGenerator
     <input name="id" type="hidden">
     <section class="card" data-width="6">
         <header>
-            <h1>'.$name.'</h1>
+            <h1>'.$title.'</h1>
         </header>
       '.$form.'
     </section>
@@ -127,12 +147,17 @@ class CodeGenerator
 
     function generateInput($col, $reference = null)
     {
+       $required= (strtolower($col->null) != 'yes');
         if (!empty($reference)) {
-            return '<select data-foreign-key="'.$reference->attributes()->name.'" name="'.$col->name.'"></select>';
+            return '<select data-foreign-key="'.$reference->attributes()->name.'" name="'.$col->name.'" '.($required?'required':'').'></select>';
         } else {
             switch ($col->type->__toString()) {
+                case "bool":
+                    return '<input type="checkbox" name="'.$col->name.'">';
+                case "int":
+                    return '<input type="number" step="1" name="'.$col->name.'" '.($required?'required':'').'>';
                 default:
-                    return '<input type="text" name="'.$col->name.'">';
+                    return '<input type="text" name="'.$col->name.'" '.($required?'required':'').'>';
             }
         }
     }
@@ -194,7 +219,7 @@ class '.$name.' extends \Common\PageStandardController
         $data = $'.$name.'->getById($id);
         if ($data == null)
             throw new NotFoundException();
-        return [\''.$name.'\' => $data'.($hasForeignKeys?',\'selects\'=>$'.$name.'->getSelects()':'').'];
+        return [\''.$name.'\' => $data'.($hasForeignKeys ? ',\'selects\'=>$'.$name.'->getSelects()' : '').'];
     }
 
     /**
@@ -248,7 +273,9 @@ class '.$name.' extends \Core\AjaxController
         $prep = '';
         foreach ($table->column as $column) {
             if ($column->autoincrement == 'YES') continue;
-            if ($column->null == 'yes')
+            if ($column->type == 'bool')
+                $prep .= '$ret[\''.$column->name.'\'] = (int)isset($data->'.$column->name.')';
+            else if (strtolower($column->null) == 'yes')
                 $prep .= '$ret[\''.$column->name.'\'] = empty($data->'.$column->name.')?null:$data->'.$column->name;
             else
                 $prep .= '$ret[\''.$column->name.'\'] = $data->'.$column->name;
@@ -350,6 +377,16 @@ class '.$name.'DB extends \Core\DBModel
         $group->permission[2]->title = 'Dodawanie';
         $group->permission[3]->name = 'remove';
         $group->permission[3]->title = 'Usuwanie';
+        file_put_contents($filename, $xml->asXML());
+    }
+
+    function updateMenu($path, $name)
+    {
+        $filename = $path.'/menu.xml';
+        $xml = simplexml_load_string(file_get_contents($filename));
+        $group = $xml->addChild('element');
+        $group->link = '/'.$name;
+        $group->title = $name;
         file_put_contents($filename, $xml->asXML());
     }
 }
