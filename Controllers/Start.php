@@ -36,4 +36,13 @@ class Start extends \Common\PageStandardController
         throw new \Exception('abcd');
     }
 
+    function mail()
+    {
+        $mail = \Core\MailSender::getDefaultMail();
+        $mail->addAddress('mateuszkrawczyk1996@gmail.com');
+        $mail->isHTML(true);                                  // Set email format to HTML
+        $mail->Subject = 'Here is the subject';
+        $mail->Body = 'This is the HTML message body <b>in bold!</b>';
+        $mail->send();
+    }
 }
