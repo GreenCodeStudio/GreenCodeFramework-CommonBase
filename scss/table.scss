@@ -14,29 +14,51 @@ table {
             }
         }
     }
-    tr {
-        &:nth-child(2n) {
-            background: rgba(#000000, .2);
 
-            &:hover {
-                background: rgba(#000000, .3);
+    tbody {
+        tr {
+            &:nth-child(2n) {
+                background: rgba(#000000, .2);
+
+                &:hover {
+                    background: rgba(#000000, .3);
+                }
+            }
+
+            &:nth-child(2n+1) {
+                background: rgba(#000000, .05);
+
+                &:hover {
+                    background: rgba(#000000, .25);
+                }
+            }
+
+            td {
+                padding: 5px 10px;
+                margin: 0;
+
             }
         }
-        &:nth-child(2n+1) {
-            background: rgba(#000000, .05);
+    }
 
-            &:hover {
-                background: rgba(#000000, .25);
-            }
+    .pagination {
+        float: left;
+        button {
+            margin-right: -2px;
         }
-        td {
-            padding: 5px 10px;
-            margin: 0;
-
-        }
+    }
+    .search{
+        float: right;
     }
 }
 
 .dataTableContainer {
     border: 1px solid var(--second);
+
+    tfoot {
+        tr {
+            td {
+            }
+        }
+    }
 }

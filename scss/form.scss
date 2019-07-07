@@ -8,9 +8,80 @@ form {
             display: table-cell;
             width: 250px;
         }
+
         input {
             display: table-cell;
             width: 100%;
+        }
+    }
+}
+
+.input, input:not(.browsersDefault) {
+    display: inline-block;
+    padding: 5px 8px;
+    color: var(--second);
+    border: 2px solid var(--second);
+    transition: all 200ms;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    vertical-align: middle;
+    line-height: 1;
+    box-sizing: border-box;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 200%;
+        height: 200%;
+        background: var(--second);
+        position: absolute;
+        left: 72%;
+        top: 72%;
+        transition: all 200ms;
+        border-radius: 100%;
+        z-index: -1;
+    }
+
+    &:hover {
+        border: 2px solid var(--second);
+    }
+
+    &:active, &:focus {
+        background: var(--mainLight);
+
+    }
+}
+
+.checkbox, input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 29px;
+    height: 29px;
+    padding: 5px;
+    position: relative;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 12px;
+        height: 6px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-bottom: 3px solid var(--second);
+        border-left: 3px solid var(--second);
+        border-top: none;
+        border-right: none;
+        border-radius: 0;
+        z-index: 1;
+        background: transparent;
+        transform: translate(16px, 16px) rotate(-90deg);
+    }
+
+    &:checked, &.checked {
+        &::before {
+            transform: translate(5px, 6px) rotate(-45deg);
         }
     }
 }

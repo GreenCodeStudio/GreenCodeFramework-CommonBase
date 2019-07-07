@@ -10,7 +10,7 @@
 <body>
 <header>
     <div class="tasks">
-        <div class="headerButton">Procesy</div>
+        <div class="headerButton">Akcje</div>
         <div class="tasksList"></div>
     </div>
     <div class="loginInfo">
