@@ -59,6 +59,12 @@
       "css": "search",
       "code": 59400,
       "src": "elusive"
+    },
+    {
+      "uid": "191bcf63575a78def53c907c3d3bf7f0",
+      "css": "save",
+      "code": 59401,
+      "src": "entypo"
     }
   ]
 }
