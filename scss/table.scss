@@ -8,6 +8,25 @@ table {
             top: 60px;
             background: var(--second);
             color: #fff;
+            @extend .icon;
+            @extend .icon-down;
+
+            &::before {
+                transform: scaleY(0);
+                transition: all 300ms ease-out;
+            }
+
+            &[data-order="asc"] {
+                &::before {
+                    transform: scaleY(1);
+                }
+            }
+
+            &[data-order="desc"] {
+                &::before {
+                    transform: scaleY(-1);
+                }
+            }
 
             .tableCopy {
                 display: none;
@@ -43,11 +62,13 @@ table {
 
     .pagination {
         float: left;
+
         button {
             margin-right: -2px;
         }
     }
-    .search{
+
+    .search {
         float: right;
     }
 }

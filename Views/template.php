@@ -10,12 +10,12 @@
 <body>
 <header>
     <div class="tasks">
-        <div class="headerButton">Akcje</div>
+        <div class="headerButton"><span class="icon-tasks"></span></div>
         <div class="tasksList"></div>
     </div>
     <div class="loginInfo">
-        <?=htmlspecialchars($userData->name.' '.$userData->surname)?>
-        <div class="button logoutMyselfBtn">Wyloguj</div>
+        <span class="icon-user"><?= htmlspecialchars($userData->name.' '.$userData->surname) ?></span>
+        <div class="button logoutMyselfBtn" title="Wyloguj"><span class="icon-logout"></span></div>
     </div>
 </header>
 <aside data-views="aside"><?php $this->showViews('aside'); ?></aside>
