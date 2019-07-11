@@ -31,8 +31,8 @@ class CodeGenerator
         if (!file_exists($path.'/Controllers')) {
             mkdir($path.'/Controllers', 0777, true);
         }
-        if (!file_exists($path.'/DB')) {
-            mkdir($path.'/DB', 0777, true);
+        if (!file_exists($path.'/Repository')) {
+            mkdir($path.'/Repository', 0777, true);
         }
 
         if (!file_exists($path.'/Views/'.$name.'List.php')) {
@@ -48,10 +48,10 @@ class CodeGenerator
             file_put_contents($path.'/Ajax/'.$name.'.php', $this->makeAjax($namespace, $name, $table));
         }
         if (!file_exists($path.'/'.$name.'.php')) {
-            file_put_contents($path.'/'.$name.'.php', $this->makeLogicModel($namespace, $name, $table));
+            file_put_contents($path.'/'.$name.'.php', $this->makeBussinesLogic($namespace, $name, $table));
         }
-        if (!file_exists($path.'/DB/'.$name.'DB.php')) {
-            file_put_contents($path.'/DB/'.$name.'DB.php', $this->makeDBModel($namespace, $name, $table));
+        if (!file_exists($path.'/Repository/'.$name.'Repository.php')) {
+            file_put_contents($path.'/Repository/'.$name.'Repository.php', $this->makeRepository($namespace, $name, $table));
         }
         if (!file_exists($path.'/permissions.xml')) {
             file_put_contents($path.'/permissions.xml', '<?xml version="1.0" encoding="UTF-8"?><permissions/>');
@@ -82,7 +82,7 @@ class CodeGenerator
                 $columnTitle = htmlspecialchars($column->title);
             else
                 $columnTitle = $column->name;
-            $cols .= '<th data-value="'.$column->name.'">'.$columnTitle.'</th>';
+            $cols .= '<th data-value="'.$column->name.'" data-sortable>'.$columnTitle.'</th>';
         }
         return '<div class="topBarButtons">
     <a href="/'.$name.'/add" class="button">Dodaj</a>
@@ -276,7 +276,7 @@ class '.$name.' extends \Core\AjaxController
 }';
     }
 
-    function makeLogicModel(string $namespace, string $name, $table)
+    function makeBussinesLogic(string $namespace, string $name, $table)
     {
         $prep = '';
         foreach ($table->column as $column) {
@@ -293,7 +293,7 @@ class '.$name.' extends \Core\AjaxController
         $referencesCode = [];
         foreach ($table->index as $index) {
             if ($index->type == 'FOREIGN') {
-                $referencesCode[] = '        $'.$index->reference->attributes()->name.' = new DB\\'.$index->reference->attributes()->name.'DB();
+                $referencesCode[] = '        $'.$index->reference->attributes()->name.' = new Repository\\'.$index->reference->attributes()->name.'Repository();
         $ret["'.$index->reference->attributes()->name.'"] = $'.$index->reference->attributes()->name.'->getSelect();';
             }
         }
@@ -307,13 +307,13 @@ class '.$name.' extends \Core\AjaxController
         return '<?php
 namespace '.$namespace.';
 
-use '.$namespace.'\DB\\'.$name.'DB;
+use '.$namespace.'\Repository\\'.$name.'Repository;
 
-class '.$name.' extends \Core\LogicModel
+class '.$name.' extends \Core\BussinesLogic
 {
     public function __construct()
     {
-        $this->defaultDB = new '.$name.'DB();
+        $this->defaultDB = new '.$name.'Repository();
     }
 
     public function getDataTable($options)
@@ -343,16 +343,22 @@ class '.$name.' extends \Core\LogicModel
 }';
     }
 
-    function makeDBModel(string $namespace, string $name, $table)
+    function makeRepository(string $namespace, string $name, $table)
     {
+        $orderCodes=[];
+        foreach ($table->column as $column) {
+            if ($column->autoincrement == 'YES') continue;
+            $orderCodes[]= '\''.$column->name.'\'=> \''.$column->name.'\'';
+        }
+        $orderCode=implode(', ', $orderCodes);
         return '<?php
 
-namespace '.$namespace.'\DB;
+namespace '.$namespace.'\Repository;
 
 use Core\DB;
 
 
-class '.$name.'DB extends \Core\DBModel
+class '.$name.'Repository extends \Core\Repository
 {
 
     public function __construct()
@@ -360,12 +366,25 @@ class '.$name.'DB extends \Core\DBModel
         parent::__construct(\''.$name.'\');
         $this->archiveMode = static::ArchiveMode_OnlyExisting;
     }
-       public function getDataTable($options)
+    public function getDataTable($options)
     {
         $start = (int)$options->start;
         $limit = (int)$options->limit;
-        $rows = DB::get("SELECT * FROM '.$name.' LIMIT $start,$limit");
-        return [\'rows\' => $rows];
+        $sqlOrder = $this->getOrderSQL($options);
+        $rows = DB::get("SELECT * FROM '.$name.' $sqlOrder LIMIT $start,$limit");
+        $total = DB::get("SELECT count(*) as count FROM '.$name.'")[0]->count;
+        return [\'rows\' => $rows, \'total\' => $total];
+    }
+        private function getOrderSQL($options)
+    {
+        if (empty($options->sort))
+            return "";
+        else {
+            $mapping = ['.$orderCode.'];
+            if (empty($mapping[$options->sort->col]))
+                throw new Exception();
+            return \' ORDER BY \'.DB::safeKey($mapping[$options->sort->col]).\' \'.($options->sort->desc ? \'DESC\' : \'ASC\').\' \';
+        }
     }
 }';
     }
