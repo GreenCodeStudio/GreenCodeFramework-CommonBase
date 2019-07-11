@@ -92,7 +92,7 @@ class CodeGenerator
         <h1>Lista elementów typu '.$title.'</h1>
     </header>
     <div class="dataTableContainer">
-        <table class="dataTable" data-controller="'.$name.'" data-method="getTable">
+        <table class="dataTable" data-controller="'.$name.'" data-method="getTable" data-web-socket-path="'.$namespace.'/'.$name.'">
             <thead>
             <tr>
                 '.$cols.'
@@ -325,6 +325,7 @@ class '.$name.' extends \Core\BussinesLogic
     {
         $filtered = $this->filterData($data);
         $this->defaultDB->update($id, $filtered);
+        \Core\WebSocket\Sender::sendToUsers(["'.$namespace.'", "'.$name.'", "Update", $id]);
     }
 
     protected function filterData($data)
@@ -338,6 +339,7 @@ class '.$name.' extends \Core\BussinesLogic
     {
         $filtered = $this->filterData($data);
         $id = $this->defaultDB->insert($filtered);
+        \Core\WebSocket\Sender::sendToUsers(["'.$namespace.'", "'.$name.'", "Insert", $id]);
     }
     '.$referencesMethod.'
 }';
