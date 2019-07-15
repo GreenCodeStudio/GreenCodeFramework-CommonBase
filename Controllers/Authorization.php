@@ -16,6 +16,13 @@ class Authorization extends \Common\PageStandardController
         $this->addView('Common', 'login');
     }
 
+    public function token(string $token)
+    {
+        \Authorization\Authorization::loginByToken($token);
+        header('Location:/');
+        http_response_code(302);
+    }
+
     public function postAction()
     {
         require __DIR__.'/../Views/loginTemplate.php';
