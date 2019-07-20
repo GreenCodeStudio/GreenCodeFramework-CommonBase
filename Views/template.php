@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="color-green">
+<html>
 <head>
     <title><?= htmlspecialchars($this->getTitle()) ?></title>
     <meta charset="UTF-8">

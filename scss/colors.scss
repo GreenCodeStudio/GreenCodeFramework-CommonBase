@@ -1,4 +1,4 @@
-html, .color-grey {
+ .color-grey {
     --mainLight: #ccc;
     --main: #888;
     --second: #333;
@@ -14,4 +14,9 @@ html, .color-grey {
     --main: #1e1;
     --mainLight: #afa;
     --second: #414;
+}
+ html, .color-green-yellow {
+    --main: #d7ee1b;
+    --mainLight: #e0ff8f;
+    --second: #0e0844;
 }
