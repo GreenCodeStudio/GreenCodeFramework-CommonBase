@@ -9,6 +9,7 @@
 </head>
 <body>
 <header>
+    <button type="button" class="hamburgerMenu">menu</button>
     <div class="tasks">
         <div class="headerButton"><span class="icon-tasks"></span></div>
         <div class="tasksList"></div>

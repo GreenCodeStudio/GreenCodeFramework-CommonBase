@@ -1,5 +1,6 @@
 import {Ajax} from "../../Core/js/ajax";
 import {TableManager} from "../../Core/js/table";
+import {pageManager} from "../../Core/js/pageManager";
 
 document.querySelectorAll('.logoutMyselfBtn').forEach(b => b.onclick = async () => {
     await Ajax.Authorization.logout();
@@ -38,3 +39,12 @@ addEventListener('resize', () => {
             table.datatable.refresh();
     })
 });
+document.querySelector('.hamburgerMenu').onclick = () => document.body.classList.toggle('hamburgerMenu-opened');
+addEventListener('click', e => {
+    if (e.target.findParent(x => x.matches('body>aside') || x.matches('body>header'))) {
+
+    } else {
+        document.body.classList.remove('hamburgerMenu-opened');
+    }
+});
+pageManager.onLoad(() => document.body.classList.remove('hamburgerMenu-opened'));
