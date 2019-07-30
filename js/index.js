@@ -39,7 +39,7 @@ addEventListener('resize', () => {
             table.datatable.refresh();
     })
 });
-document.querySelector('.hamburgerMenu').onclick = () => document.body.classList.toggle('hamburgerMenu-opened');
+document.querySelectorAll('.hamburgerMenu').forEach(x => x.onclick = () => document.body.classList.toggle('hamburgerMenu-opened'));
 addEventListener('click', e => {
     if (e.target.findParent(x => x.matches('body>aside') || x.matches('body>header'))) {
 
