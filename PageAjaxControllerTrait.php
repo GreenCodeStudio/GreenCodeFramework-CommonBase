@@ -1,8 +1,8 @@
 <?php
 
-namespace Common;
+namespace CommonBase;
 
-class PageAjaxController extends \Core\AjaxController
+trait PageAjaxControllerTrait
 {
 
     public function hasPermission()

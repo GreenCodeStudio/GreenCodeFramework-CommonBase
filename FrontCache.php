@@ -6,7 +6,7 @@
  * Time: 11:58
  */
 
-namespace Common;
+namespace CommonBase;
 
 
 class FrontCache

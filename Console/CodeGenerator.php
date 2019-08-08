@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Console;
+namespace CommonBase\Console;
 
 class CodeGenerator extends \Core\AbstractController
 {

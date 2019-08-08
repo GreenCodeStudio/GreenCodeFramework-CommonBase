@@ -6,7 +6,7 @@
  * Time: 11:56
  */
 
-namespace Common\Controllers;
+namespace CommonBase\Controllers;
 
 
 class Cache extends \Common\PageStandardController

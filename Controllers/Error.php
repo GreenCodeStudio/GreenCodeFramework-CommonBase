@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Controllers;
+namespace CommonBase\Controllers;
 
 
 class Error extends \Common\PageStandardController

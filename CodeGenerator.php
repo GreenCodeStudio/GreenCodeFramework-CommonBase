@@ -6,7 +6,7 @@
  * Time: 13:20
  */
 
-namespace Common;
+namespace CommonBase;
 
 
 use Core\Migration;
@@ -20,7 +20,7 @@ class CodeGenerator
             $title = htmlspecialchars($table->title);
         else
             $title = $name;
-        $path = __DIR__.'/../'.$namespace;
+        $path = __DIR__.'/modules/'.$namespace;
 
         if (!file_exists($path.'/Views')) {
             mkdir($path.'/Views', 0777, true);

@@ -6,14 +6,14 @@
  * Time: 10:20
  */
 
-namespace Common\Controllers;
+namespace CommonBase\Controllers;
 
 
 class Authorization extends \Common\PageStandardController
 {
     public function index()
     {
-        $this->addView('Common', 'login');
+        $this->addView('CommonBase', 'login');
     }
 
     public function token(string $token)

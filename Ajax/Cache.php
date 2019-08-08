@@ -6,14 +6,14 @@
  * Time: 11:57
  */
 
-namespace Common\Ajax;
+namespace CommonBase\Ajax;
 
 
 class Cache extends \Common\PageAjaxController
 {
     public function list()
     {
-        $frontCache = new \Common\FrontCache();
+        $frontCache = new \CommonBase\FrontCache();
         $normal = $frontCache->getNormalList();
         $json = $frontCache->getJsonList();
 
