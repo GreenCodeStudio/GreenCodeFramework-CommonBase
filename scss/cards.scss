@@ -1,9 +1,9 @@
 section.card {
     @for $i from 1 to 7 {
         &[data-width="#{$i}"] {
-            flex-basis: 280px * $i;
+            flex-basis: 280px * $i - 40px;
             @media(min-width: 1920px) {
-                flex-basis: 16% * $i;
+                flex-basis: calc(16.6% * #{$i} - 40px);
             }
         }
     }

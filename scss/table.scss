@@ -71,6 +71,33 @@ table {
     .search {
         float: right;
     }
+
+    @media (max-width: 600px) {
+        thead {
+            display: none;
+        }
+        tbody tr {
+            display: table;
+            width: 100%;
+
+            td {
+                display: table-row;
+
+
+                &::before {
+                    content: attr(data-header);
+                    width: 25%;
+                    display: table-cell;
+                }
+            }
+
+            td.tableActions-cell {
+                &::before {
+                    content: '';
+                }
+            }
+        }
+    }
 }
 
 .dataTableContainer {

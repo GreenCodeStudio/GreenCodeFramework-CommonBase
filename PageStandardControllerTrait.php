@@ -7,7 +7,7 @@ trait PageStandardControllerTrait
     public function postAction()
     {
         $userData = \Authorization\Authorization::getUserData();
-        $menu = new \core\Menu();
+        $menu = new \Core\Menu();
         $menuData = $menu->readMenu();
         $this->addView('CommonBase', 'aside', ['menu' => $menuData], 'aside');
         require __DIR__.'/../CommonBase/Views/template.php';
