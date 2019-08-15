@@ -75,14 +75,30 @@ body {
 
         .page {
             position: absolute;
-            animation: page-in 200ms ease-out;
             left: 0;
             right: 0;
             transform-origin: 50% 100px;
+>*{
 
+    animation: page-in 200ms ease-out;
+}
+            .topBarButtons {
+                position: fixed;
+                top: 31px;
+                right: 0;
+                padding: calc(0.75em - 7px);
+                z-index: 60;
+               // animation: page-in-top-bar-buttons 300ms;
+            }
             &.removing {
-                animation: page-out 200ms ease-out;
-                visibility: collapse;
+                >*{
+                animation: page-out 200ms ease-out ;
+                display: none;
+                }
+
+                .topBarButtons {
+                   // display: none;
+                }
             }
 
             &.stillLoading {
@@ -123,18 +139,19 @@ body {
                     visibility: visible;
                 }
             }
+            @keyframes page-in-top-bar-buttons {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
 
             > form {
                 display: contents;
             }
 
-            .topBarButtons {
-                position: fixed;
-                top: 31px;
-                right: 0;
-                padding: calc(0.75em - 7px);
-                z-index: 60;
-            }
         }
 
         > .topBar {
@@ -142,8 +159,9 @@ body {
             top: 31px;
             left: 200px;
             right: 0;
-            background: #fff;
+            background: transparent;
             border-bottom: 1px solid #aaa;
+            backdrop-filter: blur(10px) contrast(.3) brightness(1.65);
             z-index: 50;
 
             .breadcrumb {
