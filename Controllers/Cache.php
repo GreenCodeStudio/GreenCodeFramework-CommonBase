@@ -11,6 +11,9 @@ namespace CommonBase\Controllers;
 
 class Cache extends \Common\PageStandardController
 {
+    /**
+     * @OfflineConstant
+     */
     function offline()
     {
 
