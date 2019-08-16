@@ -1,3 +1,8 @@
+<?php
+
+use Common\Formatter;
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +18,19 @@
     <div class="tasks">
         <div class="headerButton"><span class="icon-tasks"></span></div>
         <div class="tasksList"></div>
+    </div>
+    <div class="notifications">
+        <div class="headerButton"><span class="icon-notifications"></span></div>
+        <div class="notificationsList">
+            <?php foreach ($notificationsList as $notification) {
+                ?>
+                <div class="notification">
+                    <div class="date"><?= Formatter::formatDate($notification->stamp) ?></div>
+                    <div class="title"><?= htmlspecialchars($notification->message) ?></div>
+                </div>
+                <?php
+            } ?>
+        </div>
     </div>
     <div class="loginInfo">
         <span class="icon-user"><?= htmlspecialchars($userData->name.' '.$userData->surname) ?></span>

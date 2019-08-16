@@ -65,6 +65,12 @@
       "css": "save",
       "code": 59401,
       "src": "entypo"
+    },
+    {
+      "uid": "671f29fa10dda08074a4c6a341bb4f39",
+      "css": "notifications",
+      "code": 61683,
+      "src": "fontawesome"
     }
   ]
 }
