@@ -27,11 +27,14 @@
         border-radius: 100%;
         z-index: -1;
     }
+
     &:active {
         transform: scale(.7);
     }
+
     &:hover, &:focus {
         color: var(--mainLight);
+        outline: none;
 
         &::before {
             left: 0;

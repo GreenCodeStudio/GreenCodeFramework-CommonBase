@@ -4,14 +4,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(#000000, .8);
-    transition: background 200ms ease-out;
+    background: rgba(#000000, .5);
+    backdrop-filter: grayscale(80%) blur(5px);
+    transition: opacity 200ms ease-out;
+    z-index: 200;
 
     .modal {
         animation: page-in 200ms ease-out;
         background: #ffffff;
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
         position: absolute;
         left: 50%;
         top: 50%;
@@ -27,6 +27,7 @@
             margin: 10px;
             text-align: left;
         }
+
         .modal-button {
             margin: 10px;
             @extend .button;
@@ -36,10 +37,12 @@
             background: lighten(#ff8800, 25);
             --mainLight: #ff8800;
         }
+
         &[data-type="error"] {
             background: lighten(#ff0000, 25);
             --mainLight: #ff0000;
         }
+
         &[data-type="success"] {
             background: lighten(#00dd00, 25);
             --mainLight: #00dd00;
@@ -47,7 +50,8 @@
     }
 
     &.closing {
-        background: transparent;
+        opacity:0;
+
         .modal {
             animation: page-out 200ms ease-out;
             display: none;

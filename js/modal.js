@@ -16,8 +16,7 @@ export function modal(text, type = 'info', buttons = [{text: 'ok', value: true}]
         modal.appendChild(textElem);
 
         for (let button of buttons) {
-            let buttonElem = document.createElement('div');
-            buttonElem.className = 'modal-button';
+            let buttonElem = document.create('button.modal-button');
             buttonElem.textContent = button.text;
             buttonElem.onclick = () => {
                 modalContainer.classList.add('closing');
@@ -25,6 +24,7 @@ export function modal(text, type = 'info', buttons = [{text: 'ok', value: true}]
                 resolve(button.value);
             };
             modal.appendChild(buttonElem);
+            buttonElem.focus();
         }
     });
 }
