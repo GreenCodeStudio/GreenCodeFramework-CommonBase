@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: matri
- * Date: 24.07.2018
- * Time: 11:58
- */
 
 namespace CommonBase;
 
@@ -30,7 +24,7 @@ class FrontCache
             foreach ($controller->methods as $method) {
                 $constant = false;
                 foreach ($method->annotations as $annotation) {
-                    if (is_a($annotation, OfflineConstantAnnotation))
+                    if (is_a($annotation, \mindplay\annotations\Annotation\OfflineConstantAnnotation))
                         $constant = true;
                 }
                 if ($constant)
