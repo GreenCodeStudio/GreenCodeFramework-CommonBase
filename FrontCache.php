@@ -1,7 +1,7 @@
 <?php
 
 namespace CommonBase;
-
+include_once(__DIR__.'/../Core/Annotations.php');
 
 class FrontCache
 {
@@ -24,7 +24,7 @@ class FrontCache
             foreach ($controller->methods as $method) {
                 $constant = false;
                 foreach ($method->annotations as $annotation) {
-                    if (is_a($annotation, \mindplay\annotations\Annotation\OfflineConstantAnnotation))
+                    if (is_a($annotation, OfflineConstantAnnotation))
                         $constant = true;
                 }
                 if ($constant)
