@@ -10,7 +10,10 @@ use Common\Formatter;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/dist/styles.css" rel="stylesheet" type="text/css">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/dist/Common/manifest.json">
+    <link rel="shortcut icon" href="/dist/Common/icon.png">
+    <link rel="icon" sizes="192x192" href="/dist/Common/icon192.png">
+    <meta name="theme-color" content="#d7ee1b">
 </head>
 <body>
 <header>
