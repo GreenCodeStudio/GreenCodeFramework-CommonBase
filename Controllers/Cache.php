@@ -16,7 +16,7 @@ class Cache extends \Common\PageStandardController
      */
     function offline()
     {
-
+        $this->addView('CommonBase', 'offline');
     }
 
     function regenerateCode()

@@ -24,7 +24,7 @@ class FrontCache
             foreach ($controller->methods as $method) {
                 $constant = false;
                 foreach ($method->annotations as $annotation) {
-                    if (is_a($annotation, OfflineConstantAnnotation))
+                    if (is_a($annotation, "OfflineConstantAnnotation"))
                         $constant = true;
                 }
                 if ($constant)
