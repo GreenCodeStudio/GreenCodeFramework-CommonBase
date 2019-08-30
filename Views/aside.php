@@ -1,4 +1,5 @@
 <?php
+use Authorization\Authorization;
 function generateMenu($tree)
 {
     echo '<ul>';
@@ -18,8 +19,7 @@ function generateMenu($tree)
     }
     echo '</ul>';
 }
-
-use Authorization\Authorization; ?>
+?>
 <nav>
     <?= generateMenu($data['menu']); ?>
 </nav>
