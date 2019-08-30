@@ -1,6 +1,7 @@
 <?php
 
 namespace CommonBase;
+
 use Core\Router;
 
 include_once(__DIR__.'/../Core/Annotations.php');
@@ -9,11 +10,24 @@ class FrontCache
 {
     public function getNormalList()
     {
-        $ret = ['/Cache/offline'];
-        $dist = scandir(__DIR__.'/../../public_html/dist');
-        foreach ($dist as $file) {
-            if (substr($file, 0, 1) != '.')
-                $ret[] = '/dist/'.$file;
+        $consts = ['/Cache/offline'];
+        return array_merge($consts, $this->getFilesRecurse('/dist'));
+    }
+
+    private function getFilesRecurse($path)
+    {
+        $ret = [];
+        $prefix = __DIR__.'/../../public_html';
+        $files = scandir($prefix.$path);
+        foreach ($files as $file) {
+            $full = "$path/$file";
+            if (substr($file, 0, 1) != '.') {
+                if (is_dir($file)) {
+                    $ret = array_merge($ret, $this->getFilesRecurse($full));
+                } else {
+                    $ret[] = $full;
+                }
+            }
         }
         return $ret;
     }
