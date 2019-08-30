@@ -3,7 +3,9 @@
 namespace CommonBase\Controllers;
 
 
-class Error extends \Common\PageStandardController
+use Common\PageStandardController;
+
+class Error extends PageStandardController
 {
     function index($debugOutput)
     {

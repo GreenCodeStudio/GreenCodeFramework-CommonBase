@@ -9,11 +9,14 @@
 namespace CommonBase\Ajax;
 
 
-class Cache extends \Common\PageAjaxController
+use Common\PageAjaxController;
+use CommonBase\FrontCache;
+
+class Cache extends PageAjaxController
 {
     public function list()
     {
-        $frontCache = new \CommonBase\FrontCache();
+        $frontCache = new FrontCache();
         $normal = $frontCache->getNormalList();
         $json = $frontCache->getJsonList();
 

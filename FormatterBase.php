@@ -4,14 +4,16 @@
 namespace CommonBase;
 
 
+use DateTime;
+
 class FormatterBase
 {
     public static function formatDate($datetime)
     {
-        if (!$datetime instanceof \DateTime) {
-            $datetime = new \DateTime(($datetime));
+        if (!$datetime instanceof DateTime) {
+            $datetime = new DateTime(($datetime));
         }
-        $today = new \DateTime('today');
+        $today = new DateTime('today');
         $daysDiff = $datetime->diff($today);
         if ($datetime > $today && $daysDiff->d == 0)
             $date = 'dziś';

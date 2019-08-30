@@ -4,7 +4,7 @@ function generateMenu($tree)
     echo '<ul>';
     foreach ($tree as $element) {
         if (!empty($element->permission->group) && !empty($element->permission->name)) {
-            if (!\Authorization\Authorization::getUserData()->permissions->can($element->permission->group, $element->permission->name))
+            if (!Authorization::getUserData()->permissions->can($element->permission->group, $element->permission->name))
                 continue;
         }
         echo '<li>';
@@ -17,7 +17,9 @@ function generateMenu($tree)
         echo '</li>';
     }
     echo '</ul>';
-} ?>
+}
+
+use Authorization\Authorization; ?>
 <nav>
     <?= generateMenu($data['menu']); ?>
 </nav>

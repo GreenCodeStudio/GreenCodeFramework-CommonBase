@@ -2,11 +2,13 @@
 
 namespace CommonBase;
 
+use Authorization\Authorization;
+
 trait PageAjaxControllerTrait
 {
 
     public function hasPermission()
     {
-        return \Authorization\Authorization::isLogged();
+        return Authorization::isLogged();
     }
 }

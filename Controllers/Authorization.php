@@ -9,7 +9,9 @@
 namespace CommonBase\Controllers;
 
 
-class Authorization extends \Common\PageStandardController
+use Common\PageStandardController;
+
+class Authorization extends PageStandardController
 {
     public function index()
     {
