@@ -151,21 +151,21 @@ class CodeGenerator
 
     function generateInput($col, $reference = null)
     {
-       $required= (strtolower($col->null) != 'yes');
+        $required = (strtolower($col->null) != 'yes');
         if (!empty($reference)) {
-            return '<select data-foreign-key="'.$reference->attributes()->name.'" name="'.$col->name.'" '.($required?'required':'').'></select>';
+            return '<select data-foreign-key="'.$reference->attributes()->name.'" name="'.$col->name.'" '.($required ? 'required' : '').'></select>';
         } else {
             switch ($col->type->__toString()) {
                 case "bool":
                     return '<input type="checkbox" name="'.$col->name.'">';
                 case "int":
-                    return '<input type="number" step="1" name="'.$col->name.'" '.($required?'required':'').'>';
+                    return '<input type="number" step="1" name="'.$col->name.'" '.($required ? 'required' : '').'>';
                 case "date":
-                    return '<input type="date" name="'.$col->name.'" '.($required?'required':'').'>';
+                    return '<input type="date" name="'.$col->name.'" '.($required ? 'required' : '').'>';
                 case "datetime":
-                    return '<input type="datetime-local" step="any" name="'.$col->name.'" '.($required?'required':'').'>';
+                    return '<input type="datetime-local" step="any" name="'.$col->name.'" '.($required ? 'required' : '').'>';
                 default:
-                    return '<input type="text" name="'.$col->name.'" '.($required?'required':'').'>';
+                    return '<input type="text" name="'.$col->name.'" '.($required ? 'required' : '').'>';
             }
         }
     }
@@ -347,12 +347,12 @@ class '.$name.' extends \Core\BussinesLogic
 
     function makeRepository(string $namespace, string $name, $table)
     {
-        $orderCodes=[];
+        $orderCodes = [];
         foreach ($table->column as $column) {
             if ($column->autoincrement == 'YES') continue;
-            $orderCodes[]= '\''.$column->name.'\'=> \''.$column->name.'\'';
+            $orderCodes[] = '\''.$column->name.'\'=> \''.$column->name.'\'';
         }
-        $orderCode=implode(', ', $orderCodes);
+        $orderCode = implode(', ', $orderCodes);
         return '<?php
 
 namespace '.$namespace.'\Repository;
