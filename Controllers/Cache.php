@@ -9,7 +9,10 @@
 namespace CommonBase\Controllers;
 
 
-class Cache extends \Common\PageStandardController
+use Common\PageStandardController;
+use Core\CodeCache;
+
+class Cache extends PageStandardController
 {
     /**
      * @OfflineConstant
@@ -21,6 +24,6 @@ class Cache extends \Common\PageStandardController
 
     function regenerateCode()
     {
-        \Core\CodeCache::regenerate();
+        CodeCache::regenerate();
     }
 }

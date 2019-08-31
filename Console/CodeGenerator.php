@@ -2,7 +2,9 @@
 
 namespace CommonBase\Console;
 
-class CodeGenerator extends \Core\AbstractController
+use Core\AbstractController;
+
+class CodeGenerator extends AbstractController
 {
 
     function generate($namespace, $name)

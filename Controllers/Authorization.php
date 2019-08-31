@@ -9,13 +9,22 @@
 namespace CommonBase\Controllers;
 
 
-class Authorization extends \Common\PageStandardController
+use Authorization\Exceptions\BadAuthorizationException;
+use Authorization\Exceptions\ExpiredTokenException;
+use Common\PageStandardController;
+
+class Authorization extends PageStandardController
 {
     public function index()
     {
         $this->addView('CommonBase', 'login');
     }
 
+    /**
+     * @param string $token
+     * @throws BadAuthorizationException
+     * @throws ExpiredTokenException
+     */
     public function token(string $token)
     {
         \Authorization\Authorization::loginByToken($token);
