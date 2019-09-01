@@ -33,6 +33,7 @@ use Common\Formatter;
                 </div>
                 <?php
             } ?>
+            <div class="footer subscribe-notifications">Włącz powiadomienia push</div>
         </div>
     </div>
     <div class="loginInfo">
