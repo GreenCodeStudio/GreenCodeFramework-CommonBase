@@ -48,13 +48,17 @@ addEventListener('click', e => {
     }
 });
 pageManager.onLoad(() => document.body.classList.remove('hamburgerMenu-opened'));
-
-document.querySelector('.subscribe-notifications').onclick = async e => {
-    let serviceWorkerRegistration = await window.swRegistratonPromise;
-    let options = {
-        userVisibleOnly: true,
-        applicationServerKey: 'BOpw8ocFV02co1cg8h-WZvfiwys3CemOyGT2cDHsPezM5yCFjrQrQ1Dz8vlihX-H2_THV9169oS6Y03QKJAtBnU'
+let subscribeNotificationsBtn = document.querySelector('.subscribe-notifications');
+if (subscribeNotificationsBtn)
+    subscribeNotificationsBtn.onclick = async e => {
+        let serviceWorkerRegistration = await window.swRegistratonPromise;
+        let options = {
+            userVisibleOnly: true,
+            applicationServerKey: 'BOpw8ocFV02co1cg8h-WZvfiwys3CemOyGT2cDHsPezM5yCFjrQrQ1Dz8vlihX-H2_THV9169oS6Y03QKJAtBnU'
+        };
+        let subscription = await serviceWorkerRegistration.pushManager.getSubscription();
+        if (subscription === null) {
+            subscription = await serviceWorkerRegistration.pushManager.subscribe(options);
+        }
+        Ajax.Notifications.subscribePush(subscription);
     };
-    let result = await serviceWorkerRegistration.pushManager.subscribe(options);
-    Ajax.Notifications.subscribePush(result);
-};

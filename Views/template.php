@@ -25,6 +25,7 @@ use Common\Formatter;
     <div class="notifications">
         <div class="headerButton"><span class="icon-notifications"></span></div>
         <div class="notificationsList">
+            <button class="subscribe-notifications">Włącz powiadomienia push</button>
             <?php foreach ($notificationsList as $notification) {
                 ?>
                 <div class="notification">
@@ -33,7 +34,6 @@ use Common\Formatter;
                 </div>
                 <?php
             } ?>
-            <div class="footer subscribe-notifications">Włącz powiadomienia push</div>
         </div>
     </div>
     <div class="loginInfo">
