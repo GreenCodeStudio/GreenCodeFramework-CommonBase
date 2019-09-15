@@ -13,14 +13,14 @@ use Core\Migration;
 
 class CodeGenerator
 {
-    function generate($namespace, $name)
+    function generate($namespace, $name, $dbName)
     {
         $table = $this->getTable($name);
         if ($table->title)
             $title = htmlspecialchars($table->title);
         else
             $title = $name;
-        $path = __DIR__.'/modules/'.$namespace;
+        $path = __DIR__.'/../'.$namespace;
 
         if (!file_exists($path.'/Views')) {
             mkdir($path.'/Views', 0777, true);
