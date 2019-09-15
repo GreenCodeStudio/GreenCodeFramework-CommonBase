@@ -9,7 +9,7 @@ class CodeGenerator extends AbstractController
 
     function generate($namespace, $name, $dbName)
     {
-        $CodeGenerator = new \Common\CodeGenerator();
+        $CodeGenerator = new \CommonBase\CodeGenerator();
         $CodeGenerator->generate($namespace, $name, $dbName);
     }
 }

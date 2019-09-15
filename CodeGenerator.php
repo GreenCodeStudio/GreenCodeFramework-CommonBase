@@ -51,7 +51,7 @@ class CodeGenerator
             file_put_contents($path.'/'.$name.'.php', $this->makeBussinesLogic($namespace, $name, $table));
         }
         if (!file_exists($path.'/Repository/'.$name.'Repository.php')) {
-            file_put_contents($path.'/Repository/'.$name.'Repository.php', $this->makeRepository($namespace, $name, $table));
+            file_put_contents($path.'/Repository/'.$name.'Repository.php', $this->makeRepository($namespace, $name,$dbName, $table));
         }
         if (!file_exists($path.'/permissions.xml')) {
             file_put_contents($path.'/permissions.xml', '<?xml version="1.0" encoding="UTF-8"?><permissions/>');
@@ -345,7 +345,7 @@ class '.$name.' extends \Core\BussinesLogic
 }';
     }
 
-    function makeRepository(string $namespace, string $name, $table)
+    function makeRepository(string $namespace, string $name,string $dbName,  $table)
     {
         $orderCodes = [];
         foreach ($table->column as $column) {
@@ -365,16 +365,19 @@ class '.$name.'Repository extends \Core\Repository
 
     public function __construct()
     {
-        parent::__construct(\''.$name.'\');
         $this->archiveMode = static::ArchiveMode_OnlyExisting;
+    }
+    public function defaultTable(): string
+    {
+        return \''.$dbName.'\';
     }
     public function getDataTable($options)
     {
         $start = (int)$options->start;
         $limit = (int)$options->limit;
         $sqlOrder = $this->getOrderSQL($options);
-        $rows = DB::get("SELECT * FROM '.$name.' $sqlOrder LIMIT $start,$limit");
-        $total = DB::get("SELECT count(*) as count FROM '.$name.'")[0]->count;
+        $rows = DB::get("SELECT * FROM '.$dbName.' $sqlOrder LIMIT $start,$limit");
+        $total = DB::get("SELECT count(*) as count FROM '.$dbName.'")[0]->count;
         return [\'rows\' => $rows, \'total\' => $total];
     }
         private function getOrderSQL($options)
