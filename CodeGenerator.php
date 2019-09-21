@@ -57,10 +57,17 @@ class CodeGenerator
             file_put_contents($path.'/'.$name.'.php', $this->makeBussinesLogic($namespace, $name, $table));
         }
         if (!file_exists($path.'/Repository/'.$name.'Repository.php')) {
-            file_put_contents($path.'/Repository/'.$name.'Repository.php', $this->makeJsController($namespace, $name, $table));
+            file_put_contents($path.'/Repository/'.$name.'Repository.php', $this->makeRepository($namespace, $name, $table));
         }
+        if (!file_exists($path.'/js/index.js')) {
+            file_put_contents($path.'/js/index.js', 'import {pageManager} from "../../Core/js/pageManager";');
+        }
+        if(strpos(file_get_contents($path.'/js/index.js'), 'import(\'./Controllers/'.$name.'\'))')===false) {
+            file_put_contents($path.'/js/index.js', "\r\n".'pageManager.registerController(\''.$name.'\', () => import(\'./Controllers/'.$name.'\'));', FILE_APPEND);
+        }
+
         if (!file_exists($path.'/js/Controllers/'.$name.'.js')) {
-            file_put_contents($path.'/js/Controllers/'.$name.'.js', '<?xml version="1.0" encoding="UTF-8"?><permissions/>');
+            file_put_contents($path.'/js/Controllers/'.$name.'.js', $this->makeJsController($namespace, $name, $table));
         }
         if (!file_exists($path.'/permissions.xml')) {
             file_put_contents($path.'/permissions.xml', '<?xml version="1.0" encoding="UTF-8"?><permissions/>');
@@ -421,7 +428,7 @@ export default class {
     edit() {
         let form = new FormManager(this.page.querySelector(\'form\'));
         form.loadSelects(this.data.selects);
-        form.load(this.data.Balance);
+        form.load(this.data.'.$name.');
 
         form.submit = async data => {
             await AjaxTask.startNewTask(\''.$name.'\', \'update\', data);
