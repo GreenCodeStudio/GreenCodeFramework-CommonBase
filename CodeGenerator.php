@@ -15,7 +15,7 @@ class CodeGenerator
 {
     function generate($namespace, $name, $dbName)
     {
-        $table = $this->getTable($name);
+        $table = $this->getTable($dbName);
         if ($table->title)
             $title = htmlspecialchars($table->title);
         else
@@ -34,6 +34,12 @@ class CodeGenerator
         if (!file_exists($path.'/Repository')) {
             mkdir($path.'/Repository', 0777, true);
         }
+        if (!file_exists($path.'/js')) {
+            mkdir($path.'/js', 0777, true);
+        }
+        if (!file_exists($path.'/js/Controllers')) {
+            mkdir($path.'/js/Controllers', 0777, true);
+        }
 
         if (!file_exists($path.'/Views/'.$name.'List.php')) {
             file_put_contents($path.'/Views/'.$name.'List.php', $this->makeViewList($namespace, $name, $table));
@@ -51,7 +57,10 @@ class CodeGenerator
             file_put_contents($path.'/'.$name.'.php', $this->makeBussinesLogic($namespace, $name, $table));
         }
         if (!file_exists($path.'/Repository/'.$name.'Repository.php')) {
-            file_put_contents($path.'/Repository/'.$name.'Repository.php', $this->makeRepository($namespace, $name,$dbName, $table));
+            file_put_contents($path.'/Repository/'.$name.'Repository.php', $this->makeJsController($namespace, $name, $table));
+        }
+        if (!file_exists($path.'/js/Controllers/'.$name.'.js')) {
+            file_put_contents($path.'/js/Controllers/'.$name.'.js', '<?xml version="1.0" encoding="UTF-8"?><permissions/>');
         }
         if (!file_exists($path.'/permissions.xml')) {
             file_put_contents($path.'/permissions.xml', '<?xml version="1.0" encoding="UTF-8"?><permissions/>');
@@ -85,7 +94,7 @@ class CodeGenerator
             $cols .= '<th data-value="'.$column->name.'" data-sortable>'.$columnTitle.'</th>';
         }
         return '<div class="topBarButtons">
-    <a href="/'.$name.'/add" class="button">Dodaj</a>
+    <a href="/'.$name.'/add" class="button"><span class="add"></span> Dodaj</a>
 </div>
 <section class="card" data-width="6">
     <header>
@@ -98,7 +107,7 @@ class CodeGenerator
                 '.$cols.'
                 <th class="tableActions">Akcje
                     <div class="tableCopy">
-                        <a href="/'.$name.'/edit" class="button">Edytuj</a>
+                        <a href="/'.$name.'/edit" class="button" title="Edytuj"><span class="icon-edit"></span></a>
                     </div>
                 </th>
             </tr>
@@ -345,7 +354,7 @@ class '.$name.' extends \Core\BussinesLogic
 }';
     }
 
-    function makeRepository(string $namespace, string $name,string $dbName,  $table)
+    function makeRepository(string $namespace, string $name, string $dbName, $table)
     {
         $orderCodes = [];
         foreach ($table->column as $column) {
@@ -393,7 +402,44 @@ class '.$name.'Repository extends \Core\Repository
     }
 }';
     }
+    function makeJsController(string $namespace, string $name, $table)
+    {
+        return 'import {FormManager} from "../../../Core/js/form";
+import {AjaxTask} from "../../../Core/js/ajaxTask";
+import {pageManager} from "../../../Core/js/pageManager";
 
+export default class {
+    constructor(page, data) {
+        this.page = page;
+        this.data = data;
+    }
+
+    index() {
+
+    }
+
+    edit() {
+        let form = new FormManager(this.page.querySelector(\'form\'));
+        form.loadSelects(this.data.selects);
+        form.load(this.data.Balance);
+
+        form.submit = async data => {
+            await AjaxTask.startNewTask(\''.$name.'\', \'update\', data);
+            pageManager.goto(\'/'.$name.'\');
+        }
+    }
+
+    add() {
+        let form = new FormManager(this.page.querySelector(\'form\'));
+        form.loadSelects(this.data.selects);
+
+        form.submit = async data => {
+            await AjaxTask.startNewTask(\''.$name.'\', \'insert\', data);
+            pageManager.goto(\'/'.$name.'\');
+        }
+    }
+}';
+    }
     function updatePermissions($path, $name, $title)
     {
         $filename = $path.'/permissions.xml';
