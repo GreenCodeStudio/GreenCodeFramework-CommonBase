@@ -57,7 +57,7 @@ class CodeGenerator
             file_put_contents($path.'/'.$name.'.php', $this->makeBussinesLogic($namespace, $name, $table));
         }
         if (!file_exists($path.'/Repository/'.$name.'Repository.php')) {
-            file_put_contents($path.'/Repository/'.$name.'Repository.php', $this->makeRepository($namespace, $name, $table));
+            file_put_contents($path.'/Repository/'.$name.'Repository.php', $this->makeRepository($namespace, $name, $dbName, $table));
         }
         if (!file_exists($path.'/js/index.js')) {
             file_put_contents($path.'/js/index.js', 'import {pageManager} from "../../Core/js/pageManager";');
@@ -103,25 +103,27 @@ class CodeGenerator
         return '<div class="topBarButtons">
     <a href="/'.$name.'/add" class="button"><span class="add"></span> Dodaj</a>
 </div>
-<section class="card" data-width="6">
-    <header>
-        <h1>Lista elementów typu '.$title.'</h1>
-    </header>
-    <div class="dataTableContainer">
-        <table class="dataTable" data-controller="'.$name.'" data-method="getTable" data-web-socket-path="'.$namespace.'/'.$name.'">
-            <thead>
-            <tr>
-                '.$cols.'
-                <th class="tableActions">Akcje
-                    <div class="tableCopy">
-                        <a href="/'.$name.'/edit" class="button" title="Edytuj"><span class="icon-edit"></span></a>
-                    </div>
-                </th>
-            </tr>
-            </thead>
-        </table>
-    </div>
-</section>';
+<div class="grid page-'.$name.'  page-'.$name.'-list">
+    <section class="card" data-width="6">
+        <header>
+            <h1>Lista elementów typu '.$title.'</h1>
+        </header>
+        <div class="dataTableContainer">
+            <table class="dataTable" data-controller="'.$name.'" data-method="getTable" data-web-socket-path="'.$namespace.'/'.$name.'">
+                <thead>
+                <tr>
+                    '.$cols.'
+                    <th class="tableActions">Akcje
+                        <div class="tableCopy">
+                            <a href="/'.$name.'/edit" class="button" title="Edytuj"><span class="icon-edit"></span></a>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </section>
+</div>';
     }
 
     function makeViewEdit(string $namespace, string $name, $table)
@@ -149,19 +151,20 @@ class CodeGenerator
             '.$this->generateInput($column, $reference).'
         </label>';
         }
-        return '<form class="dataForm" data-name="'.$name.'" data-controller="'.$name.'"
-      data-method="<?= $data[\'type\'] == \'edit\' ? \'update\' : \'insert\' ?>" data-goto="/'.$name.'">
+        return '<form>
     <div class="topBarButtons">
         <button class="button" type="button">Anuluj</button>
         <button class="button">Zapisz</button>
     </div>
-    <input name="id" type="hidden">
-    <section class="card" data-width="6">
-        <header>
-            <h1>'.$title.'</h1>
-        </header>
-      '.$form.'
-    </section>
+    <div class="grid page-'.$name.' page-'.$name.'-edit">
+        <input name="id" type="hidden">
+        <section class="card" data-width="6">
+            <header>
+                <h1>'.$title.'</h1>
+            </header>
+          '.$form.'
+        </section>
+    </div>
 </form>';
     }
 
@@ -192,7 +195,6 @@ class CodeGenerator
         $add_data = '';
         $hasForeignKeys = false;
         foreach ($table->index as $index) {
-            dump($index->type);
             if ($index->type == 'FOREIGN') {
                 $hasForeignKeys = true;
                 break;
@@ -252,7 +254,6 @@ class '.$name.' extends \Common\PageStandardController
     function add()
     {
         $this->will(\''.$name.'\', \'add\');
-        $permissionsStructure = Permissions::readStructure();
         $this->addView(\''.$namespace.'\', \''.$name.'Edit\', [\'type\' => \'add\']);
         $this->pushBreadcrumb([\'title\' => \''.$name.'\', \'url\' => \'/'.$name.'\']);
         $this->pushBreadcrumb([\'title\' => \'Dodaj\', \'url\' => \'/'.$name.'/add\']);
