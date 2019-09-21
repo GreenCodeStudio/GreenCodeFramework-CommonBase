@@ -76,7 +76,6 @@ table {
 
     &.bigTable {
         table-layout: fixed;
-        overflow: scroll;
 
         td, th {
             white-space: nowrap;
@@ -139,6 +138,8 @@ table {
 
 .dataTableContainer {
     border: 1px solid var(--second);
+    @include table-semiMobile(1500px);
+    @include table-mobile(300px);
 
     table {
         @extend .bigTable;
