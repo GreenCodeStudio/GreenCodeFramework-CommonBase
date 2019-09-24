@@ -52,6 +52,12 @@ form {
         background: var(--mainLight);
         outline: none;
     }
+    &:disabled{
+        background: #ccc;
+        @media (prefers-color-scheme: dark) {
+            background: #6d6d6d;
+        }
+    }
 }
 
 .checkbox, input[type="checkbox"] {
