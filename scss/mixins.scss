@@ -1,0 +1,50 @@
+
+@mixin table-semiMobile($width) {
+    @media(max-width: $width) {
+        overflow: auto;
+        table {
+            width: calc(#{$width} + 100% - 100vw);
+
+            thead {
+                th {
+                    top: 0;
+                }
+            }
+        }
+    }
+}
+
+@mixin table-mobile($width) {
+    @media(max-width: $width) {
+        table {
+            width: 100%;
+            table-layout: auto;
+
+            thead {
+                display: none;
+            }
+
+            tbody tr {
+                display: table;
+                width: 100%;
+
+                td {
+                    display: table-row;
+                    white-space: normal;
+
+                    &::before {
+                        content: attr(data-header);
+                        width: 25%;
+                        display: table-cell;
+                    }
+                }
+
+                td.tableActions-cell {
+                    &::before {
+                        content: '';
+                    }
+                }
+            }
+        }
+    }
+}

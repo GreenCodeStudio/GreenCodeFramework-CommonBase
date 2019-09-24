@@ -20,4 +20,21 @@ html, .color-green-yellow {
     --main: #d7ee1b;
     --mainLight: #e0ff8f;
     --second: #0e0844;
+    --background:#fff;
+    --backgroundMain:#ddd;
+    --textColor:#000;
+    --textSecondColor:#fff;
+    --menuColor:#eee;
+}
+@media (prefers-color-scheme: dark) {
+    html{
+        --main: #646f0d;
+        --mainLight: #788610;
+        --second: #00dcff;
+        --background: #424242;
+        --backgroundMain: #313131;
+        --textColor: #fff;
+        --menuColor: #3a3a3a;
+        --textSecondColor:#000;
+    }
 }

@@ -11,7 +11,7 @@
 
     .modal {
         animation: page-in 200ms ease-out;
-        background: #ffffff;
+        background: var(--background);
         position: absolute;
         left: 50%;
         top: 50%;

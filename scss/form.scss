@@ -28,6 +28,7 @@ form {
     vertical-align: middle;
     line-height: 1;
     box-sizing: border-box;
+    background: var(--background);
 
     &::before {
         content: '';

@@ -57,8 +57,7 @@
         height: 300px;
         overflow: scroll;
         border: 1px solid;
-        background: rgba(#ffffff, .6);
-        backdrop-filter: blur(10px);
+        backdrop-filter: var(--standardBackdropFilter);
         margin-left: -124px;
     }
 

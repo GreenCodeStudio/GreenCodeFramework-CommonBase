@@ -12,7 +12,7 @@ section.card {
     flex-shrink: 1;
     margin: 10px;
     padding: 10px;
-    background: #fff;
+    background:  var(--background);
 
     > header {
         margin: 0 -10px 10px -10px;

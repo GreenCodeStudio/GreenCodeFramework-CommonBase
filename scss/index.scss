@@ -9,8 +9,14 @@
 @import "modal";
 
 body {
-    background: #ddd;
+    background: var(--backgroundMain);
     font-family: sans-serif;
+    color: var(--textColor);
+    --standardBackdropFilter: blur(10px) contrast(.3) brightness(1.65);
+    @media (prefers-color-scheme: dark) {
+        --standardBackdropFilter: blur(10px) contrast(.3) brightness(0.56);
+    }
+
 
     > header {
         background: var(--main);
@@ -34,7 +40,7 @@ body {
         top: 31px;
         bottom: 0;
         width: 200px;
-        background: #eee;
+        background: var(--menuColor);
         overflow: auto;
         z-index: 100;
 
@@ -59,6 +65,17 @@ body {
                         &:hover {
                             color: #000;
                             background: var(--main);
+                        }
+                    }
+
+                    @media (prefers-color-scheme: dark) {
+                        a, span {
+                            color: #ddd;
+                        }
+                        a {
+                            &:hover {
+                                color: #fff;
+                            }
                         }
                     }
 
@@ -149,7 +166,7 @@ body {
             right: 0;
             background: transparent;
             border-bottom: 1px solid #aaa;
-            backdrop-filter: blur(10px) contrast(.3) brightness(1.65);
+            backdrop-filter: var(--standardBackdropFilter);
             z-index: 50;
 
             .breadcrumb {
@@ -177,6 +194,7 @@ body {
                             text-decoration: none;
                             //animation: breadcrumb-in 600ms ease-out;
                             transform-origin: 0% 50%;
+                            color:inherit;
 
                             @keyframes breadcrumb-in {
                                 0% {
@@ -260,7 +278,7 @@ button.hamburgerMenu {
     max-width: 100vh;
     min-width: 200px;
     user-select: none;
-    backdrop-filter: blur(10px) contrast(.3) brightness(1.65);
+    backdrop-filter: var(--standardBackdropFilter);
 
     li {
         display: block;
