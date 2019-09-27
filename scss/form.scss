@@ -9,14 +9,14 @@ form {
             width: 250px;
         }
 
-        input {
+        input, select, textarea {
             display: table-cell;
             width: 100%;
         }
     }
 }
 
-.input, input:not(.browsersDefault) {
+.input, input:not(.browsersDefault), textarea:not(.browsersDefault), select:not(.browsersDefault) {
     display: inline-block;
     padding: 5px 8px;
     color: var(--second);
@@ -52,8 +52,13 @@ form {
         background: var(--mainLight);
         outline: none;
     }
+
 }
 
+textarea:not(.browsersDefault) {
+    resize: vertical;
+    transition: all 200ms, height 0ms;
+}
 .checkbox, input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
