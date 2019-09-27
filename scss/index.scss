@@ -170,6 +170,8 @@ body {
             z-index: 50;
 
             .breadcrumb {
+                user-select: none;
+
                 ul {
                     margin: 0;
                     padding: 0;
