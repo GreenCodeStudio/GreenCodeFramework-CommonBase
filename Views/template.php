@@ -4,7 +4,7 @@ use Common\Formatter;
 
 ?>
 <!DOCTYPE html>
-<html>
+<html class="win98">
 <head>
     <title><?= htmlspecialchars($this->getTitle()) ?></title>
     <meta charset="UTF-8">
