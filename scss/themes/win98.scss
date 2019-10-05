@@ -8,113 +8,115 @@ html.win98 {
     --textSecondColor: #fff;
     --menuColor: #eee;
 
-}
 
-.card {
-    border-top: 1px solid #ffffff;
-    border-left: 1px solid #ffffff;
-    border-bottom: 1px solid #000000;
-    border-right: 1px solid #000000;
-    box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
-}
-
-.button, button:not(.browsersDefault) {
-    border-top: 1px solid #ffffff;
-    border-left: 1px solid #ffffff;
-    border-bottom: 1px solid #000000;
-    border-right: 1px solid #000000;
-    box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
-    transition: none;
-    cursor: default;
-
-    &::before {
-        display: none;
+    .card {
+        border-top: 1px solid #ffffff;
+        border-left: 1px solid #ffffff;
+        border-bottom: 1px solid #000000;
+        border-right: 1px solid #000000;
+        box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
     }
 
-    &:hover, &:focus {
-        color: inherit;
+    .button, button:not(.browsersDefault) {
+        border-top: 1px solid #ffffff;
+        border-left: 1px solid #ffffff;
+        border-bottom: 1px solid #000000;
+        border-right: 1px solid #000000;
+        box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
+        transition: none;
+        cursor: default;
+
+        &::before {
+            display: none;
+        }
+
+        &:hover, &:focus {
+            color: inherit;
+        }
+
+        &:focus {
+            border: 1px solid black;
+            box-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #000000 inset, 2px 2px 0 #dfdfdf inset, -2px -2px 0 #808080 inset;
+            outline: 1px dotted;
+            outline-offset: -5px;
+        }
+
+        &:active {
+            transform: none;
+            border-top: 1px solid #000000;
+            border-left: 1px solid #000000;
+            border-bottom: 1px solid #ffffff;
+            border-right: 1px solid #ffffff;
+            box-shadow: 1px 1px 0 #808080 inset, -1px -1px 0 #dfdfdf inset;
+        }
     }
 
-    &:focus {
-        border: 1px solid black;
-        box-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #000000 inset, 2px 2px 0 #dfdfdf inset, -2px -2px 0 #808080 inset;
-        outline: 1px dotted;
-        outline-offset: -5px;
-    }
-
-    &:active {
-        transform: none;
-        border-top: 1px solid #000000;
-        border-left: 1px solid #000000;
-        border-bottom: 1px solid #ffffff;
-        border-right: 1px solid #ffffff;
-        box-shadow: 1px 1px 0 #808080 inset, -1px -1px 0 #dfdfdf inset;
-    }
-}
-
-section.card > header {
-    background: var(--main);
-    padding: 2px;
-    margin: -8px -8px 10px -8px;
-    color: #fff;
-    font-size: 1em;
-
-    h1 {
-        margin: 0;
+    section.card > header {
+        background: var(--main);
+        padding: 2px;
+        margin: -8px -8px 10px -8px;
+        color: #fff;
         font-size: 1em;
+
+        h1 {
+            margin: 0;
+            font-size: 1em;
+        }
     }
-}
 
-.loginInfo {
-    color: #fff;
-}
+    .loginInfo {
+        color: #fff;
+    }
 
-body > aside {
-    border-top: 1px solid #ffffff;
-    border-left: 1px solid #ffffff;
-    border-bottom: 1px solid #000000;
-    border-right: 1px solid #000000;
-    box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
+    body > aside {
+        border-top: 1px solid #ffffff;
+        border-left: 1px solid #ffffff;
+        border-bottom: 1px solid #000000;
+        border-right: 1px solid #000000;
+        box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
 
-    nav ul {
-        margin: 2px;
-        li {
-            a {
-                &:hover {
-                    color: #fff;
+        nav ul {
+            margin: 2px;
+
+            li {
+                a {
+                    &:hover {
+                        color: #fff;
+                    }
                 }
-            }
 
-            a, span {
-                cursor: default;
+                a, span {
+                    cursor: default;
+                }
             }
         }
     }
-}
 
-table {
-    border-collapse: separate;
-    border-spacing: 0;
-    border-top: 1px solid #808080;
-    border-left: 1px solid #808080;
-    border-bottom: 1px solid #dfdfdf;
-    border-right: 1px solid #dfdfdf;
-    padding: 1px;
-    box-shadow: 1px 1px 0 #000000 inset, -1px -1px 0 #000000 inset;
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-top: 1px solid #808080;
+        border-left: 1px solid #808080;
+        border-bottom: 1px solid #dfdfdf;
+        border-right: 1px solid #dfdfdf;
+        padding: 1px;
+        box-shadow: 1px 1px 0 #000000 inset, -1px -1px 0 #000000 inset;
 
-    thead th {
-        @extend .button;
-        background: var(--background);
-        display: table-cell;
-        margin: 0;
-        color: #000;
-    }
+        thead th {
+            @extend .button;
+            background: var(--background);
+            display: table-cell;
+            margin: 0;
+            color: #000;
+            position: sticky;
+        }
 
-    tbody td {
-        background: #ffffff;
-    }
+        tbody td {
+            background: #ffffff;
+        }
 
-    .pagination button {
-        margin: 0;
+        .pagination button {
+            margin: 0;
+        }
     }
 }

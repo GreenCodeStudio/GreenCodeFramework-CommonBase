@@ -4,7 +4,7 @@ use Common\Formatter;
 
 ?>
 <!DOCTYPE html>
-<html class="win98">
+<html>
 <head>
     <title><?= htmlspecialchars($this->getTitle()) ?></title>
     <meta charset="UTF-8">
@@ -18,6 +18,7 @@ use Common\Formatter;
 <body>
 <header>
     <button type="button" class="hamburgerMenu">menu</button>
+    <button type="button" onclick="document.documentElement.classList.toggle('win98')">Retro</button>
     <div class="tasks">
         <div class="headerButton"><span class="icon-tasks"></span></div>
         <div class="tasksList"></div>
