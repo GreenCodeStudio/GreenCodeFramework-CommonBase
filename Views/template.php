@@ -18,7 +18,7 @@ use Common\Formatter;
 <body>
 <header>
     <button type="button" class="hamburgerMenu">menu</button>
-    <button type="button" onclick="document.documentElement.classList.toggle('win98')">Retro</button>
+    <button type="button" onclick="document.documentElement.classList.toggle('win98')">Wygląd klasyczny</button>
     <div class="tasks">
         <div class="headerButton"><span class="icon-tasks"></span></div>
         <div class="tasksList"></div>
