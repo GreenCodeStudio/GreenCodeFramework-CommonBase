@@ -18,6 +18,10 @@ use Common\Formatter;
 <body>
 <header>
     <button type="button" class="hamburgerMenu">menu</button>
+<!--    <div class="mainSearch-container">-->
+<!--        <input type="search">-->
+<!--        <div class="mainSearch-list"></div>-->
+<!--    </div>-->
     <button type="button" onclick="document.documentElement.classList.toggle('win98')">Wygląd klasyczny</button>
     <div class="tasks">
         <div class="headerButton"><span class="icon-tasks"></span></div>

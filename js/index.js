@@ -1,6 +1,7 @@
 import {Ajax} from "../../Core/js/ajax";
 import {TableManager} from "../../Core/js/table";
 import {pageManager} from "../../Core/js/pageManager";
+import {MainSearch} from "./mainSearch";
 
 document.querySelectorAll('.logoutMyselfBtn').forEach(b => b.onclick = async () => {
     await Ajax.Authorization.logout();
@@ -40,6 +41,7 @@ addEventListener('resize', () => {
     })
 });
 document.querySelectorAll('.hamburgerMenu').forEach(x => x.onclick = () => document.body.classList.toggle('hamburgerMenu-opened'));
+document.querySelectorAll('.mainSearch-container').forEach(x=>new MainSearch(x));
 addEventListener('click', e => {
     if (e.target.findParent(x => x.matches('body>aside') || x.matches('body>header'))) {
 
