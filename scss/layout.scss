@@ -152,6 +152,7 @@ body {
             left: 0;
             right: 0;
             transform-origin: 50% 100px;
+            will-change: opacity;
             animation: page-in 300ms ease-out;
 
 
