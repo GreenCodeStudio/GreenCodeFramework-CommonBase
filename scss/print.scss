@@ -1,0 +1,42 @@
+@media print {
+    body {
+        background: transparent;
+        > header {
+            position: static;
+            background: transparent;
+
+            > * {
+                display: none !important;
+            }
+
+            > h1 {
+                display: block !important;;
+            }
+        }
+
+        > aside {
+            display: none;
+        }
+
+        > .mainContent {
+            clear: both;
+            > .topBar {
+                display: none;
+            }
+        }
+
+        > .mainContent {
+            margin: 0;
+
+            .page {
+                position: static;
+            }
+        }
+        table thead th{
+            background: transparent;
+            color:inherit;
+            border-bottom: 2px solid #ddd;
+            top: 0;
+        }
+    }
+}

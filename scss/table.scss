@@ -83,6 +83,21 @@ table {
         }
     }
 
+    tfoot {
+        background: rgba(#000000, .05);
+        border-top:solid 2px #bbb;
+
+        &:hover {
+            background: rgba(#000000, .25);
+        }
+        tr {
+            td {
+                padding: 5px 10px;
+                margin: 0;
+            }
+        }
+    }
+
     .pagination {
         float: left;
 
