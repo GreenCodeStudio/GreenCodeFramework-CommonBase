@@ -20,9 +20,9 @@ body {
         text-align: right;
         user-select: none;
 
-        h1{
+        h1 {
             font-size: inherit;
-            margin:0;
+            margin: 0;
             float: left;
             line-height: 33px;
         }
@@ -152,10 +152,8 @@ body {
             left: 0;
             right: 0;
             transform-origin: 50% 100px;
+            animation: page-in 300ms ease-out;
 
-            > * {
-                animation: page-in 300ms ease-out;
-            }
 
             .topBarButtons {
                 position: fixed;
@@ -166,10 +164,8 @@ body {
             }
 
             &.removing {
-                > * {
-                    animation: page-out 200ms ease-in forwards;
-                    pointer-events: none;
-                }
+                animation: page-out 200ms ease-in forwards;
+                pointer-events: none;
             }
 
             &.stillLoading {
@@ -191,21 +187,17 @@ body {
             @keyframes page-in {
                 0% {
                     opacity: 0;
-                    transform: translateY(20px);
                 }
                 100% {
                     opacity: 1;
-                    transform: translateY(0);
                 }
             }
             @keyframes page-out {
                 0% {
                     opacity: 1;
-                    transform: translateY(0);
                 }
                 100% {
                     opacity: 0;
-                    transform: translateY(-20px);
                 }
             }
 
