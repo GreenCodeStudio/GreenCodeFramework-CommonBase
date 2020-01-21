@@ -54,7 +54,7 @@ form {
     }
     &:disabled{
         background: #ccc;
-        @media (prefers-color-scheme: dark) {
+        @media screen and (prefers-color-scheme: dark) {
             background: #6d6d6d;
         }
     }

@@ -26,7 +26,7 @@ html, .color-green-yellow {
     --textSecondColor:#fff;
     --menuColor:#eee;
 }
-@media (prefers-color-scheme: dark) {
+@media screen and (prefers-color-scheme: dark) {
     html{
         --main: #646f0d;
         --mainLight: #788610;

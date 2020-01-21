@@ -4,7 +4,7 @@ body {
     font-family: sans-serif;
     color: var(--textColor);
     --standardBackdropFilter: blur(10px) contrast(.3) brightness(1.65);
-    @media (prefers-color-scheme: dark) {
+    @media screen and (prefers-color-scheme: dark) {
         --standardBackdropFilter: blur(10px) contrast(.3) brightness(0.56);
     }
 
@@ -66,7 +66,7 @@ body {
                         }
                     }
 
-                    @media (prefers-color-scheme: dark) {
+                    @media screen and (prefers-color-scheme: dark) {
                         a, span {
                             color: #ddd;
                         }
@@ -152,9 +152,10 @@ body {
             left: 0;
             right: 0;
             transform-origin: 50% 100px;
-            will-change: opacity;
-            animation: page-in 300ms ease-out;
-
+            > * {
+                will-change: opacity;
+                animation: page-in 300ms ease-out;
+            }
 
             .topBarButtons {
                 position: fixed;
@@ -165,8 +166,10 @@ body {
             }
 
             &.removing {
-                animation: page-out 200ms ease-in forwards;
-                pointer-events: none;
+                > * {
+                    animation: page-out 200ms ease-in forwards;
+                    pointer-events: none;
+                }
             }
 
             &.stillLoading {
