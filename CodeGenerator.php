@@ -416,33 +416,26 @@ class '.$name.'Repository extends \Core\Repository
 import {AjaxTask} from "../../../Core/js/ajaxTask";
 import {pageManager} from "../../../Core/js/pageManager";
 
-export default class {
+export class edit {
     constructor(page, data) {
-        this.page = page;
-        this.data = data;
-    }
+        let form = new FormManager(page.querySelector(\'form\'));
+        form.loadSelects(data.selects);
+        form.load(data.'.$name.');
 
-    index() {
-
-    }
-
-    edit() {
-        let form = new FormManager(this.page.querySelector(\'form\'));
-        form.loadSelects(this.data.selects);
-        form.load(this.data.'.$name.');
-
-        form.submit = async data => {
-            await AjaxTask.startNewTask(\''.$name.'\', \'update\', data);
+        form.submit = async newData => {
+            await AjaxTask.startNewTask(\''.$name.'\', \'update\', newData);
             pageManager.goto(\'/'.$name.'\');
         }
     }
+}
+export class add {
+    constructor(page, data) {
+        let form = new FormManager(page.querySelector(\'form\'));
+        if(data && data.selects)
+            form.loadSelects(data.selects);
 
-    add() {
-        let form = new FormManager(this.page.querySelector(\'form\'));
-        form.loadSelects(this.data.selects);
-
-        form.submit = async data => {
-            await AjaxTask.startNewTask(\''.$name.'\', \'insert\', data);
+        form.submit = async newData => {
+            await AjaxTask.startNewTask(\''.$name.'\', \'insert\', newData);
             pageManager.goto(\'/'.$name.'\');
         }
     }
