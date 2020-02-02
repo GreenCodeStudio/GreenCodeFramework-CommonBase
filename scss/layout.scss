@@ -19,16 +19,26 @@ body {
         z-index: 200;
         text-align: right;
         user-select: none;
+        display: flex;
+        flex-direction: row;
 
         h1 {
             font-size: inherit;
             margin: 0;
             float: left;
             line-height: 33px;
+            flex: 1 1 auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-align: left;
         }
 
         .headerButton {
             @extend .button;
+        }
+        button{
+            flex: 0 0 auto;
         }
     }
 
@@ -152,6 +162,7 @@ body {
             left: 0;
             right: 0;
             transform-origin: 50% 100px;
+
             > * {
                 will-change: opacity;
                 animation: page-in 300ms ease-out;
@@ -288,6 +299,9 @@ button.hamburgerMenu {
     button.hamburgerMenu {
         display: inline-block;
         float: left;
+    }
+    body > header > h1 {
+        text-align: center;
     }
     body > .mainContent {
         margin-left: 0;

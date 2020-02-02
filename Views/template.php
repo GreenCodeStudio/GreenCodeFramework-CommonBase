@@ -18,12 +18,12 @@ use Common\Formatter;
 <body>
 <header>
     <button type="button" class="hamburgerMenu">menu</button>
-    <h1><?=htmlspecialchars($header['title'])?></h1>
-<!--    <div class="mainSearch-container">-->
-<!--        <input type="search">-->
-<!--        <div class="mainSearch-list"></div>-->
-<!--    </div>-->
-    <button type="button" onclick="document.documentElement.classList.toggle('win98')">Wygląd klasyczny</button>
+    <h1><?= htmlspecialchars($header['title']) ?></h1>
+    <!--    <div class="mainSearch-container">-->
+    <!--        <input type="search">-->
+    <!--        <div class="mainSearch-list"></div>-->
+    <!--    </div>-->
+
     <div class="tasks">
         <div class="headerButton"><span class="icon-tasks"></span></div>
         <div class="tasksList"></div>
@@ -43,8 +43,12 @@ use Common\Formatter;
         </div>
     </div>
     <div class="loginInfo">
-        <span class="icon-user"><?= htmlspecialchars($userData->name.' '.$userData->surname) ?></span>
-        <div class="button logoutMyselfBtn" title="Wyloguj"><span class="icon-logout"></span></div>
+        <div class="headerButton"><span class="icon-user"></span></div>
+        <div class="loginInfo-expandable">
+            <span class="icon-user"><?= htmlspecialchars($userData->name.' '.$userData->surname) ?></span>
+            <div class="button logoutMyselfBtn" title="Wyloguj"><span class="icon-logout"></span>Wyloguj</div>
+            <button type="button" onclick="document.documentElement.classList.toggle('win98')">Wygląd klasyczny</button>
+        </div>
     </div>
 </header>
 <aside data-views="aside"><?php $this->showViews('aside'); ?></aside>

@@ -1,5 +1,5 @@
 .tasks {
-    @extend .top-expendable;
+    @extend .top-expandable;
 
     > .tasksList {
         @extend .list;
@@ -33,7 +33,7 @@
 }
 
 .notifications {
-    @extend .top-expendable;
+    @extend .top-expandable;
 
     .notificationsList {
         @extend .list;
@@ -45,8 +45,21 @@
         }
     }
 }
+.loginInfo {
+     @extend .top-expandable;
 
-.top-expendable {
+     .loginInfo-expandable {
+         @extend .list;
+
+         > .notification {
+             border-bottom: 1px solid;
+             text-align: center;
+             padding: 5px;
+         }
+     }
+ }
+
+.top-expandable {
     display: inline-block;
 
     > .list {
@@ -58,7 +71,7 @@
         overflow: scroll;
         border: 1px solid;
         backdrop-filter: var(--standardBackdropFilter);
-        margin-left: -124px;
+        margin-left: -158px;
     }
 
     &:hover, &:focus-within, &.open {
@@ -68,9 +81,6 @@
     }
 }
 
-.loginInfo {
-    display: inline-block;
-}
 
 .installPWA {
     font-size: 1em;
