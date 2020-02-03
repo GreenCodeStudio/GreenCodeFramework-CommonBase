@@ -101,7 +101,7 @@ class CodeGenerator
             $cols .= '<th data-value="'.$column->name.'" data-sortable>'.$columnTitle.'</th>';
         }
         return '<div class="topBarButtons">
-    <a href="/'.$name.'/add" class="button"><span class="add"></span> Dodaj</a>
+    <a href="/'.$name.'/add" class="button"><span class="icon-add"></span> Dodaj</a>
 </div>
 <div class="grid page-'.$name.'  page-'.$name.'-list">
     <section class="card" data-width="6">
@@ -153,8 +153,8 @@ class CodeGenerator
         }
         return '<form>
     <div class="topBarButtons">
-        <button class="button" type="button">Anuluj</button>
-        <button class="button">Zapisz</button>
+        <button class="button" type="button"><span class="icon-cancel"></span>Anuluj</button>
+        <button class="button"><span class="icon-save"></span>Zapisz</button>
     </div>
     <div class="grid page-'.$name.' page-'.$name.'-edit">
         <input name="id" type="hidden">

@@ -48,14 +48,8 @@
 .loginInfo {
      @extend .top-expandable;
 
-     .loginInfo-expandable {
+     > .loginInfo-expandable {
          @extend .list;
-
-         > .notification {
-             border-bottom: 1px solid;
-             text-align: center;
-             padding: 5px;
-         }
      }
  }
 
