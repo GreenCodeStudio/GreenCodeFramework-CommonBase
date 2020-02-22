@@ -19,10 +19,10 @@ use Common\Formatter;
 <header>
     <button type="button" class="hamburgerMenu">menu</button>
     <h1><?= htmlspecialchars($header['title']) ?></h1>
-    <!--    <div class="mainSearch-container">-->
-    <!--        <input type="search">-->
-    <!--        <div class="mainSearch-list"></div>-->
-    <!--    </div>-->
+        <div class="mainSearch">
+            <input type="search" placeholder="Szukaj">
+            <div class="list"></div>
+        </div>
 
     <div class="tasks">
         <div class="headerButton"><span class="icon-tasks"></span></div>

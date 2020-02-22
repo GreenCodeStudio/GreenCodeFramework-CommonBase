@@ -37,8 +37,44 @@ body {
         .headerButton {
             @extend .button;
         }
-        button{
+
+        button {
             flex: 0 0 auto;
+        }
+
+        .mainSearch {
+
+            .list {
+                display: none;
+                position: absolute;
+                min-width: 400px;
+                max-width: calc(100vw - 20px);
+                right: 10px;
+                border: 1px solid rgba(#000, .5);
+                backdrop-filter: var(--standardBackdropFilter);
+                text-align: left;
+
+                .item {
+                    display: block;
+                    text-decoration: none;
+                    padding: 10px 15px;
+                    color: inherit;
+
+                    &:hover {
+                        background: rgba(#000, .2);
+                    }
+
+                    &:active {
+                        background: rgba(#000, .2);
+                    }
+
+                }
+            }
+            &:focus-within{
+                .list{
+                    display: block;
+                }
+            }
         }
     }
 

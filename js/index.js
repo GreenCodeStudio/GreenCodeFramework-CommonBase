@@ -41,7 +41,7 @@ addEventListener('resize', () => {
     })
 });
 document.querySelectorAll('.hamburgerMenu').forEach(x => x.onclick = () => document.body.classList.toggle('hamburgerMenu-opened'));
-document.querySelectorAll('.mainSearch-container').forEach(x=>new MainSearch(x));
+document.querySelectorAll('.mainSearch').forEach(x=>new MainSearch(x));
 addEventListener('click', e => {
     if (e.target.findParent(x => x.matches('body>aside') || x.matches('body>header'))) {
 
