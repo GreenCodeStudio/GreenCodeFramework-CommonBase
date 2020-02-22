@@ -21,7 +21,6 @@ class Authorization extends PageStandardController
     }
 
     /**
-     * @param string $token
      * @throws BadAuthorizationException
      * @throws ExpiredTokenException
      */

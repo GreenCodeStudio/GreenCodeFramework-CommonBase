@@ -22,7 +22,7 @@ const login = {
 };
 login.startToken = login.currentToken;
 
-setInterval(login.check.bind(login), 1000);
+addEventListener('focus', login.check.bind(login));
 
 TableManager.prototype.calcSize = function () {
     let rowHeight = 40;
@@ -51,7 +51,7 @@ addEventListener('click', e => {
 });
 pageManager.onLoad(() => document.body.classList.remove('hamburgerMenu-opened'));
 let subscribeNotificationsBtn = document.querySelector('.subscribe-notifications');
-if (subscribeNotificationsBtn)
+if (subscribeNotificationsBtn) {
     subscribeNotificationsBtn.onclick = async e => {
         let serviceWorkerRegistration = await window.swRegistratonPromise;
         let options = {
@@ -64,3 +64,4 @@ if (subscribeNotificationsBtn)
         }
         Ajax.Notifications.subscribePush(subscription);
     };
+}
