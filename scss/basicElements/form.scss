@@ -1,0 +1,35 @@
+form {
+    label {
+        display: table;
+        width: 100%;
+        margin-bottom: 10px;
+
+        span {
+            display: table-cell;
+            width: 250px;
+        }
+
+        input, select, textarea {
+            display: table-cell;
+            width: 100%;
+        }
+    }
+}
+
+.input {
+    display: inline-block;
+}
+
+input:not(.browsersDefault), textarea:not(.browsersDefault), select:not(.browsersDefault) {
+    @extend .input
+}
+
+textarea:not(.browsersDefault) {
+    resize: vertical;
+}
+.checkbox{
+    display: inline-block;
+}
+input[type="checkbox"] {
+    @extend .checkbox
+}

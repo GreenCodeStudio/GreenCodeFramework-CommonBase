@@ -1,22 +1,5 @@
-form {
-    label {
-        display: table;
-        width: 100%;
-        margin-bottom: 10px;
 
-        span {
-            display: table-cell;
-            width: 250px;
-        }
-
-        input, select, textarea {
-            display: table-cell;
-            width: 100%;
-        }
-    }
-}
-
-.input, input:not(.browsersDefault), textarea:not(.browsersDefault), select:not(.browsersDefault) {
+.input {
     display: inline-block;
     padding: 5px 8px;
     color: var(--second);
@@ -64,7 +47,7 @@ textarea:not(.browsersDefault) {
     resize: vertical;
     transition: all 200ms, height 0ms;
 }
-.checkbox, input[type="checkbox"] {
+.checkbox {
     appearance: none;
     -webkit-appearance: none;
     width: 29px;

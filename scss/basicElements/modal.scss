@@ -1,0 +1,34 @@
+.modalContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+
+    .modal {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        min-width: 300px;
+        background: var(--background);
+        border:1px solid;
+        padding: 10px 10px;
+
+        @media (max-width: 400px) {
+            min-width: 50vw;
+        }
+
+        .modal-button {
+            @extend .button;
+        }
+    }
+
+    &.closing {
+        .modal {
+            display: none;
+        }
+    }
+}

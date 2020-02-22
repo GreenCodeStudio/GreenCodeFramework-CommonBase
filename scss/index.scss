@@ -1,77 +1,18 @@
 @import "fontello";
 @import "fontello-codes";
 @import "colors";
-@import "cards";
-@import "buttons";
+@import "basicElements/buttons";
+@import "basicElements/cards";
+@import "basicElements/form";
+@import "basicElements/contextMenu";
 @import "table";
-@import "form";
 @import "top";
-@import "modal";
+@import "basicElements/modal";
 @import "layout";
 @import "print";
 
 
-.contextMenu {
-    position: fixed;
-    border: 1px solid rgba(#000, .5);
-    z-index: 1000;
-    margin: 0;
-    padding: 0;
-    max-width: 100vh;
-    min-width: 200px;
-    user-select: none;
-    backdrop-filter: var(--standardBackdropFilter);
 
-    li {
-        display: flex;
-        cursor: pointer;
-        margin: 0;
-        white-space: nowrap;
-        align-items: center;
 
-        .icon {
-            display: inline-block;
-            flex:0 0 50px;
-            text-align: center;
-            font-size: 1.2em;
-            line-height: 1em;
-            vertical-align: middle;
-        }
-
-        .iconPlaceholder {
-            display: inline-block;
-            width: 50px;
-        }
-
-        .content {
-            flex:1 1 auto;
-            display: inline-block;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            padding: 15px 10px;
-            line-height: 1em;
-            vertical-align: middle;
-        }
-
-        &:hover {
-            background: rgba(#000, .2);
-        }
-
-        &:active {
-            background: rgba(#000, .2);
-        }
-        &.hasSubmenu::after {
-            content: '';
-            display: inline-block;
-            height:0;
-            margin:0 10px;
-            border-top: 0.3em solid transparent;
-            border-left: 0.3em solid;
-            border-bottom: 0.3em transparent solid;
-            vertical-align: middle;
-        }
-    }
-}
-
-@import "./themes/win98";
+@import "./themes/metro/index";
+//@import "./themes/win98";
