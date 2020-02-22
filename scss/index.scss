@@ -23,14 +23,15 @@
     backdrop-filter: var(--standardBackdropFilter);
 
     li {
-        display: block;
+        display: flex;
         cursor: pointer;
         margin: 0;
         white-space: nowrap;
+        align-items: center;
 
         .icon {
             display: inline-block;
-            width: 50px;
+            flex:0 0 50px;
             text-align: center;
             font-size: 1.2em;
             line-height: 1em;
@@ -43,6 +44,7 @@
         }
 
         .content {
+            flex:1 1 auto;
             display: inline-block;
             white-space: nowrap;
             overflow: hidden;
@@ -58,6 +60,16 @@
 
         &:active {
             background: rgba(#000, .2);
+        }
+        &.hasSubmenu::after {
+            content: '';
+            display: inline-block;
+            height:0;
+            margin:0 10px;
+            border-top: 0.3em solid transparent;
+            border-left: 0.3em solid;
+            border-bottom: 0.3em transparent solid;
+            vertical-align: middle;
         }
     }
 }
