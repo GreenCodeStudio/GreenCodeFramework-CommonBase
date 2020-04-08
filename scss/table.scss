@@ -9,6 +9,7 @@ table {
             z-index: 1;
             background: var(--second);
             color: var(--textSecondColor);
+            cursor: default;
             @extend .icon;
             @extend .icon-down;
 
@@ -31,6 +32,10 @@ table {
 
             .tableCopy {
                 display: none;
+            }
+
+            &[data-sortable] {
+                cursor: pointer;
             }
         }
     }
@@ -55,23 +60,23 @@ table {
 
             &.selected {
                 &:nth-child(2n) {
-                    background: hsla(240, 100%, 40%, .5);
+                    background: hsla(240, 0%, 40%, .5);
 
                     &:hover {
-                        background: hsla(240, 100%, 35%, .5);
+                        background: hsla(240, 0%, 35%, .5);
                     }
                 }
 
                 &:nth-child(2n+1) {
-                    background: hsla(240, 100%, 47.5%, .5);
+                    background: hsla(240, 0%, 47.5%, .5);
 
                     &:hover {
-                        background: hsla(240, 100%, 37.5%, .5);
+                        background: hsla(240, 0%, 37.5%, .5);
                     }
                 }
             }
 
-            &.selectedMain {
+            &.selectedMain, &:focus {
                 outline: 2px black dashed;
             }
 
@@ -85,11 +90,12 @@ table {
 
     tfoot {
         background: rgba(#000000, .05);
-        border-top:solid 2px #bbb;
+        border-top: solid 2px #bbb;
 
         &:hover {
             background: rgba(#000000, .25);
         }
+
         tr {
             td {
                 padding: 5px 10px;
@@ -120,10 +126,37 @@ table {
             text-overflow: ellipsis;
         }
     }
+
+    &:focus-within {
+        tbody tr.selected {
+            &:nth-child(2n) {
+                background: hsla(240, 100%, 40%, .5);
+
+                &:hover {
+                    background: hsla(240, 100%, 35%, .5);
+                }
+            }
+
+            &:nth-child(2n+1) {
+                background: hsla(240, 100%, 47.5%, .5);
+
+                &:hover {
+                    background: hsla(240, 100%, 37.5%, .5);
+                }
+            }
+        }
+    }
 }
 
 
 .dataTableContainer {
     border: 1px solid var(--second);
 
+    table {
+        th, td {
+            &:not(.tableActions-cell) {
+                user-select: none;
+            }
+        }
+    }
 }
