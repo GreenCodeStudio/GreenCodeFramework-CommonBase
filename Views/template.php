@@ -62,7 +62,7 @@ use Common\Formatter;
     //<![CDATA[
     window.controllerInitInfo = <?=json_encode($this->getInitInfo())?>;
     window.DEBUG =<?=json_encode($this->isDebug())?>;
-    /]]>
+    //]]>
 </script>
 <script src="/dist/main.js" type="text/javascript"></script>
 </body>
