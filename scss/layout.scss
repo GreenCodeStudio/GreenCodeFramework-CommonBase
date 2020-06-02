@@ -110,7 +110,7 @@ body {
                     }
 
                     a {
-                        &:hover {
+                        &:hover, &:focus {
                             color: #000;
                             background: var(--main);
                         }
@@ -320,7 +320,7 @@ body {
                                 }
                             }
 
-                            &:hover {
+                            &:hover, &:focus {
                                 background: var(--main)
                             }
                         }
