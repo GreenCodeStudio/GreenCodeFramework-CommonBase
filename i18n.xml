@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <node name="add">
+        <value lang="en">Add</value>
+        <value lang="pl">Dodaj</value>
+    </node>
+    <node name="cancel">
+        <value lang="en">Cancel</value>
+        <value lang="pl">Anuluj</value>
+    </node>
+    <node name="save">
+        <value lang="en">Save</value>
+        <value lang="pl">Zapisz</value>
+    </node>
+    <node name="actions">
+        <value lang="en">Actions</value>
+        <value lang="pl">Akcje</value>
+    </node>
+    <node name="edit">
+        <value lang="en">Edit</value>
+        <value lang="pl">Edytuj</value>
+    </node>
+</root>

@@ -62,7 +62,7 @@ class CodeGenerator
         if (!file_exists($path.'/js/index.js')) {
             file_put_contents($path.'/js/index.js', 'import {pageManager} from "../../Core/js/pageManager";');
         }
-        if(strpos(file_get_contents($path.'/js/index.js'), 'import(\'./Controllers/'.$name.'\'))')===false) {
+        if (strpos(file_get_contents($path.'/js/index.js'), 'import(\'./Controllers/'.$name.'\'))') === false) {
             file_put_contents($path.'/js/index.js', "\r\n".'pageManager.registerController(\''.$name.'\', () => import(\'./Controllers/'.$name.'\'));', FILE_APPEND);
         }
 
@@ -77,6 +77,10 @@ class CodeGenerator
             file_put_contents($path.'/menu.xml', '<?xml version="1.0" encoding="UTF-8"?><menu/>');
         }
         $this->updateMenu($path, $name, $title);
+        if (!file_exists($path.'/i18n.xml')) {
+            file_put_contents($path.'/i18n.xml', '<?xml version="1.0" encoding="UTF-8"?><root/>');
+        }
+        $this->updateI18n($path, $name, $table);
     }
 
     function getTable($name)
@@ -94,28 +98,24 @@ class CodeGenerator
             $title = $name;
         foreach ($table->column as $column) {
             if ($column->autoincrement == 'YES') continue;
-            if ($column->title)
-                $columnTitle = htmlspecialchars($column->title);
-            else
-                $columnTitle = $column->name;
-            $cols .= '<th data-value="'.$column->name.'" data-sortable>'.$columnTitle.'</th>';
+            $cols .= '<th data-value="'.$column->name.'" data-sortable><?=t("'.$namespace.'.'.$name.'.'.$column->name.'")?></th>';
         }
         return '<div class="topBarButtons">
-    <a href="/'.$name.'/add" class="button"><span class="icon-add"></span> Dodaj</a>
+    <a href="/'.$name.'/add" class="button"><span class="icon-add"></span> <?=t("CommonBase.add")?></a>
 </div>
 <div class="grid page-'.$name.'  page-'.$name.'-list">
     <section class="card" data-width="6">
         <header>
-            <h1>Lista elementów typu '.$title.'</h1>
+            <h1><?=t("'.$namespace.'.'.$name.'List.header")?></h1>
         </header>
         <div class="dataTableContainer">
             <table class="dataTable" data-controller="'.$name.'" data-method="getTable" data-web-socket-path="'.$namespace.'/'.$name.'">
                 <thead>
                 <tr>
                     '.$cols.'
-                    <th class="tableActions">Akcje
+                    <th class="tableActions"><?=t("CommonBase.actions")?>
                         <div class="tableCopy">
-                            <a href="/'.$name.'/edit" class="button" title="Edytuj"><span class="icon-edit"></span></a>
+                            <a href="/'.$name.'/edit" class="button" title="<?=t("CommonBase.edit")?>"><span class="icon-edit"></span></a>
                         </div>
                     </th>
                 </tr>
@@ -142,10 +142,7 @@ class CodeGenerator
                     $reference = $index->reference;
                 }
             }
-            if ($column->title)
-                $columnTitle = htmlspecialchars($column->title);
-            else
-                $columnTitle = $column->name;
+            $columnTitle = '<?=t("'.$namespace.'.'.$name.'.'.$column->name.'")?>';
             $form .= '<label>
             <span>'.$columnTitle.'</span>
             '.$this->generateInput($column, $reference).'
@@ -153,8 +150,8 @@ class CodeGenerator
         }
         return '<form>
     <div class="topBarButtons">
-        <button class="button" type="button"><span class="icon-cancel"></span>Anuluj</button>
-        <button class="button"><span class="icon-save"></span>Zapisz</button>
+        <button class="button" type="button"><span class="icon-cancel"></span><?=t("CommonBase.cancel")?></button>
+        <button class="button"><span class="icon-save"></span><?=t("CommonBase.save")?></button>
     </div>
     <div class="grid page-'.$name.' page-'.$name.'-edit">
         <input name="id" type="hidden">
@@ -410,6 +407,7 @@ class '.$name.'Repository extends \Core\Repository
     }
 }';
     }
+
     function makeJsController(string $namespace, string $name, $table)
     {
         return 'import {FormManager} from "../../../Core/js/form";
@@ -441,6 +439,7 @@ export class add {
     }
 }';
     }
+
     function updatePermissions($path, $name, $title)
     {
         $filename = $path.'/permissions.xml';
@@ -467,5 +466,35 @@ export class add {
         $group->link = '/'.$name;
         $group->title = $title;
         file_put_contents($filename, $xml->asXML());
+    }
+
+    function updateI18n($path, $name, $table)
+    {
+        $filename = $path.'/i18n.xml';
+        $xml = simplexml_load_string(file_get_contents($filename));
+        $group = $xml->addChild('node');
+        $group->addAttribute('name', $name);
+        foreach ($table->column as $column) {
+            $this->genereateI18nNode($group, $column->name);
+        }
+        $list = $xml->addChild('node');
+        $list->addAttribute('name', $name.'List');
+
+        $this->genereateI18nNode($list, 'header', 'List of elements of type '.$name,'Lista elementów typu '.$name);
+
+        file_put_contents($filename, $xml->asXML());
+    }
+
+    /**
+     * @param \SimpleXMLElement $group
+     * @param $column
+     */
+    private function genereateI18nNode(\SimpleXMLElement $group, $name, $valueEn=null, $valuePl=null): void
+    {
+        $node = $group->addChild('node');
+        $node->addAttribute('name', $name);
+        $en = $node->addChild('value');
+        $en->addAttribute('lang', 'en');
+        $en[0] = $valueEn??$name;
     }
 }
