@@ -413,7 +413,17 @@ class '.$name.'Repository extends \Core\Repository
         return 'import {FormManager} from "../../../Core/js/form";
 import {AjaxTask} from "../../../Core/js/ajaxTask";
 import {pageManager} from "../../../Core/js/pageManager";
+import {DatasourceAjax} from "../../../Core/js/datasourceAjax";
+import {TableManager} from "../../../Core/js/table";
 
+export class index {
+    constructor(page, data) {
+        const table = page.querySelector(\'.dataTable\');
+        let datasource = new DatasourceAjax(\''.$name.'\', \'getTable\', [\''.$namespace.'\', \''.$name.'\']);
+        table.datatable = new TableManager(table, datasource);
+        table.datatable.refresh();
+    }
+}
 export class edit {
     constructor(page, data) {
         let form = new FormManager(page.querySelector(\'form\'));
