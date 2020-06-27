@@ -9,7 +9,7 @@
 namespace CommonBase;
 
 
-use Core\Migration;
+use Core\Database\Migration;
 
 class CodeGenerator
 {
@@ -371,7 +371,7 @@ class '.$name.' extends \Core\BussinesLogic
 
 namespace '.$namespace.'\Repository;
 
-use Core\DB;
+use Core\Database\DB;
 
 
 class '.$name.'Repository extends \Core\Repository
