@@ -2,7 +2,7 @@
 
 namespace CommonBase;
 
-use Core\Routing\RouterOld;
+use Core\Routing\StandardRouter;
 
 include_once(__DIR__.'/../Core/Annotations.php');
 
@@ -35,7 +35,7 @@ class FrontCache
     public function getJsonList()
     {
         $ret = [];
-        $controllers = RouterOld::listControllers('Controllers');
+        $controllers = (new StandardRouter())->listControllers('Controllers');
         foreach ($controllers as $controller) {
             foreach ($controller->methods as $method) {
                 $constant = false;
