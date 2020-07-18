@@ -49,6 +49,7 @@
      @extend .top-expandable;
 
      > .loginInfo-expandable {
+         text-align: center;
          @extend .list;
      }
  }
@@ -62,10 +63,15 @@
         position: absolute;
         width: 200px;
         height: 300px;
-        overflow: scroll;
+        overflow: auto;
         border: 1px solid;
         backdrop-filter: var(--standardBackdropFilter);
         margin-left: -158px;
+        >*{
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
     }
 
     &:hover, &:focus-within, &.open {
