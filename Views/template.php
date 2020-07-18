@@ -23,11 +23,6 @@ use Common\Formatter;
             <input type="search" placeholder="Szukaj">
             <div class="list"></div>
         </div>
-
-    <div class="tasks">
-        <div class="headerButton"><span class="icon-tasks"></span></div>
-        <div class="tasksList"></div>
-    </div>
     <div class="notifications">
         <div class="headerButton"><span class="icon-notifications"></span></div>
         <div class="notificationsList">

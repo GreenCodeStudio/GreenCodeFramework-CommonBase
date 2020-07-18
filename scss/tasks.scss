@@ -1,0 +1,23 @@
+.tasksList {
+    .task {
+        position: fixed;
+        top: calc(-20px + 100px * (var(--list-count) - var(--list-order)));
+        right: 20px;
+        width: 400px;
+        height: 50px;
+        border: 1px solid rgba(#000, .5);
+        backdrop-filter: var(--standardBackdropFilter);
+        z-index: 200;
+        animation: task-slideIn 300ms ease-out;
+        transition: top 300ms ease-out;
+
+        @keyframes task-slideIn {
+            0% {
+                right: -450px;
+            }
+            100% {
+                right: 20px;
+            }
+        }
+    }
+}

@@ -1,37 +1,3 @@
-.tasks {
-    @extend .top-expandable;
-
-    > .tasksList {
-        @extend .list;
-
-        > .task {
-            border-bottom: 1px solid;
-            text-align: center;
-            padding: 5px;
-
-            &[data-status="error"] {
-                background: rgba(#ff0000, .5);
-            }
-
-            .status {
-                font-size: 1.2em;
-                //font-weight: 700;
-            }
-
-            .buttons {
-                display: flex;
-
-                .button {
-                    flex: 1 1 auto;
-                    margin: 0 5px;
-                }
-            }
-        }
-    }
-
-
-}
-
 .notifications {
     @extend .top-expandable;
 
