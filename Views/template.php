@@ -38,9 +38,10 @@ use Common\Formatter;
         </div>
     </div>
     <div class="loginInfo">
-        <div class="headerButton"><span class="icon-user"></span></div>
+        <a class="headerButton" href="/User/myAccount"><span class="icon-user"></span></a>
         <div class="loginInfo-expandable">
             <span class="icon-user"><?= htmlspecialchars($userData->name.' '.$userData->surname) ?></span>
+            <a href="/User/myAccount" class="button">Moje konto</a>
             <div class="button logoutMyselfBtn" title="Wyloguj"><span class="icon-logout"></span>Wyloguj</div>
             <button type="button" onclick="document.documentElement.classList.toggle('win98')">Wygląd klasyczny</button>
         </div>

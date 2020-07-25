@@ -13,6 +13,7 @@ section.card {
     margin: 10px;
     padding: 10px;
     background:  var(--background);
+    max-width: calc(100% - 40px);
 
     > header {
         margin: 0 -10px 10px -10px;

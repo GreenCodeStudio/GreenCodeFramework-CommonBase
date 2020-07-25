@@ -42,11 +42,18 @@ body {
             @extend .button;
         }
 
+        .headerButton {
+            margin: 0px 2px;
+        }
+
         button {
             flex: 0 0 auto;
         }
 
         .mainSearch {
+            > input {
+                line-height: 17px;
+            }
 
             .list {
                 display: none;
@@ -74,8 +81,9 @@ body {
 
                 }
             }
-            &:focus-within{
-                .list{
+
+            &:focus-within {
+                .list {
                     display: block;
                 }
             }
@@ -333,43 +341,56 @@ body {
 
 
 @media (max-width: 800px) {
-    button.hamburgerMenu {
-        display: inline-block;
-        float: left;
-    }
-    body > header > h1 {
-        text-align: center;
-    }
-    body > .mainContent {
-        margin-left: 0;
-    }
-    body > .mainContent > .topBar {
-        left: 0;
-    }
-    body > aside {
-        left: -200px;
-        transition: 300ms ease-out;
-    }
-    body::before {
-        content: '';
-        display: block;
-        backdrop-filter: blur(10px);
-        background: rgba(#000, .2);
-        left: 100%;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        position: fixed;
-        z-index: 80;
-        transition: 300ms ease-out;
-    }
-    body.hamburgerMenu-opened {
-        &::before {
-            left: 0%;
+
+    body {
+        > header {
+            button.hamburgerMenu {
+                display: inline-block;
+                float: left;
+            }
+
+            > h1 {
+
+
+                text-align: center;
+            }
         }
 
-        aside {
+        > .mainContent {
+            margin-left: 0;
+        }
+
+        > .mainContent > .topBar {
             left: 0;
+        }
+
+        > aside {
+            left: -200px;
+            transition: 300ms ease-out;
+        }
+
+        &::before {
+            content: '';
+            display: block;
+            backdrop-filter: blur(10px);
+            background: rgba(#000, .2);
+            left: 100%;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            position: fixed;
+            z-index: 80;
+            transition: 300ms ease-out;
+        }
+
+        &.hamburgerMenu-opened {
+            &::before {
+                left: 0%;
+            }
+
+            aside {
+                left: 0;
+            }
         }
     }
 }

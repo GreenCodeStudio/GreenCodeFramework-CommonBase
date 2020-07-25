@@ -130,18 +130,26 @@ table {
     &:focus-within {
         tbody tr.selected {
             &:nth-child(2n) {
-                background: hsla(240, 100%, 40%, .5);
+                td, th {
+                    background: hsla(240, 100%, 40%, .5);
+                }
 
                 &:hover {
-                    background: hsla(240, 100%, 35%, .5);
+                    td, th {
+                        background: hsla(240, 100%, 35%, .5);
+                    }
                 }
             }
 
             &:nth-child(2n+1) {
-                background: hsla(240, 100%, 47.5%, .5);
+                td, th {
+                    background: hsla(240, 100%, 47.5%, .5);
+                }
 
                 &:hover {
-                    background: hsla(240, 100%, 37.5%, .5);
+                    td, th {
+                        background: hsla(240, 100%, 37.5%, .5);
+                    }
                 }
             }
         }
@@ -159,4 +167,8 @@ table {
             }
         }
     }
+}
+
+.tableScrollVertical {
+    overflow-x: auto;
 }
