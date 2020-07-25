@@ -20,4 +20,12 @@
         <value lang="en">Edit</value>
         <value lang="pl">Edytuj</value>
     </node>
+    <node name="details">
+        <value lang="en">Details</value>
+        <value lang="pl">Szczegóły</value>
+    </node>
+    <node name="print">
+        <value lang="en">Print</value>
+        <value lang="pl">Drukuj</value>
+    </node>
 </root>
