@@ -53,6 +53,7 @@ body {
         .mainSearch {
             > input {
                 line-height: 17px;
+
             }
 
             .list {
@@ -85,6 +86,19 @@ body {
             &:focus-within {
                 .list {
                     display: block;
+                }
+            }
+
+            @media (max-width: 550px) {
+                > input {
+                    width: 40px;
+                }
+
+                &:focus-within, &hover {
+                    > input {
+                        width: 200px;
+                        margin-left: -160px;
+                    }
                 }
             }
         }

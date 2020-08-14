@@ -10,6 +10,9 @@ table {
             background: var(--second);
             color: var(--textSecondColor);
             cursor: default;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             @extend .icon;
             @extend .icon-down;
 
@@ -83,7 +86,9 @@ table {
             td {
                 padding: 5px 10px;
                 margin: 0;
-
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
     }
@@ -158,12 +163,19 @@ table {
 
 
 .dataTableContainer {
+    overflow: auto;
     border: 1px solid var(--second);
 
     table {
         th, td {
             &:not(.tableActions-cell) {
                 user-select: none;
+            }
+        }
+
+        thead {
+            th {
+                top: 0;
             }
         }
     }
