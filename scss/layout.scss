@@ -72,7 +72,7 @@ body {
                     padding: 10px 15px;
                     color: inherit;
 
-                    &:hover {
+                    &:hover, &.active {
                         background: rgba(#000, .2);
                     }
 
