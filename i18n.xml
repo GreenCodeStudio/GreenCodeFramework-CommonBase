@@ -20,6 +20,10 @@
         <value lang="en">Edit</value>
         <value lang="pl">Edytuj</value>
     </node>
+    <node name="editInNewTab">
+        <value lang="en">Edit in new tab</value>
+        <value lang="pl">Edytuj w nowej karcie</value>
+    </node>
     <node name="details">
         <value lang="en">Details</value>
         <value lang="pl">Szczegóły</value>
