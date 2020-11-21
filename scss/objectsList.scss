@@ -1,0 +1,60 @@
+table-view {
+    display: block;
+
+    .bodyContainer{
+
+    }
+    table {
+        table-layout: fixed;
+        td{
+            box-sizing: border-box;
+        }
+    }
+
+    .head {
+        position: sticky;
+        top: 71px;
+        z-index: 1;
+        height: 20px;
+        background: var(--second);
+
+        .column {
+            background: var(--second);
+            color: var(--textSecondColor);
+            cursor: default;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 700;
+            position: absolute;
+            @extend .icon;
+            @extend .icon-down;
+
+            &::before {
+                transform: scaleY(0);
+                transition: all 300ms ease-out;
+            }
+
+            &[data-order="asc"] {
+                &::before {
+                    transform: scaleY(1);
+                }
+            }
+
+            &[data-order="desc"] {
+                &::before {
+                    transform: scaleY(-1);
+                }
+            }
+
+            .tableCopy {
+                display: none;
+            }
+
+            &[data-sortable] {
+                cursor: pointer;
+            }
+        }
+
+    }
+}
