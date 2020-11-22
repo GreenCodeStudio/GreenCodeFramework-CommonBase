@@ -1,9 +1,13 @@
 data-view {
     border: 1px solid var(--second);
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 200px);
+
 
     table-view {
         display: block;
+        flex-grow: 1;
 
         .bodyContainer {
 
