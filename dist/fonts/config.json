@@ -26,7 +26,7 @@
     },
     {
       "uid": "64fb13a798e934810c303e6b07791816",
-      "css": "add",
+      "css": "document",
       "code": 59395,
       "src": "elusive"
     },
@@ -97,6 +97,24 @@
       "css": "show",
       "code": 59404,
       "src": "fontawesome"
+    },
+    {
+      "uid": "c55fdf978f617992b43ee7cbaa6ef87e",
+      "css": "menu",
+      "code": 61448,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "bc64550dd022ce21604f97309b346cea",
+      "css": "settings",
+      "code": 59405,
+      "src": "entypo"
+    },
+    {
+      "uid": "9e0404ba55575a540164db9a5ad511df",
+      "css": "add",
+      "code": 59406,
+      "src": "elusive"
     }
   ]
 }

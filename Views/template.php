@@ -17,7 +17,7 @@ use Common\Formatter;
 </head>
 <body>
 <header>
-    <button type="button" class="hamburgerMenu">menu</button>
+    <button type="button" class="hamburgerMenu"><span class="icon-menu"></span></button>
     <h1><?= htmlspecialchars($header['title']) ?></h1>
         <div class="mainSearch">
             <input type="search" placeholder="Szukaj">
