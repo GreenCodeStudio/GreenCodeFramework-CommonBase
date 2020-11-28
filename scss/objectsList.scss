@@ -39,6 +39,7 @@ data-view {
                 font-weight: 700;
                 position: absolute;
                 padding: 0 10px;
+                box-sizing: border-box;
 
                 &.ableToSort {
                     @extend .icon;
@@ -79,6 +80,64 @@ data-view {
                 }
             }
         }
+
+        .body {
+            position: relative;
+
+            .tr {
+                display: table;
+                position: absolute;
+                transition: top 300ms ease-out;
+
+                &.even {
+                    background: rgba(#000000, .2);
+
+                    &:hover {
+                        background: rgba(#000000, .3);
+                    }
+                }
+
+                &.odd {
+                    background: rgba(#000000, .05);
+
+                    &:hover {
+                        background: rgba(#000000, .25);
+                    }
+                }
+
+                &.selected {
+                    &.even {
+                        background: hsla(240, 0%, 40%, .5);
+
+                        &:hover {
+                            background: hsla(240, 0%, 35%, .5);
+                        }
+                    }
+
+                    &.odd {
+                        background: hsla(240, 0%, 47.5%, .5);
+
+                        &:hover {
+                            background: hsla(240, 0%, 37.5%, .5);
+                        }
+                    }
+                }
+
+                &.selectedMain, &:focus {
+                    outline: 2px black dashed;
+                }
+
+                .td {
+                    padding: 5px 10px;
+                    margin: 0;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: table-cell;
+                    box-sizing: border-box;
+                }
+            }
+        }
     }
 
     .foot {
@@ -87,8 +146,9 @@ data-view {
         justify-content: space-between;
     }
 }
-pagination-buttons{
-    button.active{
+
+pagination-buttons {
+    button.active {
         background: var(--main);
     }
 }
