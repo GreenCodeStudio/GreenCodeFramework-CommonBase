@@ -27,4 +27,10 @@ trait PageStandardControllerTrait
     public function getPageHeader(){
         return ['title'=>'System'];
     }
+
+    public function getInitInfo()
+    {
+        $this->initInfo->permissions=\Authorization\Authorization::getUserData()->permissions->getAsArray();
+        return $this->initInfo;
+    }
 }
