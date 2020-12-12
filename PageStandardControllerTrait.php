@@ -16,21 +16,25 @@ trait PageStandardControllerTrait
         $notifications = new Notifications();
         $notificationsList = $notifications->getForCurrentUser();
         $this->addView('CommonBase', 'aside', ['menu' => $menuData], 'aside');
-        $header=$this->getPageHeader();
+        $header = $this->getPageHeader();
         require __DIR__.'/../CommonBase/Views/template.php';
+    }
+
+    public function getPageHeader()
+    {
+        return ['title' => 'System'];
     }
 
     public function hasPermission()
     {
         return Authorization::isLogged();
     }
-    public function getPageHeader(){
-        return ['title'=>'System'];
-    }
 
     public function getInitInfo()
     {
-        $this->initInfo->permissions=\Authorization\Authorization::getUserData()->permissions->getAsArray();
+        if (Authorization::isLogged()) {
+            $this->initInfo->permissions = \Authorization\Authorization::getUserData()->permissions->getAsArray();
+        }
         return $this->initInfo;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use Common\Formatter;
+use Core\Formatter;
 
 ?>
 <!DOCTYPE html>
