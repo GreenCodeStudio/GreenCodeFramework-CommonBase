@@ -96,10 +96,7 @@ class CodeGenerator
             $title = htmlspecialchars($table->title);
         else
             $title = $name;
-        foreach ($table->column as $column) {
-            if ($column->autoincrement == 'YES') continue;
-            $cols .= '<th data-value="'.$column->name.'" data-sortable><?=t("'.$namespace.'.'.$name.'.'.$column->name.'")?></th>';
-        }
+
         return '<div class="topBarButtons">
     <a href="/'.$name.'/add" class="button"><span class="icon-add"></span> <?=t("CommonBase.add")?></a>
 </div>
@@ -108,20 +105,7 @@ class CodeGenerator
         <header>
             <h1><?=t("'.$namespace.'.'.$name.'List.header")?></h1>
         </header>
-        <div class="dataTableContainer">
-            <table class="dataTable" data-controller="'.$name.'" data-method="getTable" data-web-socket-path="'.$namespace.'/'.$name.'">
-                <thead>
-                <tr>
-                    '.$cols.'
-                    <th class="tableActions"><?=t("CommonBase.actions")?>
-                        <div class="tableCopy">
-                            <a href="/'.$name.'/edit" class="button" title="<?=t("CommonBase.edit")?>"><span class="icon-edit"></span></a>
-                        </div>
-                    </th>
-                </tr>
-                </thead>
-            </table>
-        </div>
+        <div class="container"></div>
     </section>
 </div>';
     }
@@ -410,18 +394,48 @@ class '.$name.'Repository extends \Core\Repository
 
     function makeJsController(string $namespace, string $name, $table)
     {
+        $cols='';
+        foreach ($table->column as $column) {
+            if ($column->autoincrement == 'YES') continue;
+            $cols.='        objectsList.columns.push({
+            name: t(\''.$name.'.'.$column->name.'\'),
+            content: row => row.'.$column->name.',
+            sortName: \''.$column->name.'\',
+            width: 100,
+            widthGrow: 1
+        });';
+        }
         return 'import {FormManager} from "../../../Core/js/form";
-import {AjaxTask} from "../../../Core/js/ajaxTask";
+import {Ajax} from "../../../Core/js/ajax";
 import {pageManager} from "../../../Core/js/pageManager";
 import {DatasourceAjax} from "../../../Core/js/datasourceAjax";
-import {TableManager} from "../../../Core/js/table";
+import {t} from "../../i18n.xml";
+import {t as TCommonBase} from "../../../CommonBase/i18n.xml";
+import {ObjectsList} from "../../../Core/js/ObjectsList/objectsList";
+import {Permissions} from "../../../Core/js/permissions";
 
 export class index {
     constructor(page, data) {
-        const table = page.querySelector(\'.dataTable\');
+        const container = page.querySelector(\'.page-'.$name.'-list .container\');
         let datasource = new DatasourceAjax(\''.$name.'\', \'getTable\', [\''.$namespace.'\', \''.$name.'\']);
-        table.datatable = new TableManager(table, datasource);
-        table.datatable.refresh();
+        let objectsList = new ObjectsList(datasource);
+        objectsList.columns = [];
+        '.$cols.'
+        objectsList.generateActions = (rows, mode) => {
+            let ret = [];
+            if (rows.length == 1) {
+                if (Permissions.can(\''.$name.'\', \'edit\')) {
+                    ret.push({
+                        name: TCommonBase("edit"),
+                        icon: \'icon-edit\',
+                        href: "/'.$name.'/edit/" + rows[0].id,
+                    });
+                }
+            }
+            return ret;
+        }
+        container.append(objectsList);
+        objectsList.refresh();
     }
 }
 export class edit {
@@ -431,7 +445,7 @@ export class edit {
         form.load(data.'.$name.');
 
         form.submit = async newData => {
-            await AjaxTask.startNewTask(\''.$name.'\', \'update\', newData);
+            await Ajax.'.$name.'.update(newData);
             pageManager.goto(\'/'.$name.'\');
         }
     }
@@ -443,7 +457,7 @@ export class add {
             form.loadSelects(data.selects);
 
         form.submit = async newData => {
-            await AjaxTask.startNewTask(\''.$name.'\', \'insert\', newData);
+            await Ajax.'.$name.'.insert(newData);
             pageManager.goto(\'/'.$name.'\');
         }
     }
