@@ -63,13 +63,7 @@ data-view {
                     cursor: pointer;
                 }
 
-                &:hover {
-                    box-shadow: 0px 40px rgba(#fff, 0.4) inset;
-                }
 
-                &:active {
-                    box-shadow: 0px 40px rgba(#000, 0.2) inset;
-                }
             }
         }
 
@@ -93,39 +87,7 @@ data-view {
                     }
                 }
 
-                &.even {
-                    background: rgba(#000000, .2);
 
-                    &:hover {
-                        background: rgba(#000000, .3);
-                    }
-                }
-
-                &.odd {
-                    background: rgba(#000000, .05);
-
-                    &:hover {
-                        background: rgba(#000000, .25);
-                    }
-                }
-
-                &.selected {
-                    &.even {
-                        background: hsla(240, 0%, 40%, .5);
-
-                        &:hover {
-                            background: hsla(240, 0%, 35%, .5);
-                        }
-                    }
-
-                    &.odd {
-                        background: hsla(240, 0%, 47.5%, .5);
-
-                        &:hover {
-                            background: hsla(240, 0%, 37.5%, .5);
-                        }
-                    }
-                }
 
                 &.selectedMain, &:focus {
                     outline: 2px black dashed;
@@ -142,34 +104,6 @@ data-view {
                     flex: 0 0 auto;
                     box-sizing: border-box;
 
-                }
-            }
-        }
-
-        &:focus-within {
-            .body .tr.selected {
-                &.even {
-                    .td {
-                        background: hsla(240, 100%, 40%, .5);
-                    }
-
-                    &:hover {
-                        .td {
-                            background: hsla(240, 100%, 35%, .5);
-                        }
-                    }
-                }
-
-                &.odd {
-                    .td {
-                        background: hsla(240, 100%, 47.5%, .5);
-                    }
-
-                    &:hover {
-                        .td {
-                            background: hsla(240, 100%, 37.5%, .5);
-                        }
-                    }
                 }
             }
         }

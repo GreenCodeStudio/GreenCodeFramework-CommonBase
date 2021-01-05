@@ -92,7 +92,7 @@ html.win98 {
         }
     }
 
-    table {
+    table, table-view {
         border-collapse: separate;
         border-spacing: 0;
         border-top: 1px solid #808080;
@@ -101,8 +101,9 @@ html.win98 {
         border-right: 1px solid #ffffff;
         box-shadow: 1px 1px 0 #000000 inset, -1px -1px 0 #dfdfdf inset;
         padding: 1px;
+        background: #ffffff;
 
-        thead th {
+        thead th, .head .column {
             @extend .button;
             background: var(--background);
             display: table-cell;
@@ -111,8 +112,24 @@ html.win98 {
             position: sticky;
         }
 
-        tbody td {
-            background: #ffffff;
+        tbody td, .body .tr:not(.dummy-class):not(.dummy-class2) {
+            background: transparent;
+            &.selected{
+                background: #aaaaaa;
+                color:#ffffff;
+            }
+            &:focus{
+                outline: 1px dotted;
+            }
+            .td{
+                padding: 6px 10px;
+                background: transparent;
+            }
+        }
+        &:focus-within{
+            .body .tr.selected:not(.dummy-class):not(.dummy-class2){
+                background: #0000ff;
+            }
         }
 
         .pagination button {
@@ -132,10 +149,10 @@ html.win98 {
         background: var(--background);
         li{
             cursor: default;
-            &:hover{
+            &:hover, &:focus{
                 background: var(--main);
                 color:#fff;
-
+                outline: none;
             }
         }
 

@@ -4,8 +4,9 @@
     background: transparent;
 
     li {
-        &:hover {
+        &:hover, &:focus {
             background: rgba(#000, .2);
+            outline: none;
         }
 
         &:active {
