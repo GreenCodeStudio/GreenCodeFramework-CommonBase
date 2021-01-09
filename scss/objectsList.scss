@@ -9,6 +9,7 @@ data-view {
     table-view {
         display: block;
         flex-grow: 1;
+        overflow: auto;
 
         .bodyContainer {
 
@@ -16,7 +17,7 @@ data-view {
 
         .head {
             position: sticky;
-            top: 71px;
+            top: 0;
             z-index: 1;
             height: 18px;
             background: var(--second);
@@ -88,7 +89,6 @@ data-view {
                 }
 
 
-
                 &.selectedMain, &:focus {
                     outline: 2px black dashed;
                     outline-offset: -2px;
@@ -107,12 +107,24 @@ data-view {
                 }
             }
         }
+
+
     }
 
     .foot {
         border-top: 1px solid var(--second);
         display: flex;
         justify-content: space-between;
+    }
+    &.infiniteScrollEnabled {
+        table-view {
+            .body {
+                height: var(--height);
+            }
+        }
+        pagination-buttons{
+            display: none;
+        }
     }
 }
 
