@@ -131,7 +131,13 @@
     {
       "uid": "8772331a9fec983cdb5d72902a6f9e0e",
       "css": "cut",
-      "code": 59392,
+      "code": 59407,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "026007bd17bfc67f3fe013199676f620",
+      "css": "price",
+      "code": 61781,
       "src": "fontawesome"
     }
   ]
