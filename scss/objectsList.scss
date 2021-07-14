@@ -74,7 +74,7 @@ data-view {
             .tr {
                 display: flex;
                 position: absolute;
-                transition: top 300ms ease-out;
+                transition: top 300ms ease, background 100ms;
                 table-layout: fixed;
                 flex-direction: row;
                 animation: data-view-appear 200ms;
