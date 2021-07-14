@@ -16,7 +16,7 @@ export class MainSearch {
         const result = await Ajax.Search.searchAll(this.input.value);
         if (this.lastResult && this.lastResult.start > start) return;
         this.lastResult = {start, result};
-        const more = {link: `/search/index/${this.input.value}`, name: 'Wyświetl wszystko'};
+        const more = {link: `/Search/index/${this.input.value}`, name: 'Wyświetl wszystko'};
         this.renderer.list = [...result, more];
         this.renderer.render();
     }
