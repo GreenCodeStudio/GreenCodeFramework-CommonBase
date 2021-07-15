@@ -2,6 +2,7 @@ import {Ajax} from "../../Core/js/ajax";
 import {TableManager} from "../../Core/js/table";
 import {pageManager} from "../../Core/js/pageManager";
 import {MainSearch} from "./mainSearch";
+import "./FileUploader";
 
 document.querySelectorAll('.logoutMyselfBtn').forEach(b => b.onclick = async () => {
     await Ajax.Authorization.logout();
