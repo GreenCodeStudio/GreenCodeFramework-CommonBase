@@ -134,7 +134,7 @@ class CodeGenerator
         }
         return '<form>
     <div class="topBarButtons">
-        <button class="button" type="button"><span class="icon-cancel"></span><?=t("CommonBase.cancel")?></button>
+        <a href="/'.$name.'/" class="button"><span class="icon-cancel"></span><?=t("CommonBase.cancel")?></button>
         <button class="button"><span class="icon-save"></span><?=t("CommonBase.save")?></button>
     </div>
     <div class="grid page-'.$name.' page-'.$name.'-edit">
