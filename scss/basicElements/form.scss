@@ -33,3 +33,6 @@ textarea:not(.browsersDefault) {
 input[type="checkbox"] {
     @extend .checkbox
 }
+input[type="radio"] {
+     @extend .radiobutton
+ }
