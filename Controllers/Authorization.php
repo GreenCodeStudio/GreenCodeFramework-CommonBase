@@ -36,7 +36,7 @@ class Authorization extends PageStandardController
         require __DIR__.'/../Views/loginTemplate.php';
     }
 
-    public function hasPermission()
+    public function hasPermission(string $methodName)
     {
         return true;
     }
