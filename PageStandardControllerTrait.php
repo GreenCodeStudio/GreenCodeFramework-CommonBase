@@ -25,7 +25,7 @@ trait PageStandardControllerTrait
         return ['title' => 'System'];
     }
 
-    public function hasPermission()
+    public function hasPermission(string $methodName)
     {
         return Authorization::isLogged();
     }
