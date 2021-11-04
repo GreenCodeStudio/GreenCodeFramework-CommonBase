@@ -1,5 +1,5 @@
-import {BaseSeleniumTest} from "../../../E2eTests/Test/Selenium/baseSeleniumTest";
-import {Key} from "selenium-webdriver";
+const {BaseSeleniumTest} = require("../../../E2eTests/Test/Selenium/baseSeleniumTest");
+const {Key} = require("selenium-webdriver");
 
 export default class extends BaseSeleniumTest {
     constructor(driver) {
