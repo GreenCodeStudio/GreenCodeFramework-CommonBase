@@ -1,4 +1,4 @@
-const {BaseSeleniumTest} = require("../../../E2eTests/Test/Selenium/baseSeleniumTest");
+const BaseSeleniumTest = require("../../../E2eTests/Test/Selenium/baseSeleniumTest");
 const {Key} = require("selenium-webdriver");
 
 export default class extends BaseSeleniumTest {
