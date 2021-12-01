@@ -27,7 +27,8 @@ module.exports = class extends BaseSeleniumTest {
         const menuItems = await this.driver.findElements(By.css('[data-views="aside"] nav a'))
         for (const menuItem of menuItems) {
             await menuItem.sendKeys(Key.RETURN);
-            await this.takeScreenshot('menuItems')
+            await this.asleep(1000);
+            await this.takeScreenshot('menuItems-' + await menuItem.getText())
         }
     }
 }
