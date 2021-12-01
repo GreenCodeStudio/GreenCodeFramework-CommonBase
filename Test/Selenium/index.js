@@ -1,9 +1,26 @@
 const BaseSeleniumTest = require("../../../E2eTests/Test/Selenium/baseSeleniumTest");
-const {Key} = require("selenium-webdriver");
+const {Key, By} = require("selenium-webdriver");
 
 module.exports = class extends BaseSeleniumTest {
     constructor(driver) {
         super(driver);
+    }
+
+    async login(driver) {
+        await this.driver.get('http://localhost:8080/');
+        await this.asleep(1000);
+        await this.takeScreenshot(driver, 'loginPage');
+        await this.driver.findElement(By.css('[name="username"]')).sendKeys(process.argv[2]);
+        await this.driver.findElement(By.css('[name="password"]')).sendKeys(process.argv[3]);
+        await this.asleep(1000);
+        await this.takeScreenshot(driver, 'loginPage-written');
+        await this.driver.findElement(By.css('[name="password"]')).sendKeys(Key.RETURN);
+        await this.asleep(1000);
+        await this.takeScreenshot(driver, 'loginPage-pressedLoginButton');
+    }
+
+    async prepareTest() {
+        await this.login();
     }
 
     async mainTest() {
