@@ -24,6 +24,7 @@ module.exports = class extends BaseSeleniumTest {
     }
 
     async mainTest() {
+        this.assert(await this.driver.findElements(By.css('[data-views="aside"] nav')))
         const menuItems = await this.driver.findElements(By.css('[data-views="aside"] nav a'))
         for (const menuItem of menuItems) {
             await menuItem.sendKeys(Key.RETURN);
