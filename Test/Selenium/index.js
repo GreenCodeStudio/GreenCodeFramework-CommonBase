@@ -7,7 +7,7 @@ module.exports = class extends BaseSeleniumTest {
     }
 
     async login(driver) {
-        await this.driver.get('http://localhost:8080/');
+        await this.openURL('/')
         await this.asleep(1000);
         await this.takeScreenshot(driver, 'loginPage');
         await this.driver.findElement(By.css('[name="username"]')).sendKeys(process.argv[2]);
