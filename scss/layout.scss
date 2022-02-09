@@ -40,10 +40,8 @@ body {
 
         .headerButton {
             @extend .button;
-        }
-
-        .headerButton {
             margin: 0px 2px;
+            font-size: 17px;
         }
 
         button {

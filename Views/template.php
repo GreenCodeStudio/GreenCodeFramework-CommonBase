@@ -43,7 +43,7 @@ use Core\Formatter;
             <span class="icon-user"><?= htmlspecialchars($userData->name.' '.$userData->surname) ?></span>
             <a href="/User/myAccount" class="button">Moje konto</a>
             <div class="button logoutMyselfBtn" title="Wyloguj"><span class="icon-logout"></span>Wyloguj</div>
-            <button type="button" onclick="document.documentElement.classList.toggle('win98')">Wygląd klasyczny</button>
+<!--            <button type="button" onclick="document.documentElement.classList.toggle('win98')">Wygląd klasyczny</button>-->
         </div>
     </div>
 </header>
