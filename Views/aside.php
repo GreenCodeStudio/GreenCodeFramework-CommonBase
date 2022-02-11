@@ -23,3 +23,4 @@ function generateMenu($tree)
 <nav>
     <?= generateMenu($data['menu']); ?>
 </nav>
+<section class="madeBy">Made by <a href="https://green-code.studio.">Green Code Studio</a></section>
