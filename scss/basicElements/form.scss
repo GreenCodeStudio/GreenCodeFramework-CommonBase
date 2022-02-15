@@ -13,6 +13,10 @@ form {
             display: table-cell;
             width: 100%;
         }
+
+        @media(max-width: 600px) {
+            display: block;
+        }
     }
 }
 
@@ -27,12 +31,15 @@ input:not(.browsersDefault), textarea:not(.browsersDefault), select:not(.browser
 textarea:not(.browsersDefault) {
     resize: vertical;
 }
-.checkbox{
+
+.checkbox {
     display: inline-block;
 }
+
 input[type="checkbox"] {
     @extend .checkbox
 }
+
 input[type="radio"] {
-     @extend .radiobutton
- }
+    @extend .radiobutton
+}
