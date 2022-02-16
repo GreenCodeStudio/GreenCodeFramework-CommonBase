@@ -47,11 +47,11 @@ class CodeGenerator
         if (!file_exists($path.'/Views/'.$name.'Edit.php')) {
             file_put_contents($path.'/Views/'.$name.'Edit.php', $this->makeViewEdit($namespace, $name, $table));
         }
-        if (!file_exists($path.'/Controllers/'.$name.'.php')) {
-            file_put_contents($path.'/Controllers/'.$name.'.php', $this->makeController($namespace, $name, $table));
+        if (!file_exists($path.'/Controllers/'.$name.'Controller.php')) {
+            file_put_contents($path.'/Controllers/'.$name.'Controller.php', $this->makeController($namespace, $name, $table));
         }
-        if (!file_exists($path.'/Ajax/'.$name.'.php')) {
-            file_put_contents($path.'/Ajax/'.$name.'.php', $this->makeAjax($namespace, $name, $table));
+        if (!file_exists($path.'/Ajax/'.$name.'Ajax.php')) {
+            file_put_contents($path.'/Ajax/'.$name.'Ajax.php', $this->makeAjax($namespace, $name, $table));
         }
         if (!file_exists($path.'/'.$name.'.php')) {
             file_put_contents($path.'/'.$name.'.php', $this->makeBussinesLogic($namespace, $name, $table));
@@ -196,7 +196,7 @@ namespace '.$namespace.'\Controllers;
 
 use Authorization\Permissions;
 use Core\Exceptions\NotFoundException;
-class '.$name.' extends \Common\PageStandardController
+class '.$name.'Controller extends \Common\PageStandardController
 {
 
     function index()
@@ -249,7 +249,7 @@ class '.$name.' extends \Common\PageStandardController
         return '<?php
 namespace '.$namespace.'\Ajax;
 
-class '.$name.' extends \Core\AjaxController
+class '.$name.'Ajax extends \Core\AjaxController
 {
     public function getTable($options)
     {
