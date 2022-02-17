@@ -47,6 +47,10 @@ export class MainSearch {
     renderLine(item) {
         const line = document.create('a.item', {href: item.link, text: item.name});
         line.onmousemove = () => this.setSelected(line);
+        line.onclick = () => {
+            line.focus();
+            line.blur();
+        }
         return line;
     }
 

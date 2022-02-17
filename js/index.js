@@ -42,7 +42,7 @@ addEventListener('resize', () => {
     })
 });
 document.querySelectorAll('.hamburgerMenu').forEach(x => x.onclick = () => document.body.classList.toggle('hamburgerMenu-opened'));
-document.querySelectorAll('.mainSearch').forEach(x=>new MainSearch(x));
+document.querySelectorAll('.mainSearch').forEach(x => new MainSearch(x));
 addEventListener('click', e => {
     if (e.target.findParent(x => x.matches('body>aside') || x.matches('body>header'))) {
 
@@ -68,7 +68,8 @@ if (subscribeNotificationsBtn) {
 }
 if ('serviceWorker' in navigator && !window.DEBUG) {
     window.swRegistratonPromise = navigator.serviceWorker.register('/dist/serviceWorker.js', {scope: '/'});
-    window.swRegistratonPromise.catch(()=>{});
+    window.swRegistratonPromise.catch(() => {
+    });
 }
 window.addEventListener('beforeinstallprompt', (e) => {
     let btn = document.create('button.installPWA span.icon-install');
@@ -78,3 +79,25 @@ window.addEventListener('beforeinstallprompt', (e) => {
         btn.remove();
     }
 });
+window.addEventListener('keydown', e => {
+    if (e.key == 'e' && e.ctrlKey) {
+        if (!document.querySelector('.mainSearch input:focus')) {
+            document.querySelector('.mainSearch input').focus();
+            e.preventDefault();
+        }
+    }
+    if (e.key == 'ArrowUp' && e.altKey) {
+        document.querySelector('.breadcrumb ul li:last-child').previousElementSibling?.querySelector('a').click();
+    }
+    if (e.key == 'F6') {
+        const groups = [document.querySelector('header'), document.querySelector('aside'), document.querySelector('.breadcrumb')]
+        const groupsItems = [document.querySelector('header .mainSearch input'), document.querySelector('aside a'), document.querySelector('.breadcrumb a')]
+        let index = groups.indexOf(groups.find(x => x.matches(':focus-within')));
+        if ((index + 1) < groups.length) {
+            groupsItems[(index + 1) % groups.length].focus();
+            e.preventDefault();
+        } else {
+            groupsItems[0].focus()
+        }
+    }
+})

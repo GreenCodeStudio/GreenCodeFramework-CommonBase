@@ -66,6 +66,12 @@ body {
                 border: 1px solid rgba(#000, .5);
                 backdrop-filter: var(--standardBackdropFilter);
                 text-align: left;
+                max-height: calc(100vh - 150px);
+                overflow: auto;
+
+                @media(max-width: 500px) {
+                    min-width: calc(100vw - 20px);
+                }
 
                 .item {
                     display: block;

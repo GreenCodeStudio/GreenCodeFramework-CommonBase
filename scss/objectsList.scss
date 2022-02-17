@@ -19,7 +19,7 @@ data-view {
             position: sticky;
             top: 0;
             z-index: 1;
-            height: 18px;
+            height: 19px;
             background: var(--second);
 
             .column {
@@ -105,15 +105,71 @@ data-view {
                     flex: 0 0 auto;
                     box-sizing: border-box;
 
-                    button, .button{
-                        font-size:16px;
-                        margin-left:2px;
+                    button, .button {
+                        font-size: 16px;
+                        margin-left: 2px;
                     }
                 }
             }
         }
 
 
+    }
+
+    list-view {
+        display: block;
+        flex-grow: 1;
+        overflow: auto;
+
+        .body {
+            position: relative;
+
+            .tr {
+                display: grid;
+                position: absolute;
+                transition: top 300ms ease, background 100ms;
+                animation: data-view-appear 200ms;
+                grid-template-columns: max-content 1fr max-content;
+                width: 100%;
+                padding: 10px 0;
+
+
+                &.selectedMain, &:focus {
+                    outline: 2px black dashed;
+                    outline-offset: -2px;
+                }
+
+                button, .button {
+                    font-size: 16px;
+                    margin-left: 2px;
+                }
+
+                .icon {
+                    grid-column: 1;
+                    grid-row: 1/4;
+                    font-size: 40px;
+                    line-height: 63px;
+                }
+
+                .keyValue {
+                    grid-column: 2/4;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    line-height: 21px;
+
+
+                    &:nth-child(2), &:nth-child(3) {
+                        grid-column: 2;
+                    }
+                }
+
+                .actions {
+                    grid-column: 3;
+                    grid-row: 1/3;
+                }
+            }
+        }
     }
 
     .foot {
@@ -122,10 +178,11 @@ data-view {
         justify-content: space-between;
 
         @media (max-width: 600px) {
-            form{
-                input{
+            form {
+                input {
                     width: 40px;
-                    &:focus{
+
+                    &:focus {
                         width: 200px;
                         margin-left: -160px;
                     }
@@ -133,13 +190,15 @@ data-view {
             }
         }
     }
+
     &.infiniteScrollEnabled {
-        table-view {
+        table-view, list-view {
             .body {
                 height: var(--height);
             }
         }
-        pagination-buttons{
+
+        pagination-buttons {
             display: none;
         }
     }
