@@ -33,6 +33,7 @@ data-view {
                 position: absolute;
                 padding: 0 10px;
                 box-sizing: border-box;
+                height: 19px;
 
                 &.ableToSort {
                     @extend .icon;
@@ -119,6 +120,18 @@ data-view {
         border-top: 1px solid var(--second);
         display: flex;
         justify-content: space-between;
+
+        @media (max-width: 600px) {
+            form{
+                input{
+                    width: 40px;
+                    &:focus{
+                        width: 200px;
+                        margin-left: -160px;
+                    }
+                }
+            }
+        }
     }
     &.infiniteScrollEnabled {
         table-view {
