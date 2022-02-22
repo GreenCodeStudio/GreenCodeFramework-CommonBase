@@ -80,6 +80,8 @@ window.addEventListener('beforeinstallprompt', (e) => {
         btn.remove();
     }
 });
+
+let letters = {};
 window.addEventListener('keydown', e => {
     if (e.key == 'e' && e.ctrlKey) {
         if (!document.querySelector('.mainSearch input:focus')) {
@@ -100,6 +102,44 @@ window.addEventListener('keydown', e => {
         } else {
             groupsItems[0].focus()
         }
+    }
+    if (e.key == 'Alt') {
+        for (let button of document.querySelectorAll('button, .button')) {
+            if(button.querySelector('.actionLetter')) continue;
+            let text = button.textContent;
+            for (let letter of text) {
+                letter = letter.toLowerCase();
+                if (/[a-z]/.test(letter) && !letters[letter]) {
+                    letters[letter] = {button};
+
+                    let text = Array.from(button.childNodes).find(x => x instanceof Text && x.textContent.toLowerCase().includes(letter))
+                    if (text) {
+                        let index = text.textContent.toLowerCase().indexOf(letter)
+                        text.parentNode.insertBefore(document.createTextNode(text.textContent.substr(0, index)), text)
+                        letters[letter].actionLetter = text.parentNode.insertBefore(document.create('span.actionLetter', {
+                            text: text.textContent.substr(index, 1)
+                        }), text)
+                        text.textContent = text.textContent.substr(index + 1);
+                    } else {
+                        console.warn('letter missing')
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    if (letters[e.key] && e.altKey) {
+        letters[e.key].button.click();
+    }
+})
+
+window.addEventListener('keyup', e => {
+
+    if (e.key == 'Alt') {
+        for (const value of Object.values(letters)) {
+            value.actionLetter.replaceWith(document.createTextNode(value.actionLetter.textContent));
+        }
+        letters = {};
     }
 })
 document.body.append(new NotificationsRenderer());
