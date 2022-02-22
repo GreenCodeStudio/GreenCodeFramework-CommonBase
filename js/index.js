@@ -3,6 +3,7 @@ import {TableManager} from "../../Core/js/table";
 import {pageManager} from "../../Core/js/pageManager";
 import {MainSearch} from "./mainSearch";
 import "./FileUploader";
+import {NotificationsRenderer} from "./NotificationsRenderer";
 
 document.querySelectorAll('.logoutMyselfBtn').forEach(b => b.onclick = async () => {
     await Ajax.Authorization.logout();
@@ -101,3 +102,4 @@ window.addEventListener('keydown', e => {
         }
     }
 })
+document.body.append(new NotificationsRenderer());

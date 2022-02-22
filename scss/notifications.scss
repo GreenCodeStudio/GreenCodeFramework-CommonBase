@@ -1,5 +1,8 @@
-.tasksList {
-    .task {
+notifications-renderer {
+    > * {
+        display: flex;
+        color: inherit;
+        text-decoration: none;
         position: fixed;
         top: calc(-20px + 100px * (var(--list-count) - var(--list-order)));
         right: 20px;
@@ -10,6 +13,13 @@
         z-index: 200;
         animation: task-slideIn 300ms ease-out;
         transition: top 300ms ease-out;
+
+        .message {
+            flex: 1 1 auto;
+            overflow: hidden;
+            align-items: start;
+            padding: 5px;
+        }
 
         @keyframes task-slideIn {
             0% {
