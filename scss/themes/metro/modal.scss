@@ -11,6 +11,8 @@
         .modal-text {
             margin: 10px;
             text-align: left;
+            max-height: 50vh;
+            overflow: auto;
         }
 
         .modal-button {
