@@ -1,16 +1,3 @@
-.notifications {
-    @extend .top-expandable;
-
-    .notificationsList {
-        @extend .list;
-
-        > .notification {
-            border-bottom: 1px solid;
-            text-align: center;
-            padding: 5px;
-        }
-    }
-}
 .loginInfo {
      @extend .top-expandable;
 
