@@ -5,6 +5,8 @@ export class NotificationsRenderer extends HTMLElement {
     constructor() {
         super();
         this.listRendered = new ListRenderer(this, this.render.bind(this), NotificationManager.current);
+        this.listRendered.config.removeClass = 'removing';
+        this.listRendered.config.removeDelay = 400;
         NotificationManager.onchange(() => this.listRendered.render());
     }
 
