@@ -42,6 +42,10 @@
             border-radius: 0;
         }
     }
+    &:disabled{
+        pointer-events: none;
+        filter:grayscale(.9);
+    }
 }
 .swaggerContainer button::before{
     content: none;
