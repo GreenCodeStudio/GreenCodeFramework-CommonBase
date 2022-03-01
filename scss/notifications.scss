@@ -13,6 +13,9 @@ notifications-renderer {
         z-index: 200;
         animation: notification-slideIn 300ms ease-out;
         transition: top 300ms ease-out;
+        @media (max-width: 440px) {
+            width: calc(100vw - 40px);
+        }
 
         .message {
             flex: 1 1 auto;
