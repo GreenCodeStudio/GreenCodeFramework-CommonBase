@@ -13,23 +13,28 @@ table {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            @extend .icon;
-            @extend .icon-down;
+            &.ableToSort {
+                @extend .icon;
+                @extend .icon-down;
+                cursor: pointer;
 
-            &::before {
-                transform: scaleY(0);
-                transition: all 300ms ease-out;
-            }
-
-            &[data-order="asc"] {
                 &::before {
-                    transform: scaleY(1);
+                    transform: scaleY(0);
+                    transition: all 300ms ease-out;
+                    position: absolute;
+                    right: 0;
                 }
-            }
 
-            &[data-order="desc"] {
-                &::before {
-                    transform: scaleY(-1);
+                &[data-order="asc"] {
+                    &::before {
+                        transform: scaleY(1);
+                    }
+                }
+
+                &[data-order="desc"] {
+                    &::before {
+                        transform: scaleY(-1);
+                    }
                 }
             }
 

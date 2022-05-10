@@ -1,7 +1,7 @@
 data-view {
     table-view {
         .head {
-            .column {
+            .column.ableToSort {
                 &:hover {
                     box-shadow: 0px 40px rgba(#fff, 0.4) inset;
                 }
@@ -88,3 +88,16 @@ data-view {
         }
     }
 }
+
+table {
+    th.ableToSort {
+        &:hover {
+            box-shadow: 0px 40px rgba(#fff, 0.4) inset;
+        }
+
+        &:active {
+            box-shadow: 0px 40px rgba(#000, 0.2) inset;
+        }
+    }
+}
+
