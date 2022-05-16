@@ -40,4 +40,8 @@
         <value lang="en">Print</value>
         <value lang="pl">Drukuj</value>
     </node>
+    <node name="export">
+        <value lang="en">Export</value>
+        <value lang="pl">Eksportuj</value>
+    </node>
 </root>

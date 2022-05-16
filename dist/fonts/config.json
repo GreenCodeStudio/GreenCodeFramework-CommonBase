@@ -139,6 +139,12 @@
       "css": "price",
       "code": 61781,
       "src": "fontawesome"
+    },
+    {
+      "uid": "7yekfd0qlkgp6emwfbo10sjdmf8pewli",
+      "css": "download",
+      "code": 59408,
+      "src": "typicons"
     }
   ]
 }
