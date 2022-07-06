@@ -9,14 +9,14 @@ module.exports = class extends BaseSeleniumTest {
     async login(driver) {
         await this.openURL('/')
         await this.asleep(1000);
-        await this.takeScreenshot(driver, 'loginPage');
+        await this.takeScreenshot('loginPage', true);
         await this.driver.findElement(By.css('[name="username"]')).sendKeys(process.argv[2]);
         await this.driver.findElement(By.css('[name="password"]')).sendKeys(process.argv[3]);
         await this.asleep(1000);
-        await this.takeScreenshot(driver, 'loginPage-written');
+        await this.takeScreenshot('loginPage-written');
         await this.driver.findElement(By.css('[name="password"]')).sendKeys(Key.RETURN);
         await this.asleep(1000);
-        await this.takeScreenshot(driver, 'loginPage-pressedLoginButton');
+        await this.takeScreenshot('loginPage-pressedLoginButton', true);
     }
 
     async prepareTest() {
