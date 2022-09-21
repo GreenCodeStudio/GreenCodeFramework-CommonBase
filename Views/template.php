@@ -53,6 +53,7 @@ use Core\Formatter;
     window.controllerInitInfo = <?=json_encode($this->getInitInfo())?>;
     window.DEBUG =<?=json_encode($this->isDebug())?>;
     window.initNotifications=<?=json_encode($notificationsList)?>;
+    window.webSocketPort = <?=$_ENV['websocketPort']?>;
     //]]>
 </script>
 <script src="/dist/main.js" type="text/javascript"></script>
