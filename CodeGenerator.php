@@ -474,7 +474,7 @@ export class add {
         $group->permission[0]->name = 'show';
         $group->permission[0]->title = 'Odczyt';
         $group->permission[1]->name = 'edit';
-        $group->permission[1]->title = 'edycja';
+        $group->permission[1]->title = 'Edycja';
         $group->permission[2]->name = 'add';
         $group->permission[2]->title = 'Dodawanie';
         $group->permission[3]->name = 'remove';
