@@ -44,4 +44,8 @@
         <value lang="en">Export</value>
         <value lang="pl">Eksportuj</value>
     </node>
+    <node name="pdf">
+        <value lang="en">PDF</value>
+        <value lang="pl">PDF</value>
+    </node>
 </root>

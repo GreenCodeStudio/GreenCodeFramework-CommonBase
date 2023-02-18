@@ -145,6 +145,18 @@
       "css": "download",
       "code": 59408,
       "src": "typicons"
+    },
+    {
+      "uid": "7277ded7695b2a307a5f9d50097bb64c",
+      "css": "print",
+      "code": 59409,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "9daa1fdf0838118518a7e22715e83abc",
+      "css": "pdf",
+      "code": 61889,
+      "src": "fontawesome"
     }
   ]
 }
