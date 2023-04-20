@@ -143,3 +143,14 @@ window.addEventListener('keyup', e => {
     }
 })
 document.body.append(new NotificationsRenderer());
+
+addEventListener('error', e => {
+
+    if (new URL(e.filename).origin == document.location.origin) {
+        modal("Wystąpił błąd", "error")
+    }
+});
+addEventListener('unhandledrejection', e => {
+
+    modal("Wystąpił błąd", "error")
+});
