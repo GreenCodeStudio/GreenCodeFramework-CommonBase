@@ -20,3 +20,7 @@ html {
         --textSecondColor:#000;
     }
 }
+::selection{
+    background: var(--second);
+    color: var(--main);
+}
