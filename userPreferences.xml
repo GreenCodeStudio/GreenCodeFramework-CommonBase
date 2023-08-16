@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+    <preference>
+        <name>layout</name>
+        <default>metro</default>
+        <select>
+            <option>metro</option>
+            <option>win98</option>
+        </select>
+    </preference>
+</root>

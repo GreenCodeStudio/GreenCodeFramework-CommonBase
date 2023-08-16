@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-layout="metro">
 <head>
     <title><?= htmlspecialchars($this->getTitle()) ?></title>
     <meta charset="UTF-8">

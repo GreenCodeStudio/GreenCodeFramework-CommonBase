@@ -1,0 +1,80 @@
+[data-layout="text"] {
+    --main: #0000ff;
+    --mainLight: #00ffff;
+    --second: #000000;
+    --background: #000000;
+    --backgroundMain: #000000;
+    --textColor: #fff;
+    --textSecondColor: #fff;
+    --menuColor: #000000;
+
+    html, body {
+        font-family: monospace;
+    }
+
+    body > aside {
+        nav {
+            ul {
+                li {
+
+
+                    span, a {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+
+    .input {
+        font: inherit;
+        background: transparent;
+        border: none;
+
+        &::before {
+            content: '['
+        }
+    }
+
+    .card {
+        margin: 1em;
+        background: green;
+        padding: 1em 1ch;
+
+        > header {
+            border: none;
+            padding: 0;
+            margin: 0;
+
+            h1 {
+                font-size: 1em;
+            }
+
+            &:after {
+                content: '-----------'
+            }
+        }
+        p{
+            margin: 1em 0;
+        }
+        >footer{
+            border: none;
+            &:before {
+                content: '-----------';
+                display: block;
+            }
+        }
+    }
+    .button{
+        background: transparent;
+        border: none;
+        font: inherit;
+        color: inherit;
+        &:before {
+            content: '>';
+        }
+        &::after{
+            content: '<';
+        }
+    }
+}

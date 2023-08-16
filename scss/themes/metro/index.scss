@@ -1,5 +1,7 @@
-@import "./buttons";
-@import "./form";
-@import "./contextMenu";
-@import "./modal";
-@import "./objectsList";
+[data-layout="metro"] {
+    @import "./buttons";
+    @import "./form";
+    @import "./contextMenu";
+    @import "./modal";
+    @import "./objectsList";
+}
