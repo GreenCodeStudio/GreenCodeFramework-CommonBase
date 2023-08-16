@@ -17,7 +17,7 @@
         box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
     }
 
-    .button, button:not(.browsersDefault) {
+    .button, button:not(.browsersDefault):not(.swaggerContainer *) {
         border-top: 1px solid #ffffff;
         border-left: 1px solid #ffffff;
         border-bottom: 1px solid #000000;

@@ -39,7 +39,10 @@ textarea:not(.browsersDefault) {
 input[type="checkbox"] {
     @extend .checkbox
 }
+.radiobutton {
+    display: inline-block;
 
+}
 input[type="radio"] {
     @extend .radiobutton
 }

@@ -10,7 +10,7 @@
     font-size: .83em;
 }
 
-button:not(.browsersDefault) {
+button:not(:is(.browserDefault,.swaggerContainer button)) {
     @extend .button;
 }
 .actionLetter{
