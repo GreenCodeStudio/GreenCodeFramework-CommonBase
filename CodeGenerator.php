@@ -13,6 +13,8 @@ use Core\Database\Migration;
 
 class CodeGenerator
 {
+    protected $hiddenColumns = ['id', 'is_archived', 'created', 'updated'];
+
     function generate($namespace, $name, $dbName)
     {
         $table = $this->getTable($dbName);
@@ -42,10 +44,10 @@ class CodeGenerator
         }
 
         if (!file_exists($path.'/Views/'.$name.'List.php')) {
-            file_put_contents($path.'/Views/'.$name.'List.php', $this->makeViewList($namespace, $name, $table));
+            file_put_contents($path.'/Views/'.$name.'List.mpts', $this->makeViewList($namespace, $name, $table));
         }
         if (!file_exists($path.'/Views/'.$name.'Edit.php')) {
-            file_put_contents($path.'/Views/'.$name.'Edit.php', $this->makeViewEdit($namespace, $name, $table));
+            file_put_contents($path.'/Views/'.$name.'Edit.mpts', $this->makeViewEdit($namespace, $name, $table));
         }
         if (!file_exists($path.'/Controllers/'.$name.'Controller.php')) {
             file_put_contents($path.'/Controllers/'.$name.'Controller.php', $this->makeController($namespace, $name, $table));
@@ -98,12 +100,12 @@ class CodeGenerator
             $title = $name;
 
         return '<div class="topBarButtons">
-    <a href="/'.$name.'/add" class="button"><span class="icon-add"></span> <?=t("CommonBase.add")?></a>
+    <a href="/'.$name.'/add" class="button"><span class="icon-add"></span> {{t("CommonBase.add")}}</a>
 </div>
 <div class="grid page-'.$name.'  page-'.$name.'-list">
     <section class="card" data-width="6">
         <header>
-            <h1><?=t("'.$namespace.'.'.$name.'List.header")?></h1>
+            <h1>{{t("'.$namespace.'.'.$name.'List.header")}}</h1>
         </header>
         <div class="container"></div>
     </section>
@@ -113,20 +115,17 @@ class CodeGenerator
     function makeViewEdit(string $namespace, string $name, $table)
     {
         $form = '';
-
-        if ($table->title)
-            $title = htmlspecialchars($table->title);
-        else
-            $title = $name;
+        $title = '{{t("'.$namespace.'.'.$name.'.'.$name.'")}}';
         foreach ($table->column as $column) {
             if ($column->autoincrement == 'YES') continue;
+            if (in_array($column->name->__toString(), $this->hiddenColumns)) continue;
             $reference = null;
             foreach ($table->index as $index) {
                 if ($index->type == 'FOREIGN' && $index->element->__toString() == $column->name->__toString()) {
                     $reference = $index->reference;
                 }
             }
-            $columnTitle = '<?=t("'.$namespace.'.'.$name.'.'.$column->name.'")?>';
+            $columnTitle = '{{t("'.$namespace.'.'.$name.'.'.$column->name.'")}}';
             $form .= '<label>
             <span>'.$columnTitle.'</span>
             '.$this->generateInput($column, $reference).'
@@ -134,11 +133,11 @@ class CodeGenerator
         }
         return '<form>
     <div class="topBarButtons">
-        <a href="/'.$name.'/" class="button"><span class="icon-cancel"></span><?=t("CommonBase.cancel")?></a>
-        <button class="button"><span class="icon-save"></span><?=t("CommonBase.save")?></button>
+        <a href="/'.$name.'/" class="button"><span class="icon-cancel"></span>{{t("CommonBase.cancel")}}</a>
+        <button class="button"><span class="icon-save"></span>{{t("CommonBase.save")}}</button>
     </div>
     <div class="grid page-'.$name.' page-'.$name.'-edit">
-        <input name="id" type="hidden">
+        <input name="id" type="hidden" />
         <section class="card" data-width="6">
             <header>
                 <h1>'.$title.'</h1>
@@ -157,15 +156,15 @@ class CodeGenerator
         } else {
             switch ($col->type->__toString()) {
                 case "bool":
-                    return '<input type="checkbox" name="'.$col->name.'">';
+                    return '<input type="checkbox" name="'.$col->name.'" />';
                 case "int":
-                    return '<input type="number" step="1" name="'.$col->name.'" '.($required ? 'required' : '').'>';
+                    return '<input type="number" step="1" name="'.$col->name.'" '.($required ? 'required' : '').' />';
                 case "date":
-                    return '<input type="date" name="'.$col->name.'" '.($required ? 'required' : '').'>';
+                    return '<input type="date" name="'.$col->name.'" '.($required ? 'required' : '').' />';
                 case "datetime":
-                    return '<input type="datetime-local" step="any" name="'.$col->name.'" '.($required ? 'required' : '').'>';
+                    return '<input type="datetime-local" step="any" name="'.$col->name.'" '.($required ? 'required' : '').' />';
                 default:
-                    return '<input type="text" name="'.$col->name.'" '.($required ? 'required' : '').'>';
+                    return '<input type="text" name="'.$col->name.'" '.($required ? 'required' : '').' />';
             }
         }
     }
@@ -277,9 +276,17 @@ class '.$name.'Ajax extends \Core\AjaxController
     function makeBussinesLogic(string $namespace, string $name, $table)
     {
         $prep = '';
+        $createdCode = '';
         foreach ($table->column as $column) {
             if ($column->autoincrement == 'YES') continue;
-            if ($column->type == 'bool')
+            if ($column->name == 'is_archived') continue;
+            if ($column->name == 'created') {
+                $createdCode = '$filtered[\''.$column->name.'\'] = new \DateTime();';
+                continue;
+            }
+            if ($column->name == 'updated')
+                $prep .= '$ret[\''.$column->name.'\'] = new \DateTime();';
+            else if ($column->type == 'bool')
                 $prep .= '$ret[\''.$column->name.'\'] = (int)isset($data->'.$column->name.')';
             else if (strtolower($column->null) == 'yes')
                 $prep .= '$ret[\''.$column->name.'\'] = empty($data->'.$column->name.')?null:$data->'.$column->name;
@@ -336,6 +343,7 @@ class '.$name.' extends \Core\BussinesLogic
     public function insert($data)
     {
         $filtered = $this->filterData($data);
+        '.$createdCode.'
         $id = $this->defaultDB->insert($filtered);
         \Core\WebSocket\Sender::sendToUsers(["'.$namespace.'", "'.$name.'", "Insert", $id]);
     }
@@ -394,12 +402,13 @@ class '.$name.'Repository extends \Core\Repository
 
     function makeJsController(string $namespace, string $name, $table)
     {
-        $cols='';
+        $cols = '';
         foreach ($table->column as $column) {
             if ($column->autoincrement == 'YES') continue;
-            $cols.='        objectsList.columns.push({
+            if (in_array($column->name.'', $this->hiddenColumns)) continue;
+            $cols .= '        objectsList.columns.push({
             name: t(\''.$name.'.'.$column->name.'\'),
-            content: row => row.'.$column->name.',
+            dataName: \''.$column->name.'\',
             sortName: \''.$column->name.'\',
             width: 100,
             widthGrow: 1
@@ -419,6 +428,7 @@ export class index {
         const container = page.querySelector(\'.page-'.$name.'-list .container\');
         let datasource = new DatasourceAjax(\''.$name.'\', \'getTable\', [\''.$namespace.'\', \''.$name.'\']);
         let objectsList = new ObjectsList(datasource);
+        objectsList.allowTableEdit = true;
         objectsList.columns = [];
         '.$cols.'
         objectsList.generateActions = (rows, mode) => {
@@ -498,13 +508,14 @@ export class add {
         $xml = simplexml_load_string(file_get_contents($filename));
         $group = $xml->addChild('node');
         $group->addAttribute('name', $name);
+        $this->genereateI18nNode($group, $name);
         foreach ($table->column as $column) {
             $this->genereateI18nNode($group, $column->name);
         }
         $list = $xml->addChild('node');
         $list->addAttribute('name', $name.'List');
 
-        $this->genereateI18nNode($list, 'header', 'List of elements of type '.$name,'Lista elementów typu '.$name);
+        $this->genereateI18nNode($list, 'header', 'List of elements of type '.$name, 'Lista elementów typu '.$name);
 
         file_put_contents($filename, $xml->asXML());
     }
@@ -513,12 +524,12 @@ export class add {
      * @param \SimpleXMLElement $group
      * @param $column
      */
-    private function genereateI18nNode(\SimpleXMLElement $group, $name, $valueEn=null, $valuePl=null): void
+    private function genereateI18nNode(\SimpleXMLElement $group, $name, $valueEn = null, $valuePl = null): void
     {
         $node = $group->addChild('node');
         $node->addAttribute('name', $name);
         $en = $node->addChild('value');
         $en->addAttribute('lang', 'en');
-        $en[0] = $valueEn??$name;
+        $en[0] = $valueEn ?? $name;
     }
 }
