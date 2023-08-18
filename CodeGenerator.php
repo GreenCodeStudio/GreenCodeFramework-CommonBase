@@ -9,6 +9,8 @@
 namespace CommonBase;
 
 
+use Core\ApiController;
+use Core\Database\DB;
 use Core\Database\Migration;
 
 class CodeGenerator
@@ -26,6 +28,9 @@ class CodeGenerator
 
         if (!file_exists($path.'/Views')) {
             mkdir($path.'/Views', 0777, true);
+        }
+        if (!file_exists($path.'/Api')) {
+            mkdir($path.'/Api', 0777, true);
         }
         if (!file_exists($path.'/Ajax')) {
             mkdir($path.'/Ajax', 0777, true);
@@ -60,6 +65,9 @@ class CodeGenerator
         }
         if (!file_exists($path.'/Repository/'.$name.'Repository.php')) {
             file_put_contents($path.'/Repository/'.$name.'Repository.php', $this->makeRepository($namespace, $name, $dbName, $table));
+        }
+        if (!file_exists($path.'/Api/'.$name.'Api.php')) {
+            file_put_contents($path.'/Api/'.$name.'Api.php', $this->makeApiController($namespace, $name, $table));
         }
         if (!file_exists($path.'/js/index.js')) {
             file_put_contents($path.'/js/index.js', 'import {pageManager} from "../../Core/js/pageManager";');
@@ -263,6 +271,15 @@ class '.$name.'Ajax extends \Core\AjaxController
         $'.$name.' = new \\'.$namespace.'\\'.$name.'();
         $'.$name.'->update($data->id, $data);
     }
+    
+    public function updateMultiple(array $data)
+    {      
+        $this->will(\''.$name.'\', \'edit\');
+        $'.$name.' = new \\'.$namespace.'\\'.$name.'();
+        foreach ($data as $row) {
+            $'.$name.'->update($row->id, $row->data);
+        }
+    }
 
     public function insert($data)
     {
@@ -270,6 +287,51 @@ class '.$name.'Ajax extends \Core\AjaxController
         $'.$name.' = new \\'.$namespace.'\\'.$name.'();
         $id = $'.$name.'->insert($data);
     }
+}';
+    }
+
+    function makeApiController(string $namespace, string $name, $table)
+    {
+
+        $getListDocs = [
+            'type' => 'get',
+            'url' => $name,
+            'tags' => [$namespace.'-'.$name],
+            'description' => 'Get list of '.$name,
+            'responses' => [
+                200 => [
+                    "content" => [
+                        "application/json" => [
+                            "schema" => [
+                                "type" => "array",
+                                "items" => [
+                                    "type" => "object",
+                                    "properties" => [
+
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return '<?php
+namespace '.$namespace.'\Api;
+
+class '.$name.'Api extends \Core\ApiController
+{
+/**
+     * @ApiEndpoint('.str_replace("\n","\n * ",substr(var_export($getListDocs,true),7,-1)).')
+     **/
+    public function getList()
+    {
+        $this->will(\''.$name.'\', \'show\');
+        $'.$name.' = new \\'.$namespace.'\\'.$name.'();
+        return $'.$name.'->getAll();
+    }
+
 }';
     }
 
@@ -347,6 +409,11 @@ class '.$name.' extends \Core\BussinesLogic
         $id = $this->defaultDB->insert($filtered);
         \Core\WebSocket\Sender::sendToUsers(["'.$namespace.'", "'.$name.'", "Insert", $id]);
     }
+    public function getAll()
+    {
+        return $this->defaultDB->getAll();
+    }
+    
     '.$referencesMethod.'
 }';
     }
@@ -396,6 +463,12 @@ class '.$name.'Repository extends \Core\Repository
                 throw new Exception();
             return \' ORDER BY \'.DB::safeKey($mapping[$options->sort->col]).\' \'.($options->sort->desc ? \'DESC\' : \'ASC\').\' \';
         }
+    }    public function getAll()
+    {
+        if($this->archiveMode == static::ArchiveMode_OnlyExisting)
+            return DB::get("SELECT * FROM '.$dbName.' WHERE is_archived = 0");
+        else
+            return DB::get("SELECT * FROM '.$dbName.'");
     }
 }';
     }
@@ -426,7 +499,7 @@ import {Permissions} from "../../../Core/js/permissions";
 export class index {
     constructor(page, data) {
         const container = page.querySelector(\'.page-'.$name.'-list .container\');
-        let datasource = new DatasourceAjax(\''.$name.'\', \'getTable\', [\''.$namespace.'\', \''.$name.'\']);
+        let datasource = new DatasourceAjax(\''.$name.'\', \'getTable\', [\''.$namespace.'\', \''.$name.'\'], null, \'updateMultiple\');
         let objectsList = new ObjectsList(datasource);
         objectsList.allowTableEdit = true;
         objectsList.columns = [];
