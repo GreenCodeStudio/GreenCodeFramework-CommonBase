@@ -292,6 +292,10 @@ class '.$name.'Ajax extends \Core\AjaxController
 
     function makeApiController(string $namespace, string $name, $table)
     {
+        $schemaOne = [
+                "id"=>["type"=>"number", "format"=>"int32"],
+                                       "name"=>["type"=>"string"],
+        ];
 
         $getListDocs = [
             'type' => 'get',
@@ -306,10 +310,61 @@ class '.$name.'Ajax extends \Core\AjaxController
                                 "type" => "array",
                                 "items" => [
                                     "type" => "object",
-                                    "properties" => [
-
-                                    ]
+                                    "properties" => $schemaOne
                                 ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $getOneDocs = [
+            'type' => 'get',
+            'url' => $name.'/{id}',
+            'tags' => [$namespace.'-'.$name],
+            'description' => 'Get one '.$name,
+            'parameters' => [
+                [
+                    'name' => 'id',
+                    'in' => 'path',
+                    'required' => true
+                ]
+            ],
+            'responses' => [
+                200 => [
+                    "content" => [
+                        "application/json" => [
+                            "schema" => [
+                                "type" => "object",
+                                "properties" => $schemaOne
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $insertDocs = [
+            'type' => 'post',
+            'url' => $name,
+            'tags' => [$namespace.'-'.$name],
+            'description' => 'Insert one '.$name,
+            'requestBody' => [
+                'content'=>[
+                    'application/json'=>[
+                        'schema'=>[
+                            'type'=>'object',
+                            'properties'=>$schemaOne
+                        ]
+                    ]
+                ]
+            ],
+            'responses' => [
+                200 => [
+                    "content" => [
+                        "application/json" => [
+                            "schema" => [
+                                "type" => "object",
+                                "properties" => $schemaOne
                             ]
                         ]
                     ]
@@ -323,7 +378,7 @@ namespace '.$namespace.'\Api;
 class '.$name.'Api extends \Core\ApiController
 {
 /**
-     * @ApiEndpoint('.str_replace("\n","\n * ",substr(var_export($getListDocs,true),7,-1)).')
+     * @ApiEndpoint('.str_replace("\n", "\n * ", substr(var_export($getListDocs, true), 7, -1)).')
      **/
     public function getList()
     {
@@ -331,6 +386,27 @@ class '.$name.'Api extends \Core\ApiController
         $'.$name.' = new \\'.$namespace.'\\'.$name.'();
         return $'.$name.'->getAll();
     }
+    
+    /**
+     * @ApiEndpoint('.str_replace("\n", "\n * ", substr(var_export($getOneDocs, true), 7, -1)).')
+     **/
+    public function getOneById(int $id)
+    {
+        $this->will(\''.$name.'\', \'show\');
+        $'.$name.' = new \\'.$namespace.'\\'.$name.'();
+        return $'.$name.'->getById($id);
+    }
+        /**
+     * @ApiEndpoint('.str_replace("\n", "\n * ", substr(var_export($insertDocs, true), 7, -1)).')
+     **/
+    public function insert($data)
+    {
+        $this->will(\''.$name.'\', \'add\');
+        $'.$name.' = new \\'.$namespace.'\\'.$name.'();
+        $id = $'.$name.'->insert($data);
+        return $'.$name.'->getById($id);
+    }
+    
 
 }';
     }
