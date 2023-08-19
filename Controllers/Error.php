@@ -9,11 +9,16 @@ class Error extends PageStandardController
 {
     function index(int $responseCode)
     {
-        if($responseCode==403)
+        if ($responseCode == 403)
             $this->addView('CommonBase', '403');
-        else if($responseCode==404)
+        else if ($responseCode == 404)
             $this->addView('CommonBase', '404');
-        else if($responseCode==500)
+        else if ($responseCode == 500)
             $this->addView('CommonBase', '500');
+    }
+
+    public function hasPermission(string $methodName)
+    {
+        return true;
     }
 }
