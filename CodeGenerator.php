@@ -293,9 +293,13 @@ class '.$name.'Ajax extends \Core\AjaxController
     function makeApiController(string $namespace, string $name, $table)
     {
         $schemaOne = [
-                "id"=>["type"=>"number", "format"=>"int32"],
-                                       "name"=>["type"=>"string"],
         ];
+        foreach ($table->column as $column) {
+            $schemaOne[$column->name.''] = [
+                "type" => $column->type.'',
+                "format" => $column->type == 'datetime' ? 'date-time' : null,
+            ];
+        }
 
         $getListDocs = [
             'type' => 'get',
@@ -372,6 +376,42 @@ class '.$name.'Ajax extends \Core\AjaxController
             ]
         ];
 
+        $updateDocs = [
+            'type' => 'put',
+            'url' => $name.'/{id}',
+            'tags' => [$namespace.'-'.$name],
+            'description' => 'Insert one '.$name,
+            'parameters' => [
+                [
+                    'name' => 'id',
+                    'in' => 'path',
+                    'required' => true
+                ]
+            ],
+            'requestBody' => [
+                'content'=>[
+                    'application/json'=>[
+                        'schema'=>[
+                            'type'=>'object',
+                            'properties'=>$schemaOne
+                        ]
+                    ]
+                ]
+            ],
+            'responses' => [
+                200 => [
+                    "content" => [
+                        "application/json" => [
+                            "schema" => [
+                                "type" => "object",
+                                "properties" => $schemaOne
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
         return '<?php
 namespace '.$namespace.'\Api;
 
@@ -396,7 +436,7 @@ class '.$name.'Api extends \Core\ApiController
         $'.$name.' = new \\'.$namespace.'\\'.$name.'();
         return $'.$name.'->getById($id);
     }
-        /**
+     /**
      * @ApiEndpoint('.str_replace("\n", "\n * ", substr(var_export($insertDocs, true), 7, -1)).')
      **/
     public function insert($data)
@@ -404,6 +444,17 @@ class '.$name.'Api extends \Core\ApiController
         $this->will(\''.$name.'\', \'add\');
         $'.$name.' = new \\'.$namespace.'\\'.$name.'();
         $id = $'.$name.'->insert($data);
+        return $'.$name.'->getById($id);
+    }
+    
+        /**
+     * @ApiEndpoint('.str_replace("\n", "\n * ", substr(var_export($updateDocs, true), 7, -1)).')
+     **/
+    public function update($data, int $id)
+    {
+        $this->will(\''.$name.'\', \'edit\');
+        $'.$name.' = new \\'.$namespace.'\\'.$name.'();
+        $'.$name.'->update($id, $data);
         return $'.$name.'->getById($id);
     }
     
@@ -478,12 +529,13 @@ class '.$name.' extends \Core\BussinesLogic
         return $ret;
     }
 
-    public function insert($data)
+    public function insert($data):int
     {
         $filtered = $this->filterData($data);
         '.$createdCode.'
         $id = $this->defaultDB->insert($filtered);
         \Core\WebSocket\Sender::sendToUsers(["'.$namespace.'", "'.$name.'", "Insert", $id]);
+        return $id;
     }
     public function getAll()
     {
