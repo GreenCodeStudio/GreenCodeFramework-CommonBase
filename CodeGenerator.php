@@ -559,6 +559,7 @@ class '.$name.' extends \Core\BussinesLogic
 namespace '.$namespace.'\Repository;
 
 use Core\Database\DB;
+use Exception;
 
 
 class '.$name.'Repository extends \Core\Repository
