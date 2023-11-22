@@ -1,5 +1,6 @@
 const BaseSeleniumTest = require("../../../E2eTests/Test/Selenium/baseSeleniumTest");
 const {Key, By} = require("selenium-webdriver");
+const {E2eTestLog} = require("../../../E2eTests/Test/Selenium/E2eTestLog");
 
 module.exports = class extends BaseSeleniumTest {
     constructor(driver) {
@@ -28,6 +29,7 @@ module.exports = class extends BaseSeleniumTest {
         const menuItems = await this.driver.findElements(By.css('[data-views="aside"] nav a'))
         for (const menuItem of menuItems) {
             await menuItem.sendKeys(Key.RETURN);
+            E2eTestLog.paragraph('Clicking menu item: ' + await menuItem.getText());
             await this.asleep(1000);
             await this.takeScreenshot('menuItems-' + await menuItem.getText())
         }
