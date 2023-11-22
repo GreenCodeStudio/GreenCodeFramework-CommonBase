@@ -47,6 +47,9 @@ class CodeGenerator
         if (!file_exists($path.'/js/Controllers')) {
             mkdir($path.'/js/Controllers', 0777, true);
         }
+        if (!file_exists($path.'/Test/Selenium')) {
+            mkdir($path.'/Test/Selenium', 0777, true);
+        }
 
         if (!file_exists($path.'/Views/'.$name.'List.php')) {
             file_put_contents($path.'/Views/'.$name.'List.mpts', $this->makeViewList($namespace, $name, $table));
@@ -89,6 +92,9 @@ class CodeGenerator
         $this->updateMenu($path, $name, $title);
         if (!file_exists($path.'/i18n.xml')) {
             file_put_contents($path.'/i18n.xml', '<?xml version="1.0" encoding="UTF-8"?><root/>');
+        }
+        if (!file_exists($path.'/Test/Selenium/'.$name.'Test.js')) {
+            file_put_contents($path.'/Test/Selenium/'.$name.'Test.js', $this->makeE2eTest($namespace, $name));
         }
         $this->updateI18n($path, $name, $table);
     }
@@ -353,11 +359,11 @@ class '.$name.'Ajax extends \Core\AjaxController
             'tags' => [$namespace.'-'.$name],
             'description' => 'Insert one '.$name,
             'requestBody' => [
-                'content'=>[
-                    'application/json'=>[
-                        'schema'=>[
-                            'type'=>'object',
-                            'properties'=>$schemaOne
+                'content' => [
+                    'application/json' => [
+                        'schema' => [
+                            'type' => 'object',
+                            'properties' => $schemaOne
                         ]
                     ]
                 ]
@@ -389,11 +395,11 @@ class '.$name.'Ajax extends \Core\AjaxController
                 ]
             ],
             'requestBody' => [
-                'content'=>[
-                    'application/json'=>[
-                        'schema'=>[
-                            'type'=>'object',
-                            'properties'=>$schemaOne
+                'content' => [
+                    'application/json' => [
+                        'schema' => [
+                            'type' => 'object',
+                            'properties' => $schemaOne
                         ]
                     ]
                 ]
@@ -733,5 +739,76 @@ export class add {
         $en = $node->addChild('value');
         $en->addAttribute('lang', 'en');
         $en[0] = $valueEn ?? $name;
+    }
+
+    private function makeE2eTest($namespace, $name)
+    {
+        return '
+        const BaseSeleniumTest = require("../../../E2eTests/Test/Selenium/baseSeleniumTest");
+const {Key, By} = require("selenium-webdriver");
+const {expect} = require("chai");
+const {DataGenerator} = require("../../../E2eTests/Test/Selenium/DataGenerator");
+const {E2eTestLog} = require("../../../E2eTests/Test/Selenium/E2eTestLog");
+
+module.exports = class '.$name.'Test extends BaseSeleniumTest {
+    constructor(driver) {
+        super(driver);
+        this.exampleItem = {
+            "name": "sdfdsvrfd",
+            "country": "pl",
+            "VATIN": "8464865214",
+            "REGON": "4356234554",
+            "KRS": "98744536412",
+            "address": "hgjyghfhbbdf",
+            "postal": "00-000",
+            "city": "sdfsdes"
+        };
+        this.exampleItemRandom = {
+            "name": DataGenerator.generateRandomString(),
+            "country": DataGenerator.generateRandomString(2),
+            "VATIN": DataGenerator.generateRandomInt(1e9, 1e10 - 1).toString(),
+            "REGON": DataGenerator.generateRandomInt(1e9, 1e10 - 1).toString(),
+            "KRS": DataGenerator.generateRandomInt(1e9, 1e10 - 1).toString(),
+            "address": DataGenerator.generateRandomString(),
+            "postal": "00-000",
+            "city": DataGenerator.generateRandomString()
+        };
+    }
+
+    async mainTest() {
+        await this.navigateToList();
+        await this.addNew(this.exampleItem, true);
+        await this.addNew(this.exampleItemRandom, false);
+    }
+
+    async navigateToList() {
+        E2eTestLog.header("Navigate to list", 3)
+        await this.clickElement("a[href=\"/'.$name.'\"]")
+        await this.asleep(1000);
+        await this.takeScreenshot("'.$name.'-list-before");
+        for (const name in this.exampleItem) {
+            const value = this.exampleItem[name];
+            if (typeof value === "string" && value.length > 5) {
+                expect(await this.driver.findElement(By.css(".page-'.$name.'-list")).getText()).to.not.contain(value);
+            }
+        }
+    }
+
+    async addNew(item, assert) {
+        E2eTestLog.header(`Add new (assert: ${assert})`, 3)
+        await this.clickElement("a[href="/'.$name.'/add"]")
+        await this.asleep(1000);
+        await this.takeScreenshot("'.$name.'-add-before", assert);
+        for (const name in item) {
+            const value = item[name];
+            await this.sendKeysToElement("form [name=\"" + name + "\"]", value);
+        }
+        await this.asleep(200);
+        await this.takeScreenshot("'.$name.'-add-filled", assert);
+        await this.clickElement("form button");
+        await this.asleep(2000);
+        await this.takeScreenshot("'.$name.'-afterAdd", assert);
+    }
+};';
     }
 }
