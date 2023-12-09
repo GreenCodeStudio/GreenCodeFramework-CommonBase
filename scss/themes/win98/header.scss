@@ -1,0 +1,44 @@
+body {
+
+    > header {
+        background: var(--main);
+        height: 31px;
+        h1{
+            margin: 0 8px;
+        }
+        input[type="search"]{
+            height: 24px;
+            margin: 3px 5px;
+        }
+        button.hamburgerMenu{
+            height: 24px;
+            margin: 3px 5px;
+        }
+        .loginInfo{
+            .headerButton{
+                font-size: 14px;
+                line-height: 1;
+                margin: 3px 5px;
+                display: inline-block;
+            }
+        }
+    }
+}
+.top-expandable {
+    .list{
+
+        background: var(--background);    border-top: 1px solid #ffffff;
+        border-left: 1px solid #ffffff;
+        border-bottom: 1px solid #000000;
+        border-right: 1px solid #000000;
+        box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
+        margin-left: -155px;
+
+        >*{
+            margin: 8px;
+            width: calc(100% - 16px);
+            display: block;
+            box-sizing: border-box;
+        }
+    }
+}

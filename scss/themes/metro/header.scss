@@ -1,0 +1,49 @@
+body {
+
+    > header {
+        background: var(--main);
+        height: 31px;
+        h1{
+            margin: 0 8px;
+        }
+        .mainSearch {
+        input{
+            height: 31px;
+        }}
+        .loginInfo{
+            .headerButton{
+                margin: 0 5px;
+            }
+        }
+        @media (max-width: 550px) {
+
+            .mainSearch {
+                > input {
+                    width: 40px;
+                }
+
+                &:focus-within, &hover {
+                    > input {
+                        width: 200px;
+                        margin-left: -160px;
+                    }
+                }
+            }
+        }
+    }
+}
+.top-expandable {
+    .list{
+
+        backdrop-filter: var(--standardBackdropFilter);
+        border: 1px solid;
+        margin-left: -152px;
+
+        >*{
+            margin: 8px;
+            width: calc(100% - 16px);
+            display: block;
+            box-sizing: border-box;
+        }
+    }
+}

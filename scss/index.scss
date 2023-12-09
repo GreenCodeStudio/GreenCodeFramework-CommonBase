@@ -6,9 +6,9 @@
 @import "basicElements/form";
 @import "basicElements/contextMenu";
 @import "table";
-@import "top";;
 @import "notifications";
 @import "basicElements/modal";
+@import "header";
 @import "layout";
 @import "print";
 @import "objectsList";
@@ -17,5 +17,6 @@
 
 
 @import "./themes/metro/index";
-@import "./themes/oldschool/index";
+@import "themes/win98/index";
 @import "./themes/text/index";
+

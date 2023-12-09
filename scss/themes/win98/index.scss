@@ -8,7 +8,7 @@
     --textSecondColor: #fff;
     --menuColor: #eee;
 
-
+@import "header";
     .card {
         border-top: 1px solid #ffffff;
         border-left: 1px solid #ffffff;
@@ -28,10 +28,6 @@
 
         &::before {
             display: none;
-        }
-
-        &:hover, &:focus {
-            color: inherit;
         }
 
         &:focus {
@@ -179,13 +175,7 @@
         box-shadow: 1px 1px 0 #000000 inset, -1px -1px 0 #dfdfdf inset;
     }
 
-    .top-expandable {
-        display: inline-block;
 
-        > .list {
-            background: var(--background);
-        }
-    }
 
     data-view {
         table-view {

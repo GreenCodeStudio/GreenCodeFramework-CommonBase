@@ -1,0 +1,73 @@
+body {
+
+    > header {
+        background: var(--main);
+        height: 1em;
+        h1{
+           // margin: 0 8px;
+            font-size: 1em;
+            line-height: 1;
+            margin: 0 1ex;
+        }
+        .mainSearch {
+            input{
+            color:inherit;
+            height: 1em;
+            &::placeholder{
+                color: inherit;
+            }
+           // height: 31px;
+        }}
+        .hamburgerMenu{
+            margin: 0;
+            padding: 0 1ex;
+        }
+        .loginInfo{
+            .headerButton{
+                margin: 0;
+                font-size: inherit;
+                padding: 0 1ex;
+              //  margin: 0 5px;
+            }
+        }
+        @media (max-width: 550px) {
+
+            .mainSearch {
+                > input {
+                    width: 5ex;
+                    background: var(--main);
+                }
+
+                &:focus-within, &hover {
+                    > input {
+                        width: 200px;
+                        margin-left: -160px;
+                    }
+                }
+            }
+        }
+    }
+}
+.top-expandable {
+    .list{
+
+
+        margin-left: -152px;
+        background: var(--main);
+        text-align: left;
+.icon-user{
+    &::before{
+        width: 3ex;
+        padding: 0;
+        margin: 0 1ex;
+    }
+}
+        >*{
+            margin: 1em 1ex;
+            width: calc(100% - 2ex);
+            display: block;
+            box-sizing: border-box;
+            text-align: left;
+        }
+    }
+}
