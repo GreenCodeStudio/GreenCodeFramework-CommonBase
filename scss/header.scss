@@ -45,8 +45,6 @@ body{
                 min-width: 400px;
                 max-width: calc(100vw - 20px);
                 right: 10px;
-                border: 1px solid rgba(#000, .5);
-                backdrop-filter: var(--standardBackdropFilter);
                 text-align: left;
                 max-height: calc(100vh - 150px);
                 overflow: auto;
@@ -58,16 +56,8 @@ body{
                 .item {
                     display: block;
                     text-decoration: none;
-                    padding: 10px 15px;
                     color: inherit;
 
-                    &:hover, &.active {
-                        background: rgba(#000, .2);
-                    }
-
-                    &:active {
-                        background: rgba(#000, .2);
-                    }
 
                 }
             }
@@ -85,37 +75,32 @@ body{
 
 }
 .loginInfo {
-    @extend .top-expandable;
-
-    > .loginInfo-expandable {
-        text-align: center;
-        @extend .list;
-    }
-}
-
-.top-expandable {
     display: inline-block;
 
-    > .list {
+    > .loginInfo-expandable {
 
         display: none;
         position: absolute;
         width: 200px;
-        height: 300px;
+        height: auto;
         overflow: auto;
         margin-left: -152px;
         >*{
-            display: block;
+                margin: 8px;
+                width: calc(100% - 16px);
+                display: block;
+                box-sizing: border-box;
+
         }
     }
 
     &:hover, &:focus-within, &.open {
-        > .list {
+        > .loginInfo-expandable {
             display: block;
         }
     }
-}
 
+}
 
 .installPWA {
     font-size: 1em;

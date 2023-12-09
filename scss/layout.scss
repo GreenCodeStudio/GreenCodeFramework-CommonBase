@@ -12,11 +12,12 @@ body {
         margin: 0;
         padding: 0;
     }
->header{
-    button.hamburgerMenu{
-        display: none;
+
+    > header {
+        button.hamburgerMenu:not(.dummyClass) {
+            display: none;
+        }
     }
-}
 
     > aside {
         position: fixed;
@@ -304,7 +305,7 @@ body {
 
     body {
         > header {
-            button.hamburgerMenu {
+            button.hamburgerMenu:not(.dummyClass) {
                 display: inline-block;
                 float: left;
             }

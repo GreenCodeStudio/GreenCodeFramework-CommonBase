@@ -3,20 +3,65 @@ body {
     > header {
         background: var(--main);
         height: 31px;
-        h1{
+
+        h1 {
             margin: 0 8px;
         }
+
         .mainSearch {
-        input{
-            height: 31px;
-        }}
-        .loginInfo{
-            .headerButton{
+            input {
+                height: 31px;
+            }
+
+            .list {
+                border: 1px solid rgba(#000, .5);
+                backdrop-filter: var(--standardBackdropFilter);
+                .item {
+                    padding: 10px 15px;
+                    color: inherit;
+
+                    &:hover, &.active {
+                        background: rgba(#000, .2);
+                    }
+
+                    &:active {
+                        background: rgba(#000, .2);
+                    }
+
+                }
+            }
+        }
+
+        .loginInfo {
+            .headerButton {
                 margin: 0 5px;
             }
         }
-        @media (max-width: 550px) {
 
+
+    }
+}
+
+.loginInfo {
+    .loginInfo-expandable {
+
+        backdrop-filter: var(--standardBackdropFilter);
+        border: 1px solid;
+        margin-left: -152px;
+
+        > * {
+            margin: 8px;
+            width: calc(100% - 16px);
+            display: block;
+            box-sizing: border-box;
+        }
+    }
+}
+
+@media (max-width: 550px) {
+    body {
+
+        > header {
             .mainSearch {
                 > input {
                     width: 40px;
@@ -29,21 +74,6 @@ body {
                     }
                 }
             }
-        }
-    }
-}
-.top-expandable {
-    .list{
-
-        backdrop-filter: var(--standardBackdropFilter);
-        border: 1px solid;
-        margin-left: -152px;
-
-        >*{
-            margin: 8px;
-            width: calc(100% - 16px);
-            display: block;
-            box-sizing: border-box;
         }
     }
 }

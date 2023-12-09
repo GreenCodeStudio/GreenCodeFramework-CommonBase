@@ -24,8 +24,8 @@ body {
         }
     }
 }
-.top-expandable {
-    .list{
+.loginInfo {
+    .loginInfo-expandable{
 
         background: var(--background);    border-top: 1px solid #ffffff;
         border-left: 1px solid #ffffff;
@@ -34,11 +34,5 @@ body {
         box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
         margin-left: -155px;
 
-        >*{
-            margin: 8px;
-            width: calc(100% - 16px);
-            display: block;
-            box-sizing: border-box;
-        }
     }
 }

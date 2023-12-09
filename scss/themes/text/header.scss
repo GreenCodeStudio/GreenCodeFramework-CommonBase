@@ -48,13 +48,21 @@ body {
         }
     }
 }
-.top-expandable {
-    .list{
+.loginInfo {
+    .headerButton{
+        span{
+            width: 3ex;
+            display: inline-block;
+            line-height: 1;
+        }
+    }
+    .loginInfo-expandable{
 
 
-        margin-left: -152px;
+        margin-left: -24ex;
         background: var(--main);
         text-align: left;
+        width: 30ex;
 .icon-user{
     &::before{
         width: 3ex;
