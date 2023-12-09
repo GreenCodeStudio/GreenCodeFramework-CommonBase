@@ -5,7 +5,7 @@ use Core\Formatter;
 ?>
 <!DOCTYPE html>
 <html data-layout="<?=($userData?->preferences["CommonBase.layout"])??'modern'?>">
-<head>
+<head><?=var_dump($userData?->preferences)?>
     <title><?= htmlspecialchars($this->getTitle()) ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

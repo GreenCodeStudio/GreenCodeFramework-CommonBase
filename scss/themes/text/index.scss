@@ -7,9 +7,11 @@
     --textColor: #fff;
     --textSecondColor: #fff;
     --menuColor: #000000;
+    font-size: 14px;
 
     html, body {
         font-family: monospace;
+        line-height: 1;
     }
 
     body > aside {
@@ -75,6 +77,43 @@
         }
         &::after{
             content: '<';
+        }
+    }
+
+    data-view {
+        table-view {
+            --rowHeight: 28px;
+            .head {
+                height: 1rem;
+                background: var(--background);
+                .column {
+                    padding:0 ;
+                    height: 1rem;
+                }
+            }
+            .body {
+                .tr{
+                    &.selectMain, &:focus {
+                        outline: none;
+                        background: red;
+                    }
+                }
+                .td {
+                    &.icon{
+                        font-size:0.8em;
+                    }
+                    padding: 0;
+                    margin-top: 14px;
+                    height: 14px;
+                    button, .button {
+                        font-size: 12px;
+                        padding: 0;
+                        &.icon{
+                            font-size: 0.8em;
+                        }
+                    }
+                }
+            }
         }
     }
 }

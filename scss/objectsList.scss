@@ -10,6 +10,7 @@ data-view {
         display: block;
         flex-grow: 1;
         overflow: auto;
+        --rowHeight: 41px;
 
         .bodyContainer {
 
@@ -104,7 +105,7 @@ data-view {
                     display: block;
                     flex: 0 0 auto;
                     box-sizing: border-box;
-                    height: 41px;
+                    height: var(--rowHeight);
 
                     button, .button {
                         font-size: 16px;

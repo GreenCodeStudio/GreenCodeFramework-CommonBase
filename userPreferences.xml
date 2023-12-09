@@ -6,6 +6,8 @@
         <select>
             <option>metro</option>
             <option>win98</option>
+            <option>text</option>
+            <option>fusion</option>
         </select>
     </preference>
 </root>

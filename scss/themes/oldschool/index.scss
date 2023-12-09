@@ -1,4 +1,4 @@
-[data-layout="oldschool"] {
+[data-layout="win98"] {
     --main: #849211;
     --mainLight: #c0c0c0;
     --second: #000000;
@@ -81,8 +81,9 @@
             li {
                 a, span {
                     cursor: default;
-                    color:#000;
+                    color: #000;
                 }
+
                 a {
                     &:hover {
                         color: #fff;
@@ -114,20 +115,27 @@
 
         tbody td, .body .tr:not(.dummy-class):not(.dummy-class2) {
             background: transparent;
-            &.selected{
+
+            &.selected {
                 background: #aaaaaa;
-                color:#ffffff;
+                color: #ffffff;
             }
-            &:focus{
+
+            &:focus {
                 outline: 1px dotted;
             }
-            .td{
+            &.selectedMain{
+                outline: 1px dotted;
+            }
+
+            .td {
                 padding: 6px 10px;
                 background: transparent;
             }
         }
-        &:focus-within{
-            .body .tr.selected:not(.dummy-class):not(.dummy-class2){
+
+        &:focus-within {
+            .body .tr.selected:not(.dummy-class):not(.dummy-class2) {
                 background: #0000ff;
             }
         }
@@ -136,33 +144,65 @@
             margin: 0;
         }
     }
-    body > .mainContent > .topBar{
+
+    body > .mainContent > .topBar {
         backdrop-filter: none;
         background: var(--background);
     }
-    .contextMenu{
+
+    .contextMenu {
         border-top: 1px solid #ffffff;
         border-left: 1px solid #ffffff;
         border-bottom: 1px solid #000000;
         border-right: 1px solid #000000;
         box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
         background: var(--background);
-        li{
+
+        li {
             cursor: default;
-            &:hover, &:focus{
+
+            &:hover, &:focus {
                 background: var(--main);
-                color:#fff;
+                color: #fff;
                 outline: none;
             }
         }
 
     }
-    .input, input:not(.browsersDefault), textarea:not(.browsersDefault), select:not(.browsersDefault){
+
+    .input, input:not(.browsersDefault), textarea:not(.browsersDefault), select:not(.browsersDefault) {
         background: white;
         border-top: 1px solid #808080;
         border-left: 1px solid #808080;
         border-bottom: 1px solid #ffffff;
         border-right: 1px solid #ffffff;
         box-shadow: 1px 1px 0 #000000 inset, -1px -1px 0 #dfdfdf inset;
+    }
+
+    .top-expandable {
+        display: inline-block;
+
+        > .list {
+            background: var(--background);
+        }
+    }
+
+    data-view {
+        table-view {
+            --rowHeight: 30px;
+            .head {
+                background: var(--background);
+                .column {
+                   padding:0 8px ;
+                }
+            }
+            .body {
+                .td {
+                    button, .button {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
     }
 }
