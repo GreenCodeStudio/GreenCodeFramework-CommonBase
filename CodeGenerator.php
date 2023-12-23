@@ -166,7 +166,7 @@ class CodeGenerator
     {
         $required = (strtolower($col->null) != 'yes');
         if (!empty($reference)) {
-            return '<select data-foreign-key="'.$reference->attributes()->name.'" name="'.$col->name.'" '.($required ? 'required' : '').'></select>';
+            return '<select data-foreign-key="'.$reference->attributes()->name.'" name="'.$col->name.'" '.($required ? 'required' : '').' > </select>';
         } else {
             switch ($col->type->__toString()) {
                 case "bool":

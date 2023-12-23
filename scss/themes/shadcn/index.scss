@@ -1,0 +1,121 @@
+
+[data-layout="shadcn"] {
+
+        --main: rgb(244, 244, 245);
+--backgroundMain:#fff;
+--menuColor:#fff;
+    color:rgb(9, 9, 11);
+    font-family: Geist;
+    @import "./form.scss";
+    @import "./font.scss";
+    @import "./objectsList.scss";
+    @import "./contextMenu.scss";
+    body {
+        font-family: Geist;
+        >header{
+            height: 64px;
+            border-bottom: 1px solid #e4e4e7;
+            align-items: center;
+            padding: 0 16px;
+            width: 100%;
+            box-sizing: border-box;
+            .headerButton{
+                width: 32px;
+                height: 32px;
+                background: var(--main);
+                border:none;
+                border-radius: 50%;
+                box-sizing: border-box;
+                padding: 0;
+                line-height: 32px;
+                font-size: 14px;
+                text-align: center;
+                margin-left: 16px;
+                color:rgb(9, 9, 11);
+            }
+            .loginInfo-expandable{
+                box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.1) 0px 2px 4px -2px;
+                border-radius: 6px;
+                padding: 4px;
+                background: #fff;
+            }
+        }
+        > aside {
+            top: 65px;
+            nav {
+                padding: 8px 12px;
+                ul {
+                    li {
+                        a,span {
+                            padding: 8px 16px;
+                            font-size: 14px;
+                            font-weight: 500;
+                            line-height: 20px;
+                            border-radius: 6px;
+                            transition-property: color,background-color,border-color,text-decoration-color,fill,stroke;
+                            transition-timing-function: cubic-bezier(.4,0,.2,1);
+                            transition-duration: .15s;
+
+                        }
+                    }
+                }
+            }
+        }
+        .mainContent{
+            margin-top: calc(65px + 2.5em);
+            >.topBar{
+                top: 65px;
+                border: none;
+                .breadcrumb{
+                    background: transparent;
+                    ul{
+                        background: rgb(244, 244, 245);
+                        width: auto;
+                        border-radius: 6px;
+                        display: inline-flex;
+                        padding: 4px;
+                        gap: 4px;
+                        li{
+                            border-radius: 6px;
+                            font-size: 14px;
+                            a:hover, a:focus, &:last-of-type a{
+
+
+                                    background: #fff;
+
+                            }
+                            a{
+                                clip-path: none;
+                                padding: 4px 12px;
+                                margin: 0;
+                                line-height: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+            .page{
+                .topBarButtons{
+                    top: 64px;
+                    right: 16px;
+                }
+            }
+        }
+    }
+    section.card{
+box-shadow:    rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
+border-radius:12px;
+        border:0.66px solid rgb(228, 228, 231);
+        padding: 24px;
+        margin: 24px;
+        header{
+            border: none;
+        }
+        footer{
+            border:none;
+        }
+        h1{
+            font-size:24px;
+        }
+    }
+}

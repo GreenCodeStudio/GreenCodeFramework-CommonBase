@@ -7,7 +7,7 @@
             <option>metro</option>
             <option>win98</option>
             <option>text</option>
-            <option>vision</option>
+            <option>shadcn</option>
         </select>
     </preference>
 </root>

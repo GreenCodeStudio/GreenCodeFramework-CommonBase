@@ -1,0 +1,39 @@
+.input{
+    box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    background-color: transparent;
+    border: 0.66px solid rgb(228, 228, 231);
+    border-radius: 6px;
+    color:rgb(9, 9, 11);
+    outline:none;
+    box-sizing: border-box;
+    &:focus{
+        outline:none;
+       box-shadow:rgb(255, 255, 255) 0px 0px 0px 0px, rgb(161, 161, 170) 0px 0px 0px 1px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    }
+}
+
+.button{
+    background: rgba(24, 24, 27, 0.992);
+    color:rgb(250, 250, 250);
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+form{
+    label{
+        display: block;
+        margin-bottom: 24px;
+        span{
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+        }
+    }
+}
