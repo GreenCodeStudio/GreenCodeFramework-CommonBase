@@ -51,10 +51,10 @@ class CodeGenerator
             mkdir($path.'/Test/Selenium', 0777, true);
         }
 
-        if (!file_exists($path.'/Views/'.$name.'List.php')) {
+        if (!file_exists($path.'/Views/'.$name.'List.mpts')) {
             file_put_contents($path.'/Views/'.$name.'List.mpts', $this->makeViewList($namespace, $name, $table));
         }
-        if (!file_exists($path.'/Views/'.$name.'Edit.php')) {
+        if (!file_exists($path.'/Views/'.$name.'Edit.mpts')) {
             file_put_contents($path.'/Views/'.$name.'Edit.mpts', $this->makeViewEdit($namespace, $name, $table));
         }
         if (!file_exists($path.'/Controllers/'.$name.'Controller.php')) {
@@ -114,10 +114,10 @@ class CodeGenerator
             $title = $name;
 
         return '<div class="topBarButtons">
-    <a href="/'.$name.'/add" class="button"><span class="icon-add"></span> {{t("CommonBase.add")}}</a>
+    <a href="/'.$name.'/add" class="button action-add"><span class="icon-add"></span> {{t("CommonBase.add")}}</a>
 </div>
 <div class="grid page-'.$name.'  page-'.$name.'-list">
-    <section class="card" data-width="6">
+    <section class="card action-view" data-width="6">
         <header>
             <h1>{{t("'.$namespace.'.'.$name.'List.header")}}</h1>
         </header>
@@ -148,11 +148,11 @@ class CodeGenerator
         return '<form>
     <div class="topBarButtons">
         <a href="/'.$name.'/" class="button"><span class="icon-cancel"></span>{{t("CommonBase.cancel")}}</a>
-        <button class="button"><span class="icon-save"></span>{{t("CommonBase.save")}}</button>
+        <button class=("button action-":type)><span class="icon-save"></span>{{t("CommonBase.save")}}</button>
     </div>
     <div class="grid page-'.$name.' page-'.$name.'-edit">
         <input name="id" type="hidden" />
-        <section class="card" data-width="6">
+        <section class=("card action-":type) data-width="6">
             <header>
                 <h1>'.$title.'</h1>
             </header>
@@ -647,6 +647,7 @@ export class index {
                         name: TCommonBase("edit"),
                         icon: \'icon-edit\',
                         href: "/'.$name.'/edit/" + rows[0].id,
+                        action:"edit"
                     });
                 }
             }
