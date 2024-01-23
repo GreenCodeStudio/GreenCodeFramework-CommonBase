@@ -1,0 +1,52 @@
+table {
+    tbody {
+        tr {
+            &:nth-child(2n) {
+                background: rgba(#000000, .2);
+
+                &:hover {
+                    background: rgba(#000000, .3);
+                }
+            }
+
+            &:nth-child(2n+1) {
+                background: rgba(#000000, .05);
+
+                &:hover {
+                    background: rgba(#000000, .25);
+                }
+            }
+
+            &.selected {
+                &:nth-child(2n) {
+                    background: hsla(240, 0%, 40%, .5);
+
+                    &:hover {
+                        background: hsla(240, 0%, 35%, .5);
+                    }
+                }
+
+                &:nth-child(2n+1) {
+                    background: hsla(240, 0%, 47.5%, .5);
+
+                    &:hover {
+                        background: hsla(240, 0%, 37.5%, .5);
+                    }
+                }
+            }
+
+            &.selectedMain, &:focus {
+                outline: 2px black dashed;
+            }
+        }
+    }
+    tfoot {
+        background: rgba(#000000, .05);
+        border-top: solid 2px #bbb;
+
+        &:hover {
+            background: rgba(#000000, .25);
+        }
+
+    }
+}

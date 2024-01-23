@@ -1,0 +1,42 @@
+table{
+
+    border: 1px solid #e4e4e7;
+    border-radius: 6px;
+    thead{
+
+        background: #fff;
+        height: 40px;
+        color:rgb(113, 113, 122);
+        &:hover{
+            background: var(--main);
+        }
+        th{
+            background: transparent;
+            color:inherit;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+    tr {
+        border-top: 1px solid #e4e4e7;
+
+        &:last-of-type {
+            border-bottom: 1px solid #e4e4e7;
+        }
+
+        &:hover {
+            background: rgb(244, 244, 245);
+        }
+
+
+
+        td {
+
+            padding: 0.5rem;
+            font-size: 14px;
+            line-height: 24px;
+        }
+    }
+}

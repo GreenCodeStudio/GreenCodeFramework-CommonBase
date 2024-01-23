@@ -5,24 +5,30 @@
     @import "./modal";
     @import "./objectsList";
     @import "./header";
-.action-add{
-    --main: #1be7ee;
-    --mainLight: #8fffe5;
-}
-    .action-edit{
+    @import "./table";
+
+    .action-add {
+        --main: #1be7ee;
+        --mainLight: #8fffe5;
+    }
+
+    .action-edit {
         --main: #1bee26;
         --mainLight: #96ff8f;
     }
-    .action-view{
+
+    .action-view {
         --main: #d7ee1b;
         --mainLight: #e0ff8f;
     }
-    .action-delete{
+
+    .action-delete {
         --main: #ee1b1b;
         --mainLight: #ff8f8f;
     }
+
     .card {
-        >header{
+        > header {
             border-top: 10px solid var(--main);
             margin-top: -10px;
         }

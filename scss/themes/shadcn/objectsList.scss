@@ -1,23 +1,29 @@
 data-view {
     border-color: #e4e4e7;
     border-radius: 6px;
+    height: calc(100vh - 265px);
+
     table-view {
         margin-right: -1px;
+
         .head {
             background: #fff;
             height: 40px;
-            color:rgb(113, 113, 122);
-            &:hover{
+            color: rgb(113, 113, 122);
+
+            &:hover {
                 background: var(--main);
             }
-            .column{
+
+            .column {
                 background: transparent;
-                color:inherit;
+                color: inherit;
                 height: 40px;
                 line-height: 40px;
                 font-size: 14px;
                 font-weight: 500;
             }
+
             .column.ableToSort {
                 &:hover {
                     background: rgb(244, 244, 245);
@@ -33,7 +39,8 @@ data-view {
     table-view, list-view {
         .body {
             .tr {
-border-top:1px solid #e4e4e7;
+                border-top: 1px solid #e4e4e7;
+
                 &:last-of-type {
                     border-bottom: 1px solid #e4e4e7;
                 }
@@ -45,25 +52,27 @@ border-top:1px solid #e4e4e7;
                 &.selected {
                     background: rgb(244, 244, 245);
 
-                        &:hover {
-                            background: rgb(244, 244, 245);
-                        }
+                    &:hover {
+                        background: rgb(244, 244, 245);
+                    }
                 }
 
                 &.selectedMain, &:focus {
                     outline: 2px black dashed;
                     outline-offset: -2px;
                 }
-.td{
 
-    padding: 0.5rem;
-    font-size: 14px;
-    line-height: 24px;
-}
-                .actions{
-                   // padding-top: 0;
+                .td {
+
+                    padding: 0.5rem;
+                    font-size: 14px;
+                    line-height: 24px;
+                }
+
+                .actions {
+                    // padding-top: 0;
                     //padding-bottom: 0;
-                    .button{
+                    .button {
                         padding: 4px;
                         font-size: 14px;
                         line-height: 14px;
@@ -73,10 +82,10 @@ border-top:1px solid #e4e4e7;
         }
 
 
-
     }
-    .foot{
-        border:none;
+
+    .foot {
+        border: none;
     }
 }
 
