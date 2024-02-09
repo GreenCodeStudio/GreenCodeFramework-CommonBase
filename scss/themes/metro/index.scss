@@ -10,21 +10,37 @@
     .action-add {
         --main: #1be7ee;
         --mainLight: #8fffe5;
+        @media screen and (prefers-color-scheme: dark) {
+            --main: #0d6d70;
+            --mainLight: #108387;
+        }
     }
 
     .action-edit {
         --main: #1bee26;
         --mainLight: #96ff8f;
+        @media screen and (prefers-color-scheme: dark) {
+            --main: #0d7012;
+            --mainLight: #108716;
+        }
     }
 
     .action-view {
         --main: #d7ee1b;
         --mainLight: #e0ff8f;
+        @media screen and (prefers-color-scheme: dark) {
+            --main: #646f0d;
+            --mainLight: #788610;
+        }
     }
 
     .action-delete {
         --main: #ee1b1b;
         --mainLight: #ff8f8f;
+        @media screen and (prefers-color-scheme: dark) {
+            --main: #6f0d0d;
+            --mainLight: #861010;
+        }
     }
 
     .card {
