@@ -784,7 +784,7 @@ module.exports = class '.$name.'Test extends BaseSeleniumTest {
 
     async navigateToList() {
         E2eTestLog.header("Navigate to list", 3)
-        await this.clickElement("a[href=\"/'.$name.'\"]")
+        await this.clickElement("a[href=\\"/'.$name.'\\"]")
         await this.asleep(1000);
         await this.takeScreenshot("'.$name.'-list-before");
         for (const name in this.exampleItem) {
@@ -797,7 +797,7 @@ module.exports = class '.$name.'Test extends BaseSeleniumTest {
 
     async addNew(item, assert) {
         E2eTestLog.header(`Add new (assert: ${assert})`, 3)
-        await this.clickElement("a[href="/'.$name.'/add"]")
+        await this.clickElement("a[href=\\"/'.$name.'/add\\"]")
         await this.asleep(1000);
         await this.takeScreenshot("'.$name.'-add-before", assert);
         for (const name in item) {
