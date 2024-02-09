@@ -12,6 +12,7 @@ namespace CommonBase;
 use Core\ApiController;
 use Core\Database\DB;
 use Core\Database\Migration;
+use MKrawczyk\FunQuery\FunQuery;
 
 class CodeGenerator
 {
@@ -56,6 +57,9 @@ class CodeGenerator
         }
         if (!file_exists($path.'/Views/'.$name.'Edit.mpts')) {
             file_put_contents($path.'/Views/'.$name.'Edit.mpts', $this->makeViewEdit($namespace, $name, $table));
+        }
+        if (!file_exists($path.'/Views/'.$name.'Show.mpts')) {
+            file_put_contents($path.'/Views/'.$name.'Show.mpts', $this->makeViewShow($namespace, $name, $table));
         }
         if (!file_exists($path.'/Controllers/'.$name.'Controller.php')) {
             file_put_contents($path.'/Controllers/'.$name.'Controller.php', $this->makeController($namespace, $name, $table));
@@ -162,6 +166,41 @@ class CodeGenerator
 </form>';
     }
 
+    function makeViewShow(string $namespace, string $name, $table)
+    {
+        $form = '';
+        $title = '{{t("'.$namespace.'.'.$name.'.'.$name.'")}}';
+        foreach ($table->column as $column) {
+            if ($column->autoincrement == 'YES') continue;
+            if (in_array($column->name->__toString(), $this->hiddenColumns)) continue;
+            $reference = null;
+            foreach ($table->index as $index) {
+                if ($index->type == 'FOREIGN' && $index->element->__toString() == $column->name->__toString()) {
+                    $reference = $index->reference;
+                }
+            }
+            $columnTitle = '{{t("'.$namespace.'.'.$name.'.'.$column->name.'")}}';
+            $form .= '<div class="pseudoLabel">
+            <span>'.$columnTitle.':</span>
+            <strong>{{item.'.$column->name.'}}</strong>
+        </div>';
+        }
+        return '<form>
+    <div class="topBarButtons">
+        <a href=("/'.$name.'/edit/":item.id) class="button action-edit"><span class="icon-edit"></span>{{t("CommonBase.edit")}}</a>
+    </div>
+    <div class="grid page-'.$name.' page-'.$name.'-show">
+        <input name="id" type="hidden" />
+        <section class=("card action-":type) data-width="6">
+            <header>
+                <h1>'.$title.'</h1>
+            </header>
+          '.$form.'
+        </section>
+    </div>
+</form>';
+    }
+
     function generateInput($col, $reference = null)
     {
         $required = (strtolower($col->null) != 'yes');
@@ -253,6 +292,22 @@ class '.$name.'Controller extends \Common\PageStandardController
         $this->pushBreadcrumb([\'title\' => \'Dodaj\', \'url\' => \'/'.$name.'/add\']);
     }
     '.$add_data.'
+    
+        /**
+     * @param int $id
+     */
+    function show(int $id)
+    {
+        $this->will(\''.$name.'\', \'show\');
+                $'.$name.' = new \\'.$namespace.'\\'.$name.'();
+        $data = $'.$name.'->getById($id);
+        if ($data == null)
+            throw new NotFoundException();
+            
+        $this->addView(\''.$namespace.'\', \''.$name.'Show\', [\'item\' => $data]);
+        $this->pushBreadcrumb([\'title\' => \''.$name.'\', \'url\' => \'/'.$name.'\']);
+        $this->pushBreadcrumb([\'title\' => \'Szczegóły\', \'url\' => \'/'.$name.'/show/\'.$id]);
+    }
 }
 ';
     }
@@ -687,7 +742,13 @@ export class add {
     {
         $filename = $path.'/permissions.xml';
         $xml = simplexml_load_string(file_get_contents($filename));
+        foreach ($xml->group as $g) {
+            if ($g->name == $name) {
+                return;
+            }
+        }
         $group = $xml->addChild('group');
+
         $group->name = $name;
         $group->title = $title;
         $group->permission[0]->name = 'show';
@@ -705,6 +766,13 @@ export class add {
     {
         $filename = $path.'/menu.xml';
         $xml = simplexml_load_string(file_get_contents($filename));
+        $group = null;
+        foreach ($xml->group as $g) {
+            if ($g->name == $name) {
+                return;
+            }
+        }
+        $group = $xml->addChild('group');
         $group = $xml->addChild('element');
         $group->link = '/'.$name;
         $group->title = $title;
@@ -715,6 +783,11 @@ export class add {
     {
         $filename = $path.'/i18n.xml';
         $xml = simplexml_load_string(file_get_contents($filename));
+        foreach ($xml->node as $g) {
+            if ($g->name == $name) {
+                return;
+            }
+        }
         $group = $xml->addChild('node');
         $group->addAttribute('name', $name);
         $this->genereateI18nNode($group, $name);
