@@ -36,6 +36,10 @@
         <value lang="en">Details</value>
         <value lang="pl">Szczegóły</value>
     </node>
+    <node name="show">
+        <value lang="en">Show</value>
+        <value lang="pl">Pokaż</value>
+    </node>
     <node name="print">
         <value lang="en">Print</value>
         <value lang="pl">Drukuj</value>
