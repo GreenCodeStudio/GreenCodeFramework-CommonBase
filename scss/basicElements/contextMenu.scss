@@ -8,7 +8,7 @@
     user-select: none;
     background: var(--background);
 
-    li {
+    li,a {
         display: flex;
         cursor: pointer;
         margin: 0;

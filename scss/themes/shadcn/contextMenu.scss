@@ -10,7 +10,7 @@ li {
             outline: none;
         }
 
-        &:active {
+        &:active, &.active {
             background: rgb(244, 244, 245);
         }
         &.hasSubmenu::after {

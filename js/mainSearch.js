@@ -22,8 +22,18 @@ export class MainSearch {
     }
 
     onkeydown(e) {
-        if (e.code === 'Enter') {
-            this.getSelected().click();
+        if (e.code === 'Enter' || e.code=='NumpadEnter') {
+            if(e.ctrlKey)
+            {
+                window.open(this.getSelected().href, '_blank');
+            }
+            else if(e.shiftKey)
+            {
+                window.open(this.getSelected().href, '_blank');
+            }
+            else {
+                this.getSelected().click();
+            }
         } else if (e.code === 'ArrowDown') {
             let current = this.getSelected();
             let next = current.nextElementSibling ? current.nextElementSibling : this.container.querySelector('a.item');
@@ -45,7 +55,9 @@ export class MainSearch {
     }
 
     renderLine(item) {
-        const line = document.create('a.item', {href: item.link, text: item.name});
+        const line = document.create('a.item', {href: item.link});
+        line.addChild('.iconPlaceholder')
+        line.addChild('.content',{text: item.name})
         line.onmousemove = () => this.setSelected(line);
         line.onclick = () => {
             line.focus();
