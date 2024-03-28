@@ -4,6 +4,7 @@ import {pageManager} from "../../Core/js/pageManager";
 import {MainSearch} from "./mainSearch";
 import "./FileUploader";
 import {NotificationsRenderer} from "./NotificationsRenderer";
+import {modal} from "../../Core/js/modal";
 
 document.querySelectorAll('.logoutMyselfBtn').forEach(b => b.onclick = async () => {
     await Ajax.Authorization.logout();
