@@ -108,7 +108,15 @@ config-popup{
     border: 1px solid rgba(#000, .5);
     backdrop-filter: var(--standardBackdropFilter);
     padding: 16px;
+    overflow: auto;
+    max-height: 60vh;
+    max-height: 60cqh;
     label{
         //display: block;
+    }
+    table{
+        th{
+            top:-16px;
+        }
     }
 }
