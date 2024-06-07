@@ -8,13 +8,53 @@
     --textSecondColor: #fff;
     --menuColor: #eee;
 
-@import "header";
-    .card {
-        border-top: 1px solid #ffffff;
-        border-left: 1px solid #ffffff;
-        border-bottom: 1px solid #000000;
-        border-right: 1px solid #000000;
+    body {
+        font-family: Tahoma, Corbel, sans-serif;
+    }
+
+    @import "header";
+
+
+    ::-webkit-scrollbar{
+        background: #c0c0c0;
+        border-top: 1px solid #c0c0c0;
+        border-left: 1px solid #c0c0c0;
+        border-bottom: 1px solid #020202;
+        border-right: 1px solid #020202;
+    }
+    ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-button{
+        background: #c0c0c0;
+        border-top: 1px solid #c0c0c0;
+        border-left: 1px solid #c0c0c0;
+        border-bottom: 1px solid #020202;
+        border-right: 1px solid #020202;
         box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
+        &:active{
+            border-top: 1px solid #020202;
+            border-left: 1px solid #020202;
+            border-bottom: 1px solid #c0c0c0;
+            border-right: 1px solid #c0c0c0;
+            box-shadow: 1px 1px 0 #808080 inset, -1px -1px 0 #dfdfdf inset;
+
+        }
+    }
+    ::-webkit-scrollbar-track{
+        background: #dcdfe0;
+    }
+
+    .card {
+        //border-top: 1px solid #ffffff;
+        //border-left: 1px solid #ffffff;
+        //border-bottom: 1px solid #000000;
+        //border-right: 1px solid #000000;
+        //box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
+
+        border-top: 1px solid #DEDFDF;
+        border-left: 1px solid #DEDFDF;
+        border-bottom: 1px solid #020202;
+        border-right: 1px solid #020202;
+        box-shadow: 1px 1px 0 #ffffff inset, -1px 0 0 #818181 inset, 0 -1px 0 #808080 inset;
+        //padding:1px;
     }
 
     .button, button:not(.browsersDefault):not(.swaggerContainer *) {
@@ -25,6 +65,7 @@
         box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
         transition: none;
         cursor: default;
+        font-family: inherit;
 
         &::before {
             display: none;
@@ -47,16 +88,27 @@
         }
     }
 
-    section.card > header {
-        background: var(--main);
-        padding: 2px;
-        margin: -8px -8px 10px -8px;
-        color: #fff;
-        font-size: 1em;
+    section.card {
+        > header {
 
-        h1 {
-            margin: 0;
+            background: var(--main);
+            padding: 2px;
+            margin: -8px -8px 10px -8px;
+            color: #fff;
             font-size: 1em;
+
+            h1 {
+                margin: 0;
+                font-size: 1em;
+                line-height: 19px;
+            }
+        }
+
+        > footer {
+            border-top: 1px solid #808080;
+            box-shadow: 0 1px 0 #ffffff inset;
+            margin-left: -9px;
+            margin-right: -9px;
         }
     }
 
@@ -104,6 +156,7 @@
             margin: 0;
             color: #000;
             position: sticky;
+            position: absolute;//todo do sticky
         }
 
         tbody td, .body .tr:not(.dummy-class):not(.dummy-class2) {
@@ -117,7 +170,8 @@
             &:focus {
                 outline: 1px dotted;
             }
-            &.selectedMain{
+
+            &.selectedMain {
                 outline: 1px dotted;
             }
 
@@ -170,19 +224,32 @@
         border-bottom: 1px solid #ffffff;
         border-right: 1px solid #ffffff;
         box-shadow: 1px 1px 0 #000000 inset, -1px -1px 0 #dfdfdf inset;
+        font-family: inherit;
     }
 
-
+    select:not(.browsersDefault) {
+        &::before {
+            content: 'aaa';
+            display: block;
+        }
+    }
 
     data-view {
+        border: none;
         table-view {
             --rowHeight: 30px;
+            margin-right: -6px;
+            margin-left: -6px;
+
+
             .head {
                 background: var(--background);
+
                 .column {
-                   padding:0 8px ;
+                    padding: 0 8px;
                 }
             }
+
             .body {
                 .td {
                     button, .button {
@@ -190,6 +257,42 @@
                     }
                 }
             }
+        }
+        .foot{
+            border-top:1px solid #808080;
+            border-left: 1px solid #808080;
+            border-bottom: 1px solid #ffffff;
+            border-right: 1px solid #ffffff;
+            margin-top: 4px;
+            margin-bottom: -6px;
+            margin-right: -6px;
+            margin-left: -6px;
+            padding: 4px;
+            form{
+                input{
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    body > .mainContent > .topBar .breadcrumb ul li a{
+        border:1px solid transparent;
+        clip-path: none;
+        margin: 1px;
+        &:hover, &:focus {
+            border-top-color: #ffffff;
+            border-left-color: #ffffff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            background: transparent;
+        }
+        &:active{
+            border-top-color: #808080;
+            border-left-color: #808080;
+            border-right-color: #ffffff;
+            border-bottom-color: #ffffff;
+            background: transparent;
         }
     }
 }
