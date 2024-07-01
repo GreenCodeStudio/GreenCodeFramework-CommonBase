@@ -115,8 +115,22 @@ config-popup{
         //display: block;
     }
     table{
+        table-layout: fixed;
         th{
             top:-16px;
+            &:nth-child(1){
+                width:64px;
+            }
+            &:nth-child(2){
+                width:auto;
+            }
+            &:nth-child(3){
+                width:256px;
+            }
+        }
+        tr{
+            td{
+            }
         }
     }
 }
