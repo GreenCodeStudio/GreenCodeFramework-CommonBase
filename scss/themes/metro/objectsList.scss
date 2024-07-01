@@ -111,6 +111,8 @@ config-popup{
     overflow: auto;
     max-height: 60vh;
     max-height: 60cqh;
+    max-width: 60vw;
+    max-width: 60cqw;
     label{
         //display: block;
     }
@@ -130,6 +132,7 @@ config-popup{
         }
         tr{
             td{
+                word-break: break-word;
             }
         }
     }
