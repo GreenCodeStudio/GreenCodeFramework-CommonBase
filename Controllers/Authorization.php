@@ -38,6 +38,11 @@ class Authorization extends PageStandardController
         $this->addView('CommonBase', 'resetPassword');
     }
 
+    public function resetPassword2(string $mail, ?int $code = null)
+    {
+        $this->addView('CommonBase', 'resetPassword2', ['mail' => $mail, 'code' => $code]);
+    }
+
     public function postAction()
     {
         require __DIR__.'/../Views/loginTemplate.php';

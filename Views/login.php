@@ -17,7 +17,7 @@
                 <button class="button">Loguj</button>
             </footer>
             <?php if (!empty($_ENV['smtp_host'])) { ?>
-                <a href="/Authorization/resetPassword">Zapomniałeś hasła?</a>
+                <a href="/Authorization/resetPassword" class="nativeLink">Zapomniałeś hasła?</a>
             <?php } ?>
     </section>
 </form>
