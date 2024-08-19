@@ -1,5 +1,6 @@
 .modalContainer {
     background: rgba(#000000, .5);
+    -webkit-backdrop-filter: grayscale(80%) blur(5px);
     backdrop-filter: grayscale(80%) blur(5px);
     transition: opacity 200ms ease-out;
 
