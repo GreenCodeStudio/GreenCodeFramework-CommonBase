@@ -193,6 +193,7 @@
     }
 
     body > .mainContent > .topBar {
+        -webkit-backdrop-filter: none;
         backdrop-filter: none;
         background: var(--background);
     }

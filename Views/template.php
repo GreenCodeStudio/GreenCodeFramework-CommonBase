@@ -21,17 +21,17 @@ use Core\Formatter;
         }
         echo '>';
     } ?>
-    <!-- Hotjar Tracking Code for https://emswarehouse.server.green-code.studio/ -->
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:2931395,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+<!--    <!-- Hotjar Tracking Code for https://emswarehouse.server.green-code.studio/ -->-->
+<!--    <script>-->
+<!--        (function(h,o,t,j,a,r){-->
+<!--            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};-->
+<!--            h._hjSettings={hjid:2931395,hjsv:6};-->
+<!--            a=o.getElementsByTagName('head')[0];-->
+<!--            r=o.createElement('script');r.async=1;-->
+<!--            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;-->
+<!--            a.appendChild(r);-->
+<!--        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');-->
+<!--    </script>-->
 </head>
 <body>
 <header>
@@ -43,6 +43,7 @@ use Core\Formatter;
         </div>
     <div class="loginInfo">
         <a class="headerButton" href="/User/myAccount"><span class="icon-user"></span></a>
+        <?php if(!empty($userData)){?>
         <div class="loginInfo-expandable">
             <span class="icon-user"><?= htmlspecialchars($userData->name.' '.$userData->surname) ?></span>
             <a href="/User/myAccount" class="button">Moje konto</a>
@@ -50,6 +51,7 @@ use Core\Formatter;
             <div class="button logoutMyselfBtn" title="Wyloguj"><span class="icon-logout"></span>Wyloguj</div>
 <!--            <button type="button" onclick="document.documentElement.classList.toggle('win98')">Wygląd klasyczny</button>-->
         </div>
+        <?php } ?>
     </div>
 </header>
 <aside data-views="aside"><?php $this->showViews('aside'); ?></aside>

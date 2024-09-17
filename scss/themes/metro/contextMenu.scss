@@ -1,5 +1,6 @@
 .contextMenu {
     border: 1px solid rgba(#000, .5);
+    -webkit-backdrop-filter: var(--standardBackdropFilter);
     backdrop-filter: var(--standardBackdropFilter);
     background: transparent;
 

@@ -87,6 +87,14 @@ data-view {
             }
         }
     }
+    .foot{
+        .buttonsBox{
+            display: contents;
+        }
+        button.active{
+            background: var(--main);
+        }
+    }
 }
 
 table {
@@ -106,9 +114,40 @@ config-popup{
     bottom: 51px;
     left: 20px;
     border: 1px solid rgba(#000, .5);
+    -webkit-backdrop-filter: var(--standardBackdropFilter);
     backdrop-filter: var(--standardBackdropFilter);
     padding: 16px;
+    overflow: auto;
+    max-height: 60vh;
+    max-height: 60cqh;
+    max-width: 60vw;
+    max-width: 60cqw;
     label{
         //display: block;
+    }
+    input[type="search"]{
+        width: 100%;
+        display: block;
+        margin: 0.25em 0;
+    }
+    table{
+        table-layout: fixed;
+        th{
+            top:-16px;
+            &:nth-child(1){
+                width:64px;
+            }
+            &:nth-child(2){
+                width:auto;
+            }
+            &:nth-child(3){
+                width:256px;
+            }
+        }
+        tr{
+            td{
+                word-break: break-word;
+            }
+        }
     }
 }

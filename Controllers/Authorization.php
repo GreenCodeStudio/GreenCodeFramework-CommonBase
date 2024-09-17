@@ -15,6 +15,7 @@ use Common\PageStandardController;
 
 class Authorization extends PageStandardController
 {
+
     public function index()
     {
         $this->addView('CommonBase', 'login');
@@ -29,6 +30,17 @@ class Authorization extends PageStandardController
         \Authorization\Authorization::loginByToken($token);
         header('Location:/');
         http_response_code(302);
+    }
+
+
+    public function resetPassword()
+    {
+        $this->addView('CommonBase', 'resetPassword');
+    }
+
+    public function resetPassword2(string $mail, ?int $code = null)
+    {
+        $this->addView('CommonBase', 'resetPassword2', ['mail' => $mail, 'code' => $code]);
     }
 
     public function postAction()
