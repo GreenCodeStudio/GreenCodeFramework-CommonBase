@@ -1,5 +1,6 @@
 {
     "dependencies": {
-        "geist": "^1.2.0"
+        "geist": "^1.2.0",
+        "fast-creator": "^1.0.0"
     }
 }
