@@ -6,7 +6,7 @@ function anyChildPermission($tree)
 {
     foreach ($tree as $element) {
         if (!empty($element->permission->group) && !empty($element->permission->name)) {
-            if (Authorization::getUserData()->permissions->can($element->permission->group, $element->permission->name))
+            if (Authorization::getUserData() && Authorization::getUserData()->permissions->can($element->permission->group, $element->permission->name))
                 return true;
         } else {
             return true;
@@ -19,8 +19,8 @@ function generateMenu($tree)
 {
     echo '<ul>';
     foreach ($tree as $element) {
-        if (!empty($element->permission->group) && !empty($element->permission->name)&&!empty(Authorization::getUserData())) {
-            if (!Authorization::getUserData()->permissions->can($element->permission->group, $element->permission->name))
+        if (!empty($element->permission->group) && !empty($element->permission->name)) {
+            if (!Authorization::getUserData()||!Authorization::getUserData()->permissions->can($element->permission->group, $element->permission->name))
                 continue;
         } else if (!isset($element->link) && isset($element->menu)) {
             if (!anyChildPermission($element->menu))
