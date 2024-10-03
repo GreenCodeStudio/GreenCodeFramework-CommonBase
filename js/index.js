@@ -139,7 +139,9 @@ window.addEventListener('keyup', e => {
 
     if (e.key == 'Alt') {
         for (const value of Object.values(letters)) {
-            value.actionLetter.replaceWith(document.createTextNode(value.actionLetter.textContent));
+            if(value.actionLetter) {
+                value.actionLetter.replaceWith(document.createTextNode(value.actionLetter.textContent));
+            }
         }
         letters = {};
     }
