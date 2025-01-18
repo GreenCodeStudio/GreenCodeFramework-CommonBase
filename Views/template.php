@@ -4,7 +4,7 @@ use Core\Formatter;
 
 ?>
 <!DOCTYPE html>
-<html data-layout="<?=($userData?->preferences["CommonBase.layout"])??'modern'?>">
+<html data-layout="<?=($userData?->preferences["CommonBase.layout"])??'metro'?>">
 <head>
     <title><?= htmlspecialchars($this->getTitle()) ?></title>
     <meta charset="UTF-8">
