@@ -57,25 +57,58 @@ pageManager.onLoad(() => document.body.classList.remove('hamburgerMenu-opened'))
 let subscribeNotificationsBtn = document.querySelector('.subscribe-notifications');
 if (subscribeNotificationsBtn) {
     subscribeNotificationsBtn.onclick = async e => {
-        let serviceWorkerRegistration = await window.swRegistratonPromise;
-        let options = {
-            userVisibleOnly: true,
-            applicationServerKey: 'BJWTv2cg7kvbTte6YxX3Ki5llUiCULS6QzBlNGT9MsUVXBIsAVZr--2mfNe4UQhqwHCMHzuEWPpnOrAfVrUR734'
-        };
-        if (serviceWorkerRegistration?.pushManager) {
-            let subscription = await serviceWorkerRegistration.pushManager.getSubscription();
-            if (subscription === null) {
-                subscription = await serviceWorkerRegistration.pushManager.subscribe(options);
-            }
-            Ajax.Notifications.subscribePush(subscription);
+        if ('cordova' in window) {
+
+            var push = PushNotification.init({
+                android: {
+                    senderID: window.firebaseSenderId
+                },
+                ios: {
+                    alert: 'true',
+                    badge: 'true',
+                    sound: 'true'
+                }
+            });
+
+            push.on('registration', function (data) {
+                console.log('Registration ID:', data.registrationId);
+                // Subscribe to a topic
+                push.subscribe('main', function () {
+                    console.log('Subscribed to topic: main');
+                }, function (e) {
+                    console.error('Failed to subscribe to topic:', e);
+                });
+            });
+
+            push.on('notification', function (data) {
+                console.log('Notification received:', data);
+            });
+
+            push.on('error', function (e) {
+                console.error('Push notification error:', e);
+            });
+
         } else {
-            if (document.location.protocol != 'https:') {
-                modal('Aby wysyłać powiadomienia, strona musi być uruchomiona przez https', 'warning', [{
-                    text: 'Przejdź na https',
-                    action: () => document.location = 'https://' + document.location.host
-                }, {text: 'Anuluj'}]);
+            let serviceWorkerRegistration = await window.swRegistratonPromise;
+            let options = {
+                userVisibleOnly: true,
+                applicationServerKey: 'BJWTv2cg7kvbTte6YxX3Ki5llUiCULS6QzBlNGT9MsUVXBIsAVZr--2mfNe4UQhqwHCMHzuEWPpnOrAfVrUR734'
+            };
+            if (serviceWorkerRegistration?.pushManager) {
+                let subscription = await serviceWorkerRegistration.pushManager.getSubscription();
+                if (subscription === null) {
+                    subscription = await serviceWorkerRegistration.pushManager.subscribe(options);
+                }
+                Ajax.Notifications.subscribePush(subscription);
             } else {
-                modal('Twoja przeglądarka nie obsługuje powiadomień', 'error');
+                if (document.location.protocol != 'https:') {
+                    modal('Aby wysyłać powiadomienia, strona musi być uruchomiona przez https', 'warning', [{
+                        text: 'Przejdź na https',
+                        action: () => document.location = 'https://' + document.location.host
+                    }, {text: 'Anuluj'}]);
+                } else {
+                    modal('Twoja przeglądarka nie obsługuje powiadomień', 'error');
+                }
             }
         }
     }

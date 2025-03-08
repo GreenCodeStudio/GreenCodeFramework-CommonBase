@@ -58,6 +58,7 @@ use Core\Formatter;
     window.DEBUG =<?=json_encode($this->isDebug())?>;
     window.initNotifications=<?=json_encode($notificationsList)?>;
     window.webSocketPort = <?=(int)$_ENV['websocketPort']?>;
+    window.firebaseSenderId = <?=json_encode($_ENV['firebase_sender_id'])?>;
     //]]>
 </script>
 <script src="/dist/main.js" type="text/javascript"></script>
