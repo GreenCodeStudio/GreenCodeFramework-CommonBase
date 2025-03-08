@@ -60,7 +60,7 @@ if (subscribeNotificationsBtn) {
         let serviceWorkerRegistration = await window.swRegistratonPromise;
         let options = {
             userVisibleOnly: true,
-            applicationServerKey: 'BOpw8ocFV02co1cg8h-WZvfiwys3CemOyGT2cDHsPezM5yCFjrQrQ1Dz8vlihX-H2_THV9169oS6Y03QKJAtBnU'
+            applicationServerKey: 'BJWTv2cg7kvbTte6YxX3Ki5llUiCULS6QzBlNGT9MsUVXBIsAVZr--2mfNe4UQhqwHCMHzuEWPpnOrAfVrUR734'
         };
         let subscription = await serviceWorkerRegistration.pushManager.getSubscription();
         if (subscription === null) {
