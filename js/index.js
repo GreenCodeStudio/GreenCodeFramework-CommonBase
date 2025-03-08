@@ -70,7 +70,7 @@ if (subscribeNotificationsBtn) {
     };
 }
 if ('serviceWorker' in navigator && !window.DEBUG) {
-    window.swRegistratonPromise = navigator.serviceWorker.register('/dist/serviceWorker.js', {scope: '/'});
+    window.swRegistratonPromise = navigator.serviceWorker.register('/serviceWorker.js?'+new Date(), {scope: '/'});
     window.swRegistratonPromise.catch(() => {
     });
 }
