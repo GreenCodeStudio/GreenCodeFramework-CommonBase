@@ -62,7 +62,7 @@ if (subscribeNotificationsBtn) {
             userVisibleOnly: true,
             applicationServerKey: 'BJWTv2cg7kvbTte6YxX3Ki5llUiCULS6QzBlNGT9MsUVXBIsAVZr--2mfNe4UQhqwHCMHzuEWPpnOrAfVrUR734'
         };
-        if (serviceWorkerRegistration.pushManager) {
+        if (serviceWorkerRegistration?.pushManager) {
             let subscription = await serviceWorkerRegistration.pushManager.getSubscription();
             if (subscription === null) {
                 subscription = await serviceWorkerRegistration.pushManager.subscribe(options);
@@ -88,7 +88,7 @@ if ('serviceWorker' in navigator && !window.DEBUG) {
 }
 window.addEventListener('beforeinstallprompt', (e) => {
     let btn = document.create('button.installPWA span.icon-install');
-    document.querySelector('body > header')?.insertBefore(btn, document.querySelector('body > header .tasks'));
+    document.querySelector('body > header .loginInfo-expandable')?.append(btn);
     btn.onclick = () => {
         e.prompt();
         btn.remove();
