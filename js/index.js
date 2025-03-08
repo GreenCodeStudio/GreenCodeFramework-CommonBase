@@ -62,15 +62,27 @@ if (subscribeNotificationsBtn) {
             userVisibleOnly: true,
             applicationServerKey: 'BJWTv2cg7kvbTte6YxX3Ki5llUiCULS6QzBlNGT9MsUVXBIsAVZr--2mfNe4UQhqwHCMHzuEWPpnOrAfVrUR734'
         };
-        let subscription = await serviceWorkerRegistration.pushManager.getSubscription();
-        if (subscription === null) {
-            subscription = await serviceWorkerRegistration.pushManager.subscribe(options);
+        if (serviceWorkerRegistration.pushManager) {
+            let subscription = await serviceWorkerRegistration.pushManager.getSubscription();
+            if (subscription === null) {
+                subscription = await serviceWorkerRegistration.pushManager.subscribe(options);
+            }
+            Ajax.Notifications.subscribePush(subscription);
+        } else {
+            if (document.location.protocol != 'https:') {
+                modal('Aby wysyłać powiadomienia, strona musi być uruchomiona przez https', 'warning', [{
+                    text: 'Przejdź na https',
+                    action: () => document.location = 'https://' + document.location.host
+                }, {text: 'Anuluj'}]);
+            } else {
+                modal('Twoja przeglądarka nie obsługuje powiadomień', 'error');
+            }
         }
-        Ajax.Notifications.subscribePush(subscription);
-    };
+    }
+
 }
 if ('serviceWorker' in navigator && !window.DEBUG) {
-    window.swRegistratonPromise = navigator.serviceWorker.register('/serviceWorker.js?'+new Date(), {scope: '/'});
+    window.swRegistratonPromise = navigator.serviceWorker.register('/serviceWorker.js?' + new Date(), {scope: '/'});
     window.swRegistratonPromise.catch(() => {
     });
 }
@@ -107,7 +119,7 @@ window.addEventListener('keydown', e => {
     }
     if (e.key == 'Alt') {
         for (let button of document.querySelectorAll('button, .button')) {
-            if(button.querySelector('.actionLetter')) continue;
+            if (button.querySelector('.actionLetter')) continue;
             let text = button.textContent;
             for (let letter of text) {
                 letter = letter.toLowerCase();
@@ -139,7 +151,7 @@ window.addEventListener('keyup', e => {
 
     if (e.key == 'Alt') {
         for (const value of Object.values(letters)) {
-            if(value.actionLetter) {
+            if (value.actionLetter) {
                 value.actionLetter.replaceWith(document.createTextNode(value.actionLetter.textContent));
             }
         }
