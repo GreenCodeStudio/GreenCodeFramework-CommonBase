@@ -54,39 +54,18 @@ addEventListener('click', e => {
     }
 });
 pageManager.onLoad(() => document.body.classList.remove('hamburgerMenu-opened'));
+
+addEventListener('message', (e) => {
+
+    if (e.data.type == 'notificationInitialized' && e.data.registrationId) {
+        Ajax.Notifications.subscribePush('android', {registrationId: e.data.registrationId});
+    }
+})
 let subscribeNotificationsBtn = document.querySelector('.subscribe-notifications');
 if (subscribeNotificationsBtn) {
     subscribeNotificationsBtn.onclick = async e => {
-        if ('cordova' in window) {
-
-            var push = PushNotification.init({
-                android: {
-                    senderID: window.firebaseSenderId
-                },
-                ios: {
-                    alert: 'true',
-                    badge: 'true',
-                    sound: 'true'
-                }
-            });
-
-            push.on('registration', function (data) {
-                console.log('Registration ID:', data.registrationId);
-                // Subscribe to a topic
-                push.subscribe('main', function () {
-                    console.log('Subscribed to topic: main');
-                }, function (e) {
-                    console.error('Failed to subscribe to topic:', e);
-                });
-            });
-
-            push.on('notification', function (data) {
-                console.log('Notification received:', data);
-            });
-
-            push.on('error', function (e) {
-                console.error('Push notification error:', e);
-            });
+        if (document.cookie.includes('cordova=1')) {
+            window.parent.postMessage({type: 'enableNotifications'}, "*");
 
         } else {
             let serviceWorkerRegistration = await window.swRegistratonPromise;
@@ -99,7 +78,7 @@ if (subscribeNotificationsBtn) {
                 if (subscription === null) {
                     subscription = await serviceWorkerRegistration.pushManager.subscribe(options);
                 }
-                Ajax.Notifications.subscribePush(subscription);
+                Ajax.Notifications.subscribePush('web', subscription);
             } else {
                 if (document.location.protocol != 'https:') {
                     modal('Aby wysyłać powiadomienia, strona musi być uruchomiona przez https', 'warning', [{
