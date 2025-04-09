@@ -1,4 +1,11 @@
 form {
+    &.form-submitting{
+        cursor: progress;
+        button{
+            cursor: wait;
+            pointer-events: none;
+        }
+    }
     label {
         display: table;
         width: 100%;
