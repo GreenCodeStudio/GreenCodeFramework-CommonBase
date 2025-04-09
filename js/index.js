@@ -83,7 +83,7 @@ if (subscribeNotificationsBtn) {
                 if (document.location.protocol != 'https:') {
                     modal('Aby wysyłać powiadomienia, strona musi być uruchomiona przez https', 'warning', [{
                         text: 'Przejdź na https',
-                        action: () => document.location = 'https://' + document.location.host
+                        onclick: () => document.location = document.querySelector('link[rel="canonical"]')?.href ?? ('https://' + document.location.host)
                     }, {text: 'Anuluj'}]);
                 } else {
                     modal('Twoja przeglądarka nie obsługuje powiadomień', 'error');

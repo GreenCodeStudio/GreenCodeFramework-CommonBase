@@ -14,7 +14,7 @@ use Core\Formatter;
     <link rel="shortcut icon" href="/dist/Common/icon.png">
     <link rel="icon" sizes="192x192" href="/dist/Common/icon192.png">
     <meta name="theme-color" content="#d7ee1b">
-    <?php foreach ($this->headLinks ?? [] as $link){
+    <?php foreach ($this->getHeadLinks() ?? [] as $link){
         echo '<link ';
         foreach ($link as $key=>$value){
             echo htmlspecialchars($key).'="'.htmlspecialchars($value).'" ';

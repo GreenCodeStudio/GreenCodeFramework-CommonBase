@@ -37,4 +37,5 @@ trait PageStandardControllerTrait
         }
         return $this->initInfo;
     }
+
 }
