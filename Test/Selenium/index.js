@@ -11,8 +11,8 @@ module.exports = class extends BaseSeleniumTest {
         await this.openURL('/')
         await this.asleep(1000);
         await this.takeScreenshot('loginPage', true);
-        await this.driver.findElement(By.css('[name="username"]')).sendKeys(process.argv[2]);
-        await this.driver.findElement(By.css('[name="password"]')).sendKeys(process.argv[3]);
+        await this.driver.findElement(By.css('[name="username"]')).sendKeys(process.argv[2]??'admin');
+        await this.driver.findElement(By.css('[name="password"]')).sendKeys(process.argv[3]??'admin');
         await this.asleep(1000);
         await this.takeScreenshot('loginPage-written');
         await this.driver.findElement(By.css('[name="password"]')).sendKeys(Key.RETURN);
