@@ -24,7 +24,39 @@
     padding: 8px 16px;
     border-radius: 6px;
 }
+.checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.15em;
+    height: 1.15em;
+    padding: 0;
+    position: relative;
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
 
+    &::before {
+        content: '';
+        display: none;
+        width: 0.4em;
+        height: 0.2em;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-bottom: 2px solid var(--main);
+        border-left: 2px solid var(--main);
+        border-top: none;
+        border-right: none;
+        border-radius: 0;
+        z-index: 1;
+        background: transparent;
+        transform: translate(40%, 60%) rotate(-45deg);
+    }
+    &:checked, &.checked {
+        background: var(--second);
+        &::before {
+            display: block;
+        }
+    }
+}
 form{
     label{
         display: block;

@@ -8,13 +8,16 @@
     --textSecondColor: #fff;
     --menuColor: #000000;
     font-size: 14px;
-@import "header";
+    @import "header";
+
     html, body {
         font-family: monospace;
         line-height: 1;
     }
 
     body > aside {
+        top: 1em;
+
         nav {
             ul {
                 li {
@@ -28,15 +31,48 @@
         }
     }
 
-    input:not(.browserDefault).input {
+    body > .mainContent {
+        margin-top: 2em;
+        > .topBar {
+            top: 1em;
+            background: var(--main);
+
+            .breadcrumb {
+
+                ul {
+
+                    li {
+                        a {
+                            line-height: 1;
+                        }
+                    }
+                }
+            }
+        }
+        .page{
+            .topBarButtons{
+                top: 1em;
+                padding: 0;
+                .button{
+padding: 0;
+                    line-height: 1;
+                }
+            }
+        }
+    }
+
+    input:not(.browserDefault), .input {
         font: inherit;
         background: transparent;
         border: none;
         padding: 0;
         line-height: 1;
+        appearance: none;
+        -webkit-appearance: none;
 
-        &::before {
-            content: '['
+        &:focus {
+            outline: none;
+            background: var(--mainLight);
         }
     }
 
@@ -58,59 +94,90 @@
                 content: '-----------'
             }
         }
-        p{
+
+        p {
             margin: 1em 0;
         }
-        >footer{
+
+        > footer {
             border: none;
+
             &:before {
                 content: '-----------';
                 display: block;
             }
         }
     }
-    .button{
+
+    .button {
         background: transparent;
         border: none;
         font: inherit;
         color: inherit;
+
         &:before {
             content: '>';
         }
-        &::after{
+
+        &::after {
             content: '<';
+        }
+    }
+
+    .checkbox {
+
+        appearance: none;
+        -webkit-appearance: none;
+        display: inline-block;
+        width: auto;
+
+        &::before {
+            content: '[ ]';
+        }
+
+        &:checked, &.checked {
+            &::before {
+                content: '[X]';
+            }
         }
     }
 
     data-view {
         table-view {
             --rowHeight: 28px;
+
             .head {
                 height: 1rem;
                 background: var(--background);
+
                 .column {
-                    padding:0 ;
+                    padding: 0;
                     height: 1rem;
                 }
             }
+
             .body {
-                .tr{
+                .tr {
                     &.selectMain, &:focus {
                         outline: none;
                         background: red;
                     }
                 }
+
                 .td {
-                    &.icon{
-                        font-size:0.8em;
+                    &.icon {
+                        font-size: 0.8em;
                     }
+
                     padding: 0;
                     margin-top: 14px;
                     height: 14px;
+
                     button, .button {
                         font-size: 12px;
                         padding: 0;
-                        &.icon{
+
+                        &.icon {
                             font-size: 0.8em;
                         }
                     }

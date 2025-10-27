@@ -87,11 +87,13 @@ data-view {
             }
         }
     }
-    .foot{
-        .buttonsBox{
+
+    .foot {
+        .buttonsBox {
             display: contents;
         }
-        button.active{
+
+        button.active {
             background: var(--main);
         }
     }
@@ -109,7 +111,7 @@ table {
     }
 }
 
-config-popup{
+config-popup {
     position: absolute;
     bottom: 51px;
     left: 20px;
@@ -122,30 +124,38 @@ config-popup{
     max-height: 60cqh;
     max-width: 60vw;
     max-width: 60cqw;
-    label{
+
+    label {
         //display: block;
     }
-    input[type="search"]{
+
+    input[type="search"] {
         width: 100%;
         display: block;
         margin: 0.25em 0;
     }
-    table{
+
+    table {
         table-layout: fixed;
-        th{
-            top:-16px;
-            &:nth-child(1){
-                width:64px;
+
+        th {
+            top: -16px;
+
+            &:nth-child(1) {
+                width: 64px;
             }
-            &:nth-child(2){
-                width:auto;
+
+            &:nth-child(2) {
+                width: auto;
             }
-            &:nth-child(3){
-                width:256px;
+
+            &:nth-child(3) {
+                width: 256px;
             }
         }
-        tr{
-            td{
+
+        tr {
+            td {
                 word-break: break-word;
             }
         }

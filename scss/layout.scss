@@ -264,8 +264,7 @@ body {
                             display: block;
                             padding: 0 15px;
                             margin-left: -10px;
-                            clip-path: polygon(0 100%, 10px 50%, 0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%);
-                            transition: 300ms all;
+
                             text-decoration: none;
                             //animation: breadcrumb-in 600ms ease-out;
                             transform-origin: 0% 50%;

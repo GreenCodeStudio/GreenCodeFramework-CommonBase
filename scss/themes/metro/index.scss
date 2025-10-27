@@ -49,4 +49,13 @@
             margin-top: -10px;
         }
     }
+
+    body > .mainContent > .topBar .breadcrumb ul li a {
+        clip-path: polygon(-10px 100%, 0px 50%, -10px 0, calc(100% - 10px) 0,calc(100% - 10px) 50%, calc(100% - 10px) 100%);
+        transition: 300ms all;
+
+        &:hover, &:focus {
+            clip-path: polygon(0 100%, 10px 50%, 0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%);
+        }
+    }
 }
