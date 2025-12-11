@@ -3,10 +3,12 @@
     --mainLight: #c0c0c0;
     --second: #000000;
     --background: #c0c0c0;
-    --backgroundMain: #008081;
+    --backgroundMain: #c0c0c0;
     --textColor: #000;
     --textSecondColor: #fff;
     --menuColor: #eee;
+
+    font-family: Tahoma, Corbel, sans-serif;
     font-size: 11px;
 
     body {
@@ -59,7 +61,28 @@
         border-bottom: 1px solid #020202;
         border-right: 1px solid #020202;
         box-shadow: 1px 1px 0 #ffffff inset, -1px 0 0 #818181 inset, 0 -1px 0 #808080 inset;
+        padding: 6px 14px;
         //padding:1px;
+        > header {
+            margin: 0 0 6px 0;
+            padding: 0 0 6px 0;
+            font-size: 1em;
+            border-bottom: 1px solid #ffffff;
+            box-shadow: 0 -1px 0 #808080 inset;
+
+            h1 {
+                margin: 0;
+                font-size: 1em;
+                line-height: 19px;
+            }
+        }
+
+        > footer {
+            border-top: 1px solid #808080;
+            box-shadow: 0 1px 0 #ffffff inset;
+            margin: 6px 0 0 0;
+            padding: 6px 0 0 0;
+        }
     }
 
     .button, button:not(.browsersDefault):not(.swaggerContainer *) {
@@ -90,30 +113,6 @@
             border-bottom: 1px solid #ffffff;
             border-right: 1px solid #ffffff;
             box-shadow: 1px 1px 0 #808080 inset, -1px -1px 0 #dfdfdf inset;
-        }
-    }
-
-    section.card {
-        > header {
-
-            background: var(--main);
-            padding: 2px;
-            margin: -8px -8px 10px -8px;
-            color: #fff;
-            font-size: 1em;
-
-            h1 {
-                margin: 0;
-                font-size: 1em;
-                line-height: 19px;
-            }
-        }
-
-        > footer {
-            border-top: 1px solid #808080;
-            box-shadow: 0 1px 0 #ffffff inset;
-            margin-left: -9px;
-            margin-right: -9px;
         }
     }
 
@@ -154,14 +153,20 @@
         padding: 1px;
         background: #ffffff;
 
-        thead th, .head .column {
-            @extend .button;
-            background: var(--background);
-            display: table-cell;
-            margin: 0;
-            color: #000;
-            position: sticky;
-            position: absolute; //todo do sticky
+        thead th, .head {
+            height: 14px;
+
+            .column {
+
+                @extend .button;
+                background: var(--background);
+                display: table-cell;
+                margin: 0;
+                color: #000;
+                position: sticky;
+                position: absolute; //todo do sticky
+                height: 14px;
+            }
         }
 
         tbody td, .body .tr:not(.dummy-class):not(.dummy-class2) {
@@ -172,17 +177,43 @@
                 color: #ffffff;
             }
 
-            &:focus {
-                outline: 1px dotted;
+
+            &:focus, &.selectedMain {
+                outline: none;
+                border: 1px dotted #000;
+
+                .td {
+                    margin-top: -1px;
+                    margin-bottom: -1px;
+
+                    &:first-child {
+                        margin-left: -1px;
+                    }
+
+                    &:last-child {
+                        margin-right: -1px;
+                    }
+                }
             }
 
-            &.selectedMain {
-                outline: 1px dotted;
+            &.selected.selectedMain {
+                border: 1px dotted #FFFF7F;
             }
 
             .td {
-                padding: 6px 10px;
+                padding: 1px 10px;
                 background: transparent;
+                line-height: 1;
+            }
+
+            .actions {
+                .button, button {
+                    padding: 0 3px;
+                    font-size: 6px;
+                    line-height: 11px;
+                    margin: 0 2px;
+                    display: block;
+                }
             }
         }
 
@@ -231,6 +262,7 @@
         border-right: 1px solid #ffffff;
         box-shadow: 1px 1px 0 #000000 inset, -1px -1px 0 #dfdfdf inset;
         font-family: inherit;
+        box-sizing: border-box;
 
         &:focus {
             outline: none;
@@ -280,7 +312,7 @@
         border: none;
 
         table-view {
-            --rowHeight: 30px;
+            --rowHeight: 13px;
             margin-right: -6px;
             margin-left: -6px;
 

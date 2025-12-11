@@ -52,7 +52,28 @@
     .card {
         border: 1px solid #919B9C;
         box-shadow: 0 0 0 1px #FCFCFE inset, 1px 1px 1px rgba(0, 0, 0, 0.2);
-        background: linear-gradient(0deg, #FCFCFE, #F4F3EE);
+        background: linear-gradient(0deg, #F4F3EE, #FCFCFE);
+        padding: 6px 14px;
+
+        > header {
+            margin: 0 0 6px 0;
+            padding: 0 0 6px 0;
+            border-bottom: 1px #FFFFFF solid;
+            box-shadow: 0 -1px 0 #ACA899 inset;
+
+            h1 {
+                margin: 0;
+                font-size: 1em;
+                line-height: 19px;
+            }
+        }
+
+        > footer {
+            border-top: 1px solid #ACA899;
+            box-shadow: 0 1px 0 #ffffff inset;
+            margin: 6px 0 0 0;
+            padding: 6px 0 0 0;
+        }
     }
 
     .button, button:not(.browsersDefault):not(.swaggerContainer *) {
@@ -80,64 +101,65 @@
             z-index: -2;
 
             background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, .4), rgba(255, 255, 255, .1), rgba(255, 255, 255, 0));
-            box-shadow:  -2px -2px 2px -2px rgba(0, 0, 0, 0.2) inset, 0px 3px 1px -2px rgba(255, 255, 255, 0.5) inset;
+            box-shadow: -2px -2px 2px -2px rgba(0, 0, 0, 0.2) inset, 0px 3px 1px -2px rgba(255, 255, 255, 0.5) inset;
         }
 
 
         &:focus {
             outline: none;
+
             &::before {
-                box-shadow:  0px 3px 1px -2px rgba(255, 255, 255, 0.5) inset,0px 3px 1px -2px  #89ADE488 inset,-3px -3px 3px -1px rgba(0, 0, 0, 0.1) inset,  0 0 0 2px #6982EE inset;
+                box-shadow: 0px 3px 1px -2px rgba(255, 255, 255, 0.5) inset, 0px 3px 1px -2px #89ADE488 inset, -3px -3px 3px -1px rgba(0, 0, 0, 0.1) inset, 0 0 0 2px #6982EE inset;
             }
         }
+
         &:hover {
             &::before {
-                box-shadow:  0px 3px 1px -2px rgba(255, 255, 255, 0.5) inset, 0px 3px 1px -2px #F9BA4288 inset ,-3px -3px 3px -1px rgba(0, 0, 0, 0.1) inset,  0 0 0 2px #d9a13b inset;
+                box-shadow: 0px 3px 1px -2px rgba(255, 255, 255, 0.5) inset, 0px 3px 1px -2px #F9BA4288 inset, -3px -3px 3px -1px rgba(0, 0, 0, 0.1) inset, 0 0 0 2px #d9a13b inset;
             }
         }
 
-    }
-
-    section.card {
-        > header {
-
-            background: var(--main);
-            padding: 2px;
-            margin: -8px -8px 10px -8px;
-            color: #fff;
-            font-size: 1em;
-
-            h1 {
-                margin: 0;
-                font-size: 1em;
-                line-height: 19px;
-            }
-        }
-
-        > footer {
-            border-top: 1px solid #808080;
-            box-shadow: 0 1px 0 #ffffff inset;
-            margin-left: -9px;
-            margin-right: -9px;
-        }
     }
 
 
     body > aside {
-        background: #7aa1e6;
+        background: linear-gradient(0, #7AA1E6, #6375D6);
+        top: 26px;
 
-        nav ul {
-            margin: 2px;
+        nav > ul {
+            a{
+                color:#215DC6;
+            }
+            > li {
+                display: block;
+                margin: 15px 12px;
+                background: #D6DFF7;
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+                overflow: hidden;
 
-            li {
-                a, span {
-                    cursor: default;
-                    color: #000;
+
+                a{
+                    &:hover{
+                        background: inherit;
+                        text-decoration: underline;
+                        color:#428EFF;
+                    }
+                }
+                > a, > span {
+                    display: block;
+                    background: linear-gradient(90deg, #fff 50%, #C6D3F7 100%);
+                    &:hover{
+                        background: linear-gradient(90deg, #fff 50%, #C6D3F7 100%);
+
+                    }
                 }
 
-                a {
-                    &:hover {
-                        color: #fff;
+                > ul {
+                    border: 1px solid #fff;
+                    border-top: none;
+                    li {
+
                     }
                 }
             }
@@ -202,6 +224,7 @@
         -webkit-backdrop-filter: none;
         backdrop-filter: none;
         background: var(--background);
+        top: 26px;
     }
 
     .contextMenu {
@@ -231,6 +254,8 @@
 
         line-height: 1.7;
         font-size: 1em;
+        box-sizing: border-box;
+
         &:focus {
             outline: none;
         }

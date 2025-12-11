@@ -1,24 +1,25 @@
 body {
 
     > header {
-        background: var(--main);
-        height: 31px;
+        background: linear-gradient(0, #3E96FF 0, #0370FF 2px, #0055E3 7px, #0055F1 13px, #0055F1 21px, #0162FA 24px, #0043CF);
+        height: 26px;
         h1{
             margin: 0 8px;
+            color: #fff;
         }
         input[type="search"]{
             height: 24px;
-            margin: 3px 5px;
+            margin: 1px 5px;
         }
         button.hamburgerMenu{
             height: 24px;
-            margin: 3px 5px;
+            margin: 1px 5px;
         }
         .loginInfo{
             .headerButton{
-                font-size: 14px;
+                font-size: 12px;
                 line-height: 1;
-                margin: 3px 5px;
+                margin: 1px 5px;
                 display: inline-block;
             }
         }
