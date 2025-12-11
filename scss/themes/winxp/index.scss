@@ -1,12 +1,14 @@
-[data-layout="win98"] {
+[data-layout="winxp"] {
     --main: #849211;
     --mainLight: #c0c0c0;
     --second: #000000;
-    --background: #c0c0c0;
-    --backgroundMain: #008081;
+    --background: #F4F3EE;
+    --backgroundMain: #ECE9D8;
     --textColor: #000;
     --textSecondColor: #fff;
     --menuColor: #eee;
+
+    font-family: Tahoma, Corbel, sans-serif;
     font-size: 11px;
 
     body {
@@ -48,49 +50,52 @@
     }
 
     .card {
-        //border-top: 1px solid #ffffff;
-        //border-left: 1px solid #ffffff;
-        //border-bottom: 1px solid #000000;
-        //border-right: 1px solid #000000;
-        //box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
-
-        border-top: 1px solid #DEDFDF;
-        border-left: 1px solid #DEDFDF;
-        border-bottom: 1px solid #020202;
-        border-right: 1px solid #020202;
-        box-shadow: 1px 1px 0 #ffffff inset, -1px 0 0 #818181 inset, 0 -1px 0 #808080 inset;
-        //padding:1px;
+        border: 1px solid #919B9C;
+        box-shadow: 0 0 0 1px #FCFCFE inset, 1px 1px 1px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(0deg, #FCFCFE, #F4F3EE);
     }
 
     .button, button:not(.browsersDefault):not(.swaggerContainer *) {
-        border-top: 1px solid #ffffff;
-        border-left: 1px solid #ffffff;
-        border-bottom: 1px solid #000000;
-        border-right: 1px solid #000000;
-        box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
+        background: #e8e6e1;
+        border: 1px solid #003C74;
         transition: none;
         cursor: default;
         font-family: inherit;
+        border-radius: 3px;
+        position: relative;
+        z-index: 0;
+        box-shadow: -1px -1px 0 #DCD8CD, 1px 1px 0 #FDFDFC;
+        overflow: hidden;
 
+
+        //background: #F0F0EB;
         &::before {
-            display: none;
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -2;
+
+            background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, .4), rgba(255, 255, 255, .1), rgba(255, 255, 255, 0));
+            box-shadow:  -2px -2px 2px -2px rgba(0, 0, 0, 0.2) inset, 0px 3px 1px -2px rgba(255, 255, 255, 0.5) inset;
         }
+
 
         &:focus {
-            border: 1px solid black;
-            box-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #000000 inset, 2px 2px 0 #dfdfdf inset, -2px -2px 0 #808080 inset;
-            outline: 1px dotted;
-            outline-offset: -5px;
+            outline: none;
+            &::before {
+                box-shadow:  0px 3px 1px -2px rgba(255, 255, 255, 0.5) inset,0px 3px 1px -2px  #89ADE488 inset,-3px -3px 3px -1px rgba(0, 0, 0, 0.1) inset,  0 0 0 2px #6982EE inset;
+            }
+        }
+        &:hover {
+            &::before {
+                box-shadow:  0px 3px 1px -2px rgba(255, 255, 255, 0.5) inset, 0px 3px 1px -2px #F9BA4288 inset ,-3px -3px 3px -1px rgba(0, 0, 0, 0.1) inset,  0 0 0 2px #d9a13b inset;
+            }
         }
 
-        &:active {
-            transform: none;
-            border-top: 1px solid #000000;
-            border-left: 1px solid #000000;
-            border-bottom: 1px solid #ffffff;
-            border-right: 1px solid #ffffff;
-            box-shadow: 1px 1px 0 #808080 inset, -1px -1px 0 #dfdfdf inset;
-        }
     }
 
     section.card {
@@ -119,11 +124,7 @@
 
 
     body > aside {
-        border-top: 1px solid #ffffff;
-        border-left: 1px solid #ffffff;
-        border-bottom: 1px solid #000000;
-        border-right: 1px solid #000000;
-        box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
+        background: #7aa1e6;
 
         nav ul {
             margin: 2px;
@@ -225,13 +226,11 @@
 
     .input, input:not(.browsersDefault), textarea:not(.browsersDefault), select:not(.browsersDefault) {
         background: white;
-        border-top: 1px solid #808080;
-        border-left: 1px solid #808080;
-        border-bottom: 1px solid #ffffff;
-        border-right: 1px solid #ffffff;
-        box-shadow: 1px 1px 0 #000000 inset, -1px -1px 0 #dfdfdf inset;
+        border: 1px solid #7F9DB9;
         font-family: inherit;
 
+        line-height: 1.7;
+        font-size: 1em;
         &:focus {
             outline: none;
         }

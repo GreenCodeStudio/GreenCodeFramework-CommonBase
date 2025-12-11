@@ -1,12 +1,14 @@
-[data-layout="win98"] {
+[data-layout="vista"] {
     --main: #849211;
     --mainLight: #c0c0c0;
     --second: #000000;
-    --background: #c0c0c0;
-    --backgroundMain: #008081;
+    --background: #F0F0F0;
+    --backgroundMain: #ECE9D8;
     --textColor: #000;
     --textSecondColor: #fff;
     --menuColor: #eee;
+
+    font-family: Tahoma, Corbel, sans-serif;
     font-size: 11px;
 
     body {
@@ -48,32 +50,55 @@
     }
 
     .card {
-        //border-top: 1px solid #ffffff;
-        //border-left: 1px solid #ffffff;
-        //border-bottom: 1px solid #000000;
-        //border-right: 1px solid #000000;
-        //box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
-
-        border-top: 1px solid #DEDFDF;
-        border-left: 1px solid #DEDFDF;
-        border-bottom: 1px solid #020202;
-        border-right: 1px solid #020202;
-        box-shadow: 1px 1px 0 #ffffff inset, -1px 0 0 #818181 inset, 0 -1px 0 #808080 inset;
-        //padding:1px;
+        border: 1px solid #898C95;
+        background: #fff;
     }
 
     .button, button:not(.browsersDefault):not(.swaggerContainer *) {
-        border-top: 1px solid #ffffff;
-        border-left: 1px solid #ffffff;
-        border-bottom: 1px solid #000000;
-        border-right: 1px solid #000000;
-        box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
-        transition: none;
+        border: 1px solid #707070;
+        transition: all 1s ease;
         cursor: default;
         font-family: inherit;
+        border-radius: 3px;
+        position: relative;
+        background: transparent;
 
         &::before {
-            display: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            content: '';
+            display: block;
+            z-index: -2;
+            box-shadow: 0px 0px 0px 1px #fff inset;
+            background: linear-gradient(180deg, #F2F2F2, #EBEBEB 50%, #DDDDDD 50%, #CFCFCF);
+            opacity: 1;
+            transition: all 1s ease;
+        }
+
+        &::after {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            content: '';
+            display: block;
+            z-index: -1;
+            box-shadow: 0px 0px 0px 1px #EDF8FE inset;
+            background: linear-gradient(180deg, #EAF6FD, #D9F0FC 50%, #BEE6FD 50%, #A7D9F5);
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        &:hover {
+            border: 1px solid #3C7FB1;
+
+            &::after {
+                opacity: 1;
+            }
         }
 
         &:focus {
@@ -119,11 +144,7 @@
 
 
     body > aside {
-        border-top: 1px solid #ffffff;
-        border-left: 1px solid #ffffff;
-        border-bottom: 1px solid #000000;
-        border-right: 1px solid #000000;
-        box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
+        background: #7aa1e6;
 
         nav ul {
             margin: 2px;
@@ -225,12 +246,11 @@
 
     .input, input:not(.browsersDefault), textarea:not(.browsersDefault), select:not(.browsersDefault) {
         background: white;
-        border-top: 1px solid #808080;
-        border-left: 1px solid #808080;
-        border-bottom: 1px solid #ffffff;
-        border-right: 1px solid #ffffff;
-        box-shadow: 1px 1px 0 #000000 inset, -1px -1px 0 #dfdfdf inset;
+        border: 1px solid #7F9DB9;
         font-family: inherit;
+
+        line-height: 1.7;
+        font-size: 1em;
 
         &:focus {
             outline: none;

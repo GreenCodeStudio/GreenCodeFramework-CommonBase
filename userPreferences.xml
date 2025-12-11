@@ -6,6 +6,8 @@
         <select>
             <option>metro</option>
             <option>win98</option>
+            <option>winxp</option>
+            <option>vista</option>
             <option>text</option>
             <option>shadcn</option>
         </select>
