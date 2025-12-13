@@ -2,14 +2,14 @@
     --main: #849211;
     --mainLight: #c0c0c0;
     --second: #000000;
-    --background: #F0F0F0;
-    --backgroundMain: #ECE9D8;
+    --background: #Ffffff;
+    --backgroundMain: #Ffffff;
     --textColor: #000;
     --textSecondColor: #fff;
     --menuColor: #eee;
 
     font-family: Tahoma, Corbel, sans-serif;
-    font-size: 11px;
+    font-size: 12px;
 
     body {
         font-family: Tahoma, Corbel, sans-serif;
@@ -20,20 +20,13 @@
 
 
     ::-webkit-scrollbar {
-        background: #c0c0c0;
-        border-top: 1px solid #c0c0c0;
-        border-left: 1px solid #c0c0c0;
-        border-bottom: 1px solid #020202;
-        border-right: 1px solid #020202;
+        background: red;
     }
 
     ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-button {
-        background: #c0c0c0;
-        border-top: 1px solid #c0c0c0;
-        border-left: 1px solid #c0c0c0;
-        border-bottom: 1px solid #020202;
-        border-right: 1px solid #020202;
-        box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #808080 inset;
+        background: linear-gradient(90deg, #f5f5f5, #e9e9eb 50%, #d9dadc 50%, #c0c0c4);
+        border:1px solid #979797;
+        border-radius: 1px;
 
         &:active {
             border-top: 1px solid #020202;
@@ -46,12 +39,31 @@
     }
 
     ::-webkit-scrollbar-track {
-        background: #dcdfe0;
+        border-left: 1px solid #f8f8f8;
+        right: 1px solid #eaeaea;
+        background: linear-gradient(90deg, #e3e3e3, #efefef calc(3 / 15 * 100% ), #f2f2f2);
     }
 
     .card {
-        border: 1px solid #898C95;
-        background: #fff;
+        border: none;
+        background: transparent;
+
+        > header {
+            margin: 0;
+            padding: 0;
+            border: none;
+
+            h1 {
+                font-size: 16px;
+                font-weight: inherit;
+            }
+        }
+
+        > footer {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
     }
 
     .button, button:not(.browsersDefault):not(.swaggerContainer *) {
@@ -118,47 +130,41 @@
         }
     }
 
-    section.card {
-        > header {
-
-            background: var(--main);
-            padding: 2px;
-            margin: -8px -8px 10px -8px;
-            color: #fff;
-            font-size: 1em;
-
-            h1 {
-                margin: 0;
-                font-size: 1em;
-                line-height: 19px;
-            }
-        }
-
-        > footer {
-            border-top: 1px solid #808080;
-            box-shadow: 0 1px 0 #ffffff inset;
-            margin-left: -9px;
-            margin-right: -9px;
-        }
-    }
-
 
     body > aside {
-        background: #7aa1e6;
+        background: linear-gradient(180deg, #416fa6, #6bb86e);
+        width: 200px;
+        color: #fff;
+        top: 30px;
 
-        nav ul {
-            margin: 2px;
+        nav > ul {
+            margin: 15px 29px;
 
             li {
+                margin: 6px 0;
+
                 a, span {
                     cursor: default;
-                    color: #000;
+                    color: #fff;
+                    padding: 0;
+                    margin: 0;
+                    font-size: 12px;
+                    line-height: 1.3;
+
+                    &:hover {
+                        background: transparent;
+                        text-decoration: underline;
+                    }
                 }
 
                 a {
                     &:hover {
                         color: #fff;
                     }
+                }
+
+                ul {
+                    margin-left: 8px;
                 }
             }
         }
@@ -176,13 +182,21 @@
         background: #ffffff;
 
         thead th, .head .column {
-            @extend .button;
-            background: var(--background);
+            background: linear-gradient(180deg,#fff,#fff calc(9 / 22 * 100%), #f7f8fa calc(9 / 22 * 100%),#f1f2f4);
             display: table-cell;
             margin: 0;
             color: #000;
             position: sticky;
             position: absolute; //todo do sticky
+            border-right: 1px solid #dedfe1;
+            border-bottom: 1px solid #d5d5d5;
+            box-shadow: 1px 0 #fff inset, -1px 0 #fff inset;
+            &:hover{
+                box-shadow: none;
+                background: linear-gradient(180deg,#f2f9fc,#f2f9fc calc(9 / 22 * 100%), #e1f1f9 calc(9 / 22 * 100%),#d8ecf6);
+                border-right: 1px solid #96d9f9;
+                border-bottom: 1px solid #96d9f9;
+            }
         }
 
         tbody td, .body .tr:not(.dummy-class):not(.dummy-class2) {
@@ -246,8 +260,12 @@
 
     .input, input:not(.browsersDefault), textarea:not(.browsersDefault), select:not(.browsersDefault) {
         background: white;
-        border: 1px solid #7F9DB9;
+        border-top: 1px solid #abadb3;
+        border-left: 1px solid #e2e3ea;
+        border-right: 1px solid #dbdfe6;
+        border-bottom: 1px solid #e3e9ef;
         font-family: inherit;
+        border-radius: 1px;
 
         line-height: 1.7;
         font-size: 1em;

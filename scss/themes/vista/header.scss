@@ -1,8 +1,11 @@
 body {
 
     > header {
-        background: linear-gradient(0, #3E96FF 0, #0370FF 2px, #0055E3 7px, #0055F1 13px, #0055F1 21px, #0162FA 24px, #0043CF);
-        height: 26px;
+        background: linear-gradient(180deg, #88b5c0 0, #478d9e calc(14 / 29 * 100%), #146377 calc(14 / 29 * 100%), #54a1ab calc(28 / 29 * 100%), #97c6ce );
+        border-bottom: 1px solid #083141;
+        height: 29px;
+        color:#fff;
+        text-shadow: 2px 2px 2px black;
         h1{
             margin: 0 8px;
         }
