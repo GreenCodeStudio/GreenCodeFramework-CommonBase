@@ -11,6 +11,8 @@ trait PageStandardControllerTrait
     public function postAction()
     {
         $userData = Authorization::getUserData();
+        $userPreferences = $userData?->preferences ?? [];
+        $userPreferences = [...$userPreferences, ...($_GET['_preferences']??[])];
         $menu = new Menu();
         $menuData = $menu->readMenu();
         $notifications = new Notifications();
