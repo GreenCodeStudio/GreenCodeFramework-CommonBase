@@ -18,7 +18,7 @@ class Authorization extends PageStandardController
 
     public function index()
     {
-        $this->addView('CommonBase', 'login');
+        $this->addView('CommonBase', 'login', ['username'=>$_GET['username']??'']);
     }
 
     /**
