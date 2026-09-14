@@ -6,7 +6,7 @@
         <div class="error hidden"></div>
         <label>
             <span>Email</span>
-            <input name="username" autocomplete="username">
+            <input name="username" autocomplete="username" value="<?=htmlspecialchars($data['username'])?>">
         </label>
         <label>
             <span>Hasło</span>
