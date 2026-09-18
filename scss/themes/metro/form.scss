@@ -47,6 +47,40 @@ textarea:not(.browsersDefault) {
     resize: vertical;
     transition: all 200ms, height 0ms;
 }
+
+select:not(.browsersDefault) {
+    appearance: base-select;
+    border-radius: 0;
+    //padding-right: 34px;
+
+    &::picker-icon {
+        color: var(--second);
+        transition: transform 200ms;
+        position: absolute;
+        right: 0.25em;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    &:open::picker-icon {
+        transform: translate(-50%, -50%) rotate(180deg);
+    }
+
+    &::picker(select) {
+        appearance: base-select;
+        border: 1px solid rgba(#000, .5);
+        -webkit-backdrop-filter: var(--standardBackdropFilter);
+        backdrop-filter: var(--standardBackdropFilter);
+        background: transparent;
+    }
+    option{
+        background: transparent;
+        backdrop-filter: blur(8px);
+        &:hover{
+            background: var(--main);
+        }
+    }
+}
 .checkbox {
     appearance: none;
     -webkit-appearance: none;
