@@ -51,7 +51,7 @@ textarea:not(.browsersDefault) {
 select:not(.browsersDefault) {
     appearance: base-select;
     border-radius: 0;
-    //padding-right: 34px;
+    padding-right: 2em;
 
     &::picker-icon {
         color: var(--second);
