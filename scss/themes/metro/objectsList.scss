@@ -88,6 +88,33 @@ data-view {
         }
     }
 
+    calendar-view {
+        .body {
+            .day {
+                border: 1px solid rgba(#000000, .1);
+                background: rgba(#000000, .05);
+                padding: 0.25em;
+
+                &:hover {
+                    background: rgba(#000000, .25);
+                }
+
+                &.outsideRange {
+                    background: rgba(#000000, .2);
+
+                    &:hover {
+                        background: rgba(#000000, .3);
+                    }
+                }
+                .item{
+                    background: var(--main);
+                    margin: 0.25em;
+                }
+            }
+
+        }
+    }
+
     .foot {
         .buttonsBox {
             display: contents;
