@@ -2,6 +2,7 @@
 <root>
     <preference>
         <name>layout</name>
+        <title>CommonBase.layout</title>
         <default>metro</default>
         <select>
             <option>metro</option>
