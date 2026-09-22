@@ -110,6 +110,11 @@ data-view {
                     background: var(--main);
                     margin: 0.25em;
                 }
+                .calendarDayActionsWrapper{
+                    display: flex;
+                    align-items: end;
+                    justify-content: end;
+                }
             }
 
         }
