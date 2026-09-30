@@ -192,4 +192,7 @@ config-popup {
             }
         }
     }
+    select:not(.dummyClass){
+        appearance: auto;
+    }
 }
