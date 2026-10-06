@@ -45,11 +45,11 @@
 
 
     .action-comment {
-        --main: #1b1bee;
-        --mainLight: #8f8fff;
+        --main: #ee1b9a;
+        --mainLight: #ff8ff0;
         @media screen and (prefers-color-scheme: dark) {
-            --main: #0d0d6f;
-            --mainLight: #101086;
+            --main: #6f0d6f;
+            --mainLight: #861086;
         }
     }
 
