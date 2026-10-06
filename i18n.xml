@@ -56,4 +56,8 @@
         <value lang="en">Layout</value>
         <value lang="pl">Layout</value>
     </node>
+    <node name="comments">
+        <value lang="en">Comments</value>
+        <value lang="pl">Komentarze</value>
+    </node>
 </root>

@@ -43,6 +43,16 @@
         }
     }
 
+
+    .action-comment {
+        --main: #1b1bee;
+        --mainLight: #8f8fff;
+        @media screen and (prefers-color-scheme: dark) {
+            --main: #0d0d6f;
+            --mainLight: #101086;
+        }
+    }
+
     .card {
         box-shadow: 0 0 8px rgba(15, 23, 42, 0.1);
 
