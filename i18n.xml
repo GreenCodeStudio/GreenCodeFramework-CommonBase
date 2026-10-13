@@ -3,61 +3,106 @@
     <node name="add">
         <value lang="en">Add</value>
         <value lang="pl">Dodaj</value>
+        <value lang="de">Hinzufügen</value>
+        <value lang="cs">Přidat</value>
+        <value lang="ua">Додати</value>
     </node>
     <node name="cancel">
         <value lang="en">Cancel</value>
         <value lang="pl">Anuluj</value>
+        <value lang="de">Abbrechen</value>
+        <value lang="cs">Zrušit</value>
+        <value lang="ua">Скасувати</value>
     </node>
     <node name="save">
         <value lang="en">Save</value>
         <value lang="pl">Zapisz</value>
+        <value lang="de">Speichern</value>
+        <value lang="cs">Uložit</value>
+        <value lang="ua">Зберегти</value>
     </node>
     <node name="actions">
         <value lang="en">Actions</value>
         <value lang="pl">Akcje</value>
+        <value lang="de">Aktionen</value>
+        <value lang="cs">Akce</value>
+        <value lang="ua">Дії</value>
     </node>
     <node name="edit">
         <value lang="en">Edit</value>
         <value lang="pl">Edytuj</value>
+        <value lang="de">Bearbeiten</value>
+        <value lang="cs">Upravit</value>
+        <value lang="ua">Редагувати</value>
     </node>
     <node name="remove">
         <value lang="en">Remove</value>
         <value lang="pl">Usuń</value>
+        <value lang="de">Entfernen</value>
+        <value lang="cs">Odstranit</value>
+        <value lang="ua">Видалити</value>
     </node>
     <node name="editInNewTab">
         <value lang="en">Edit in new tab</value>
         <value lang="pl">Edytuj w nowej karcie</value>
+        <value lang="de">In neuem Tab bearbeiten</value>
+        <value lang="cs">Upravit v nové kartě</value>
+        <value lang="ua">Редагувати в новій вкладці</value>
     </node>
     <node name="openInNewTab">
         <value lang="en">Open in new tab</value>
         <value lang="pl">Otwórz w nowej karcie</value>
+        <value lang="de">In neuem Tab öffnen</value>
+        <value lang="cs">Otevřít v nové kartě</value>
+        <value lang="ua">Відкрити в новій вкладці</value>
     </node>
     <node name="details">
         <value lang="en">Details</value>
         <value lang="pl">Szczegóły</value>
+        <value lang="de">Einzelheiten</value>
+        <value lang="cs">Podrobnosti</value>
+        <value lang="ua">Деталі</value>
     </node>
     <node name="show">
         <value lang="en">Show</value>
         <value lang="pl">Pokaż</value>
+        <value lang="de">Anzeigen</value>
+        <value lang="cs">Zobrazit</value>
+        <value lang="ua">Показати</value>
     </node>
     <node name="print">
         <value lang="en">Print</value>
         <value lang="pl">Drukuj</value>
+        <value lang="de">Drucken</value>
+        <value lang="cs">Tisk</value>
+        <value lang="ua">Друк</value>
     </node>
     <node name="export">
         <value lang="en">Export</value>
         <value lang="pl">Eksportuj</value>
+        <value lang="de">Exportieren</value>
+        <value lang="cs">Exportovat</value>
+        <value lang="ua">Експорт</value>
     </node>
     <node name="pdf">
         <value lang="en">PDF</value>
         <value lang="pl">PDF</value>
+        <value lang="de">PDF</value>
+        <value lang="cs">PDF</value>
+        <value lang="ua">PDF</value>
     </node>
     <node name="layout">
         <value lang="en">Layout</value>
         <value lang="pl">Layout</value>
+        <value lang="de">Layout</value>
+        <value lang="cs">Layout</value>
+        <value lang="ua">Layout</value>
     </node>
     <node name="comments">
         <value lang="en">Comments</value>
         <value lang="pl">Komentarze</value>
+        <value lang="de">Kommentare</value>
+        <value lang="cs">Komentáře</value>
+        <value lang="ua">Коментарі</value>
     </node>
 </root>
