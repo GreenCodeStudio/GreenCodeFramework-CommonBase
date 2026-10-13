@@ -6,6 +6,7 @@
     @import "./objectsList";
     @import "./header";
     @import "./table";
+    @import "./chat";
 
     .action-add {
         --main: #1be7ee;
@@ -75,5 +76,25 @@
 
     body > aside {
         box-shadow: 0px 40px 8px rgba(15, 23, 42, 0.1);
+
+        > nav {
+            > ul {
+                > li {
+                    > * {
+                        > .menuIcon {
+                            display: inline-block;
+                            width: 48px;
+                            margin-left: -20px;
+                            margin-right: -16px;
+                            text-align: center;
+                        }
+                    }
+                    >ul{
+                        margin-left: 1em;
+                        margin-bottom: 8px;
+                    }
+                }
+            }
+        }
     }
 }

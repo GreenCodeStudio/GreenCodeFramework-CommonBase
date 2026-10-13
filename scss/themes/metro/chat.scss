@@ -1,0 +1,22 @@
+.chat {
+    .conversation {
+        .message {
+            .content {
+                margin-top: 4px;
+                padding: 4px 8px;
+                border-radius: 16px;
+            }
+        }
+    }
+    .messageBoxWrapper{
+        form{
+            >textarea {
+                font:inherit;
+                padding-right: 48px;
+            }
+            >button{
+                margin:4px;
+            }
+        }
+    }
+}

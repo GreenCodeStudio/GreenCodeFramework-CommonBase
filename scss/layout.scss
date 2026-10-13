@@ -42,7 +42,7 @@ body {
                 li {
                     display: block;
 
-                    a, span {
+                    >a, >span {
                         display: block;
                         text-decoration: none;
                         padding: 5px 10px;
@@ -55,9 +55,12 @@ body {
                             background: var(--main);
                         }
                     }
+                    .menuIcon{
+                        display: none;
+                    }
 
                     @media screen and (prefers-color-scheme: dark) {
-                        a, span {
+                        >a, >span {
                             color: #ddd;
                         }
                         a {
