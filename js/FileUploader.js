@@ -27,7 +27,7 @@ export default class FileUploader extends HTMLElement {
                     }]
                 })
         };
-        this.addButton = this.addChild('.button', {text: 'Dodaj'});
+        this.addButton = this.addChild('.button', {text: 'Dodaj plik'});
         this.addButton.onclick = () => this.openFileDialog();
     }
 
