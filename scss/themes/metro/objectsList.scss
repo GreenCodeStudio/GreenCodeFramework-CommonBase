@@ -1,4 +1,6 @@
 data-view {
+    border: none;
+
     table-view {
         .head {
             .column.ableToSort {
@@ -121,6 +123,7 @@ data-view {
     }
 
     .foot {
+        border-top: none;
         .buttonsBox {
             display: contents;
         }

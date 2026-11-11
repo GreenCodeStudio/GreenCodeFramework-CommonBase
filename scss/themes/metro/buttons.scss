@@ -3,7 +3,7 @@
     padding: 5px 8px;
     background: var(--mainLight);
     color: var(--second);
-    border: 2px solid var(--second);
+    border: 2px solid color-mix(in srgb, var(--second), transparent);
     transition: all 200ms;
     position: relative;
     overflow: hidden;
