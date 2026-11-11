@@ -268,7 +268,7 @@ class '.$name.'Controller extends \Common\PageStandardController
         $this->will(\''.$name.'\', \'edit\');
         $this->addView(\''.$namespace.'\', \''.$name.'Edit\', [\'type\' => \'edit\']);
         $this->pushBreadcrumb([\'title\' => \''.$name.'\', \'url\' => \'/'.$name.'\']);
-        $this->pushBreadcrumb([\'title\' => \'Edycja\', \'url\' => \'/'.$name.'/edit/\'.$id]);
+        $this->pushBreadcrumb([\'title\' => t(\'CommonBase.breadcrumb.edit\'), \'url\' => \'/'.$name.'/edit/\'.$id]);
     }
 
     function edit_data(int $id)
@@ -289,7 +289,7 @@ class '.$name.'Controller extends \Common\PageStandardController
         $this->will(\''.$name.'\', \'add\');
         $this->addView(\''.$namespace.'\', \''.$name.'Edit\', [\'type\' => \'add\']);
         $this->pushBreadcrumb([\'title\' => \''.$name.'\', \'url\' => \'/'.$name.'\']);
-        $this->pushBreadcrumb([\'title\' => \'Dodaj\', \'url\' => \'/'.$name.'/add\']);
+        $this->pushBreadcrumb([\'title\' => t(\'CommonBase.breadcrumb.add\'), \'url\' => \'/'.$name.'/add\']);
     }
     '.$add_data.'
     
@@ -306,7 +306,7 @@ class '.$name.'Controller extends \Common\PageStandardController
             
         $this->addView(\''.$namespace.'\', \''.$name.'Show\', [\'item\' => $data]);
         $this->pushBreadcrumb([\'title\' => \''.$name.'\', \'url\' => \'/'.$name.'\']);
-        $this->pushBreadcrumb([\'title\' => \'Szczegóły\', \'url\' => \'/'.$name.'/show/\'.$id]);
+        $this->pushBreadcrumb([\'title\' => t(\'CommonBase.breadcrumb.show\'), \'url\' => \'/'.$name.'/show/\'.$id]);
     }
 }
 ';

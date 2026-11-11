@@ -105,4 +105,27 @@
         <value lang="cs">Komentáře</value>
         <value lang="ua">Коментарі</value>
     </node>
+    <node name="breadcrumb">
+        <node name="edit">
+            <value lang="en">Edit</value>
+            <value lang="pl">Edycja</value>
+            <value lang="de">Bearbeiten</value>
+            <value lang="cs">Upravit</value>
+            <value lang="ua">Редагування</value>
+        </node>
+        <node name="add">
+            <value lang="en">Add</value>
+            <value lang="pl">Dodawanie</value>
+            <value lang="de">Hinzufügen</value>
+            <value lang="cs">Přidat</value>
+            <value lang="ua">Додавання</value>
+        </node>
+        <node name="show">
+            <value lang="en">Details</value>
+            <value lang="pl">Szczegóły</value>
+            <value lang="de">Einzelheiten</value>
+            <value lang="cs">Podrobnosti</value>
+            <value lang="ua">Деталі</value>
+        </node>
+    </node>
 </root>
