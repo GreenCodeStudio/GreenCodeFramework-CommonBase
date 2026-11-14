@@ -128,4 +128,32 @@
             <value lang="ua">Деталі</value>
         </node>
     </node>
+    <node name="search">
+        <value lang="en">Search</value>
+        <value lang="pl">Szukaj</value>
+        <value lang="de">Suche</value>
+        <value lang="cs">Hledat</value>
+        <value lang="ua">Пошук</value>
+    </node>
+    <node name="myAccount">
+        <value lang="en">My account</value>
+        <value lang="pl">Moje konto</value>
+        <value lang="de">Mein Konto</value>
+        <value lang="cs">Můj účet</value>
+        <value lang="ua">Мій акаунт</value>
+    </node>
+    <node name="subscribeNotifications">
+        <value lang="en">Enable push notifications</value>
+        <value lang="pl">Włącz powiadomienia push</value>
+        <value lang="de">Push-Benachrichtigungen aktivieren</value>
+        <value lang="cs">Povolit push oznámení</value>
+        <value lang="ua">Увімкнути push-повідомлення</value>
+    </node>
+    <node name="logout">
+        <value lang="en">Logout</value>
+        <value lang="pl">Wyloguj</value>
+        <value lang="de">Abmelden</value>
+        <value lang="cs">Odhlásit se</value>
+        <value lang="ua">Вийти</value>
+    </node>
 </root>

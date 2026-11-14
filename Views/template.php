@@ -1,10 +1,11 @@
 <?php
 
 use Core\Formatter;
+use Mkrawczyk\Internationalization\LanguagesHierarchy;
 
 ?>
 <!DOCTYPE html>
-<html data-layout="<?=($userPreferences["CommonBase.layout"])??'metro'?>">
+<html data-layout="<?=($userPreferences["CommonBase.layout"])??'metro'?>" data-lang-hierachy="<?=htmlspecialchars(json_encode(LanguagesHierarchy::ReadFromUser()->langs))?>" lang="<?=htmlspecialchars(LanguagesHierarchy::ReadFromUser()->langs[0]??'')?>">
 <head>
     <title><?= htmlspecialchars($this->getTitle()) ?></title>
     <meta charset="UTF-8">
@@ -29,7 +30,7 @@ use Core\Formatter;
     <button type="button" class="hamburgerMenu"><span class="icon-menu"></span></button>
     <h1><?= htmlspecialchars($header['title']) ?></h1>
         <div class="mainSearch">
-            <input type="search" placeholder="Szukaj">
+            <input type="search" placeholder="<?= htmlspecialchars(t('CommonBase.search')) ?>">
             <div class="list"></div>
         </div>
     <div class="loginInfo">
@@ -37,9 +38,9 @@ use Core\Formatter;
         <?php if(!empty($userData)){?>
         <div class="loginInfo-expandable">
             <span class="icon-user"><?= htmlspecialchars($userData->name.' '.$userData->surname) ?></span>
-            <a href="/User/myAccount" class="button">Moje konto</a>
-            <button class="subscribe-notifications">Włącz powiadomienia push</button>
-            <div class="button logoutMyselfBtn" title="Wyloguj"><span class="icon-logout"></span>Wyloguj</div>
+            <a href="/User/myAccount"><?= htmlspecialchars(t('CommonBase.myAccount')) ?></a>
+            <div class="subscribe-notifications pseudoButton" tabindex="0"><?= htmlspecialchars(t('CommonBase.subscribeNotifications')) ?></div>
+            <div class="logoutMyselfBtn" title="<?= htmlspecialchars(t('CommonBase.logout')) ?>" tabindex="0"><span class="icon-logout"></span><?= htmlspecialchars(t('CommonBase.logout')) ?></div>
 <!--            <button type="button" onclick="document.documentElement.classList.toggle('win98')">Wygląd klasyczny</button>-->
         </div>
         <?php } ?>

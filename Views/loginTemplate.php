@@ -1,5 +1,10 @@
+<?php
+
+use Mkrawczyk\Internationalization\LanguagesHierarchy;
+
+?>
 <!DOCTYPE html>
-<html lang="en" data-layout="metro">
+<html data-layout="metro" data-lang-hierachy="<?=htmlspecialchars(json_encode(LanguagesHierarchy::ReadFromUser()->langs))?>" lang="<?=htmlspecialchars(LanguagesHierarchy::ReadFromUser()->langs[0]??'')?>">
 <head>
     <title><?= htmlspecialchars($this->getTitle()) ?></title>
     <meta charset="UTF-8">
