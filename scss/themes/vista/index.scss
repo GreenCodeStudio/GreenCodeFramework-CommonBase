@@ -45,23 +45,29 @@
     }
 
     .card {
-        border: none;
-        background: transparent;
+        border: 1px solid #c9d9eb;
+        background: rgba(255, 255, 255, 0.62);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        padding: 8px 12px;
 
         > header {
-            margin: 0;
-            padding: 0;
+            margin: 0 0 8px;
+            padding: 0 0 6px;
             border: none;
+            border-bottom: 1px solid rgba(104, 149, 191, 0.35);
+            box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.75);
 
             h1 {
                 font-size: 16px;
-                font-weight: inherit;
+                font-weight: 600;
+                color: #1b3f63;
             }
         }
 
         > footer {
-            margin: 0;
-            padding: 0;
+            margin: 8px 0 0;
+            padding: 6px 0 0;
+            border-top: 1px solid rgba(104, 149, 191, 0.35);
             border: none;
         }
     }

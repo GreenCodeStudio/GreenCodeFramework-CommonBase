@@ -44,18 +44,26 @@
     }
 
     .card {
+        box-shadow: 0 0 8px rgba(15, 23, 42, 0.1);
+
         > header {
             border-top: 10px solid var(--main);
             margin-top: -10px;
         }
     }
 
-    body > .mainContent > .topBar .breadcrumb ul li a {
-        clip-path: polygon(-10px 100%, 0px 50%, -10px 0, calc(100% - 10px) 0,calc(100% - 10px) 50%, calc(100% - 10px) 100%);
-        transition: 300ms all;
+    body > .mainContent > .topBar {
+        .breadcrumb ul li a {
+            clip-path: polygon(-10px 100%, 0px 50%, -10px 0, calc(100% - 10px) 0, calc(100% - 10px) 50%, calc(100% - 10px) 100%);
+            transition: 300ms all;
 
-        &:hover, &:focus {
-            clip-path: polygon(0 100%, 10px 50%, 0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%);
+            &:hover, &:focus {
+                clip-path: polygon(0 100%, 10px 50%, 0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%);
+            }
         }
+    }
+
+    body > aside {
+        box-shadow: 0px 40px 8px rgba(15, 23, 42, 0.1);
     }
 }

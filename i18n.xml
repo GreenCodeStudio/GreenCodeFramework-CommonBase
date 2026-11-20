@@ -52,4 +52,8 @@
         <value lang="en">PDF</value>
         <value lang="pl">PDF</value>
     </node>
+    <node name="layout">
+        <value lang="en">Layout</value>
+        <value lang="pl">Layout</value>
+    </node>
 </root>
