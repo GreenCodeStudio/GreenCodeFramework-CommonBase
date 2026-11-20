@@ -202,7 +202,9 @@ config-popup {
             }
         }
     }
+}
 
+column-filter {
     select:not(.dummyClass) {
         appearance: auto;
     }
