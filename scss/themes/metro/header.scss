@@ -37,6 +37,11 @@ body {
             .headerButton {
                 margin: 0 5px;
             }
+            .loginInfo-expandable{
+                border: 1px solid rgba(#000, .5);
+                -webkit-backdrop-filter: var(--standardBackdropFilter);
+                backdrop-filter: var(--standardBackdropFilter);
+            }
         }
 
 
@@ -45,17 +50,27 @@ body {
 
 .loginInfo {
     .loginInfo-expandable {
-
         -webkit-backdrop-filter: var(--standardBackdropFilter);
         backdrop-filter: var(--standardBackdropFilter);
-        border: 2px solid;
-        margin-left: -152px;
 
         > * {
-            margin: 8px;
-            width: calc(100% - 16px);
+            margin: 0;
             display: block;
             box-sizing: border-box;
+
+            padding: 8px 16px;
+            color: inherit;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            &:hover, &.active {
+                background: rgba(#000, .2);
+            }
+
+            &:active {
+                background: rgba(#000, .2);
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-body{
+body {
 
     > header {
         position: fixed;
@@ -74,29 +74,34 @@ body{
 
 
 }
+
 .loginInfo {
     display: inline-block;
+    text-align: left;
 
     > .loginInfo-expandable {
 
-        display: none;
+        display: block;
         position: absolute;
-        width: 200px;
+        width: 300px;
         height: auto;
         overflow: auto;
-        margin-left: -152px;
-        >*{
-                margin: 8px;
-                width: calc(100% - 16px);
-                display: block;
-                box-sizing: border-box;
+        margin-left: -252px;
+        visibility: collapse;
+        transition: visibility 400ms;
+
+        > * {
+            margin: 8px;
+            width: auto;
+            display: block;
+            box-sizing: border-box;
 
         }
     }
 
     &:hover, &:focus-within, &.open {
         > .loginInfo-expandable {
-            display: block;
+            visibility: visible;
         }
     }
 
