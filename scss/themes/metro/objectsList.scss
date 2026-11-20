@@ -135,6 +135,20 @@ data-view {
             display: contents;
         }
 
+        @media(max-width: 450px) {
+            .buttonsBox {
+                button {
+                    flex-grow: 1;
+                    max-width: 28px;
+                    padding-left: 0;
+                    padding-right: 0;
+                    &:first-child, &:last-child {
+                        max-width: 50px;
+                    }
+                }
+            }
+        }
+
         button.active {
             background: var(--main);
         }
