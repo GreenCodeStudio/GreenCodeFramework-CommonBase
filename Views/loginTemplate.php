@@ -18,6 +18,6 @@
     window.DEBUG =<?=json_encode($this->isDebug())?>;
     //]]>
 </script>
-<script src="/dist/main.js" type="text/javascript"></script>
+<script src="/dist/main.js?v=<?=htmlspecialchars($_ENV['VERSION']??'-')?>" type="text/javascript"></script>
 </body>
 </html>

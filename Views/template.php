@@ -40,7 +40,6 @@ use Core\Formatter;
             <a href="/User/myAccount" class="button">Moje konto</a>
             <button class="subscribe-notifications">Włącz powiadomienia push</button>
             <div class="button logoutMyselfBtn" title="Wyloguj"><span class="icon-logout"></span>Wyloguj</div>
-<!--            <button type="button" onclick="document.documentElement.classList.toggle('win98')">Wygląd klasyczny</button>-->
         </div>
         <?php } ?>
     </div>
