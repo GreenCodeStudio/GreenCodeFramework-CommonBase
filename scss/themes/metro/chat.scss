@@ -1,0 +1,35 @@
+.chat {
+    height: calc(100vh - 72px);
+    margin-left: -8px;
+
+    > aside {
+        background: var(--menuColor);
+
+        h3 {
+            padding-left: 16px;
+        }
+    }
+
+    .conversation {
+        .message {
+            .content {
+                margin-top: 4px;
+                padding: 4px 8px;
+                border-radius: 16px;
+            }
+        }
+    }
+
+    .messageBoxWrapper {
+        form {
+            > textarea {
+                font: inherit;
+                padding-right: 48px;
+            }
+
+            > button {
+                margin: 4px;
+            }
+        }
+    }
+}
